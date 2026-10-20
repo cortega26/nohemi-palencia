@@ -294,6 +294,15 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('nohemi-galeria-mejorada-2x.webp',json.loads(
             (ROOT/'data/site.json').read_text('utf-8'))['social_image_default'])
 
+    def test_artist_gallery_photo_is_shown_in_full_color_without_crop(self):
+        css=(ROOT/'assets/styles.css').read_text('utf-8')
+        self.assertIn('.about-image-wrap{aspect-ratio:1784 / 1352;',css)
+        self.assertIn('.about-image-wrap img{display:block;width:100%;height:100%;object-fit:contain;object-position:center;filter:none}',css)
+        self.assertNotIn('filter:saturate(.75)',css)
+        self.assertNotIn('.about-image-wrap{aspect-ratio:1.02}',css)
+        self.assertIn('src="assets/img/nohemi-galeria-mejorada-2x.webp"',self.html)
+        self.assertIn('grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)',css)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
