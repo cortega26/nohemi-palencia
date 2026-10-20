@@ -92,3 +92,13 @@ Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canó
 - `scripts/build.py` compila la ficha expositiva y su registro en la cronología desde la misma fuente de datos; no duplicar el registro manualmente.
 - Se incorporaron dos pruebas de regresión sobre procedencia, fecha, sede y ausencia de atribuciones no confirmadas.
 - Pendientes de Nohemi: piezas efectivamente expuestas, fecha de cierre (si quiere publicarla), crédito/fotos oficiales y nombre preferido para exposiciones futuras.
+
+### Página permanente de «Rostros Oníricos» — iteración 3
+
+- Ruta prevista: `/nohemi-palencia/exposiciones/rostros-oniricos/`, enlazada desde el módulo expositivo y la cronología.
+- La página se genera junto con la portada mediante `scripts/build.py`, a partir de `data/exposiciones.json` y `templates/exposicion-rostros-oniricos.html`.
+- La agenda de [Comunidad Creativa de Los Ríos](https://comunidadcreativalosrios.cultura.gob.cl/events/exposicion-rostros-oniricos-nohemi-palencia/) confirma la **fecha anunciada de presentación (3/9/2026)** y la **Galería Urbana Santo Tomás, Valdivia**. No confirma una fecha de cierre.
+- La [presentación pública de la artista](https://comunidadcreativalosrios.cultura.gob.cl/catalogo/nohemi-palencia-cisneros/) documenta su trabajo con figura femenina, geometría y naturaleza.
+- El subtítulo procede del portafolio entregado por Nohemi. No se asignan obras individuales a la exposición sin validación documental.
+- La galería con once obras se mantiene separada, y los archivos originales de mayor resolución siguen pendientes.
+- El despliegue en Tooltician debe verificarse para confirmar que también publica el subdirectorio nuevo.
