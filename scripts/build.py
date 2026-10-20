@@ -7,6 +7,40 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 
+def site_config():
+    config=json.loads((ROOT/'data/site.json').read_text(encoding='utf-8'))
+    base=config['public_base_url']
+    assert base.startswith('https://') and base.endswith('/'), 'Public base URL must be an absolute HTTPS directory'
+    assert not any(c in base for c in ('?', '#', '\\')), 'Unsafe public URL'
+    assert config['final_domain'] is None, 'Update domain configuration intentionally when final domain is chosen'
+    return config
+
+def public_url(path=''):
+    return site_config()['public_base_url'] + path.lstrip('/')
+
+def inject_seo(document, page_path, image_path, image_alt):
+    assert document.count('</head>') == 1, 'Expected one HTML head'
+    assert not page_path.startswith('/') and not image_path.startswith('/')
+    assert (ROOT/image_path).is_file(), f'Missing social image: {image_path}'
+    esc=lambda value:html.escape(str(value), quote=True)
+    canonical=public_url(page_path)
+    image_url=public_url(image_path)
+    lines=[
+        f'  <link rel="canonical" href="{esc(canonical)}">',
+        f'  <meta property="og:url" content="{esc(canonical)}">',
+        f'  <meta property="og:image" content="{esc(image_url)}">',
+        f'  <meta property="og:image:alt" content="{esc(image_alt)}">',
+        '  <meta name="twitter:card" content="summary">',
+    ]
+    return document.replace('</head>', '\n'.join(lines)+'\n</head>', 1)
+
+def render_sitemap():
+    works=json.loads((ROOT/'data/obras.json').read_text(encoding='utf-8'))
+    pages=['', 'exposiciones/rostros-oniricos/'] + [f"obras/{work['slug']}/" for work in works]
+    assert len(pages)==13 and len(set(pages))==13, 'Sitemap must list 13 distinct canonical pages'
+    urls='\n'.join(f'  <url><loc>{html.escape(public_url(path), quote=True)}</loc></url>' for path in pages)
+    return '<?xml version="1.0" encoding="utf-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+'\n</urlset>\n'
+
 def render():
     works = json.loads((ROOT / 'data/obras.json').read_text(encoding='utf-8'))
     assert len(works) == 11, 'Expected 11 artworks sourced from the artist portfolio'
@@ -108,11 +142,11 @@ def render():
     schema = {"@context":"https://schema.org", "@type":"Person", "name":"Nohemi Palencia Cisneros", "jobTitle":"Artista plástica", "description":"Artista plástica venezolana radicada en Valdivia, Chile, dedicada al dibujo y la pintura.", "homeLocation":{"@type":"Place","name":"Valdivia, Chile"}, "sameAs":["https://www.instagram.com/nohe.palencia/"]}
     template = (ROOT / 'templates/index.html').read_text(encoding='utf-8')
     assert all(token in template for token in ('{{GALLERY_ITEMS}}', '{{SCHEMA_JSON}}', '{{EXHIBITION_FEATURE}}', '{{EXHIBITION_TIMELINE}}', '{{UPCOMING_FEATURE}}'))
-    return (template.replace('{{GALLERY_ITEMS}}','\n'.join(cards))
+    return inject_seo((template.replace('{{GALLERY_ITEMS}}','\n'.join(cards))
                     .replace('{{EXHIBITION_FEATURE}}',feature)
                     .replace('{{UPCOMING_FEATURE}}',feature_upcoming)
                     .replace('{{EXHIBITION_TIMELINE}}',timeline)
-                    .replace('{{SCHEMA_JSON}}',json.dumps(schema, ensure_ascii=False).replace('<','\\u003c')))
+                    .replace('{{SCHEMA_JSON}}',json.dumps(schema, ensure_ascii=False).replace('<','\\u003c'))), '', site_config()['social_image_default'], site_config()['social_image_default_alt'])
 
 def render_exhibition():
     exhibitions = json.loads((ROOT / 'data/exposiciones.json').read_text(encoding='utf-8'))
@@ -144,7 +178,7 @@ def render_exhibition():
         assert token in page, f'Missing template placeholder: {token}'
         page = page.replace(token, html.escape(str(value), quote=True))
     assert '{{' not in page, 'Unresolved exhibition template placeholders'
-    return page
+    return inject_seo(page, 'exposiciones/rostros-oniricos/', site_config()['social_image_default'], site_config()['social_image_default_alt'])
 
 def render_artwork_pages():
     """Render artwork records from the artist's portfolio, with no invented curatorial descriptions."""
@@ -171,7 +205,7 @@ def render_artwork_pages():
             'dateCreated': str(work['anio']),
             'artMedium': work['tecnica'],
             'size': work['dimensiones'],
-            'image': f"../../assets/obras/{work['archivo']}",
+            'image': public_url(f"assets/obras/{work['archivo']}"),
             'copyrightHolder': {'@type':'Person','name':'Nohemi Palencia Cisneros'},
         }
         replacements = {
@@ -195,7 +229,7 @@ def render_artwork_pages():
             assert token in rendered, f'Missing artwork template placeholder: {token}'
             rendered = rendered.replace(token, value if token == '{{SCHEMA_JSON}}' else html.escape(value,quote=True))
         assert '{{' not in rendered, f'Unresolved placeholders in {slug}'
-        output[ROOT / 'obras' / slug / 'index.html'] = rendered + '\n'
+        output[ROOT / 'obras' / slug / 'index.html'] = inject_seo(rendered, f'obras/{slug}/', f"assets/obras/{work['archivo']}", f"{work['titulo']}, obra de Nohemi Palencia Cisneros") + '\n'
     return output
 
 if __name__=='__main__':
@@ -205,6 +239,7 @@ if __name__=='__main__':
     expected_pages = {
         ROOT/'index.html': render()+'\n',
         ROOT/'exposiciones/rostros-oniricos/index.html': render_exhibition()+'\n',
+        ROOT/'sitemap.xml': render_sitemap(),
     }
     expected_pages.update(render_artwork_pages())
     if args.check:
