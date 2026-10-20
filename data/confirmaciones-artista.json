@@ -18,7 +18,7 @@
   },
   "proxima_exposicion": {
     "lugar_general": "Las Condes, Santiago de Chile",
-    "nombre_oficial": null,
+    "nombre_oficial": "La Escena del Arte",
     "sede": "CA660 · Centro Cultural de Fundación CorpArtes",
     "direccion": "Rosario Norte 660, Las Condes, Santiago, Chile",
     "obras_confirmadas": [],
@@ -44,10 +44,10 @@
         "hora_local": null
       }
     ],
-    "nota": "Sede y dirección acreditadas en material compartido por la artista, corroborada la dirección de CA660 por fuentes externas. El título definitivo de noviembre y lista de obras siguen pendientes. No confundir QR comercial del organizador con la página independiente de la artista.",
+    "nota": "Nombre «La Escena del Arte» y edición noviembre confirmados directamente por Nohemi. La portada de una presentación mostraba «La Escena de Arte», variante conservada como antecedente del material. Lista de obras pendientes. No confundir el QR comercial del organizador con la página independiente de la artista.",
     "titulo_promocional_presentacion": "La Escena de Arte",
     "titulo_ejemplo_tarjeta": "La Escena del Arte",
-    "nombre_oficial_estado": "Pendiente de confirmar variante exacta del título de la edición noviembre 2026: la portada del dossier difiere del ejemplo de tarjeta y del catálogo AMF de septiembre-octubre",
+    "nombre_oficial_estado": "Confirmado directamente por la artista por WhatsApp el 20-10-2026: misma denominación que la edición de septiembre–octubre, nueva edición de noviembre.",
     "referencia_galeria": "AMF Gallery Chile (@amfchile)",
     "referencia_galeria_url": "https://www.instagram.com/amfchile/",
     "sitio_galeria": "https://www.amfchile.com/",
@@ -66,7 +66,9 @@
       "fichas técnicas",
       "precios",
       "consulta mediante WhatsApp centralizado del organizador"
-    ]
+    ],
+    "edicion_confirmada": "Noviembre 2026",
+    "fuente_confirmacion_nombre": "Respuesta directa de Nohemi Palencia Cisneros: «Sí. Con el mismo nombre» y «Edición Noviembre»."
   },
   "fotografias_alta_resolucion": "pendientes de envío por la artista"
 }
