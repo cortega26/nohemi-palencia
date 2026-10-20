@@ -1,0 +1,49 @@
+{
+  "fecha_registro": "2026-10-20",
+  "procedencia": "Respuestas directas de Nohemi Palencia Cisneros compartidas por el responsable de la web; captura de conversación",
+  "identidad": {
+    "nombre_artistico": "Nohemi Palencia Cisneros",
+    "sin_tilde": true,
+    "nacionalidad": "venezolana",
+    "residencia": "Valdivia, Chile"
+  },
+  "rostros_oniricos": {
+    "incluyo_obras_del_portafolio": "algunas; listado sin identificar",
+    "incluyo_otras_obras": true,
+    "otras_etapas_y_tecnicas": true,
+    "obra_especifica_confirmada": [],
+    "fecha_fin_confirmada": null,
+    "fecha_fin_estado": "La fecha indicada inicialmente era imposible y la corrección posterior no incluyó una fecha válida visible"
+  },
+  "proxima_exposicion": {
+    "lugar_general": "Las Condes, Santiago de Chile",
+    "nombre_oficial": null,
+    "sede": null,
+    "direccion": null,
+    "obras_confirmadas": [],
+    "actividades": [
+      {
+        "tipo": "montaje",
+        "fecha": "2026-10-28",
+        "hora_local": "12:00"
+      },
+      {
+        "tipo": "inauguracion",
+        "fecha": "2026-11-06",
+        "hora_local": "18:00"
+      },
+      {
+        "tipo": "encuentro con artistas",
+        "fecha": "2026-11-14",
+        "hora_local": "12:00"
+      },
+      {
+        "tipo": "desmontaje",
+        "fecha": "2026-11-27",
+        "hora_local": null
+      }
+    ],
+    "nota": "Fechas comunicadas por la artista. Aún sin título, dirección ni catálogo de obras confirmados; no publicar convocatoria definitiva."
+  },
+  "fotografias_alta_resolucion": "pendientes de envío por la artista"
+}
