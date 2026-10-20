@@ -159,3 +159,9 @@ Esta fase cubre la **infraestructura técnica** del issue #11; permanece abierta
 - Ritmo vertical aumentado a `76px` en escritorio, `62px` en tableta y `52px` en móvil para separar las obras sin introducir ornamentos.
 - Se agregó prueba de regresión de CSS y se mantiene la verificación del generador en CI.
 - **Pendiente:** inspección visual final y ajuste de la disposición según las fotografías originales de Nohemi; no afirmar que los previews sean ya reproducciones museográficas.
+
+### Huella automática de CSS (evitar estilos obsoletos en caché)
+
+Se detectó en producción que el archivo `assets/styles.css` sin parámetros podía devolver la versión anterior incluso después de un despliegue aprobado de GitHub Pages, mientras la solicitud con una query nueva devolvía el CSS actualizado.
+
+`scripts/build.py` calcula una huella de contenido a partir de `assets/styles.css` y añade `?v=<huella>` al enlace de estilos de portada, exposición y las once fichas de obra. La misma huella cambia automáticamente en cada modificación de CSS; no se introduce una nueva dependencia de JavaScript ni se modifica la URL canónica de ninguna página. La prueba de integridad verifica las trece páginas y la sincronización con el generador.

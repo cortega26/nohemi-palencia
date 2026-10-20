@@ -2,6 +2,7 @@
 """Compile the data-driven portfolio to a fully static, SEO-readable HTML file."""
 import argparse
 import html
+import hashlib
 import json
 from pathlib import Path
 
@@ -17,6 +18,16 @@ def site_config():
 def public_url(path=''):
     return site_config()['public_base_url'] + path.lstrip('/')
 
+def version_stylesheet(document):
+    """Fingerprint stylesheet content so Pages/CDN/browser caches cannot keep obsolete CSS."""
+    data=(ROOT/'assets/styles.css').read_bytes()
+    digest=hashlib.sha1(f'blob {len(data)}'.encode('ascii')+bytes([0])+data).hexdigest()[:12]
+    sources=['href="assets/styles.css"', 'href="../../assets/styles.css"']
+    assert sum(document.count(source) for source in sources)==1, 'Expected exactly one stylesheet link'
+    for source in sources:
+        document=document.replace(source, source[:-1]+f'?v={digest}"')
+    return document
+
 def inject_seo(document, page_path, image_path, image_alt):
     assert document.count('</head>') == 1, 'Expected one HTML head'
     assert not page_path.startswith('/') and not image_path.startswith('/')
@@ -31,7 +42,7 @@ def inject_seo(document, page_path, image_path, image_alt):
         f'  <meta property="og:image:alt" content="{esc(image_alt)}">',
         '  <meta name="twitter:card" content="summary">',
     ]
-    return document.replace('</head>', '\n'.join(lines)+'\n</head>', 1)
+    return version_stylesheet(document.replace('</head>', '\n'.join(lines)+'\n</head>', 1))
 
 def render_sitemap():
     works=json.loads((ROOT/'data/obras.json').read_text(encoding='utf-8'))

@@ -250,6 +250,22 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('.gallery-grid{row-gap:52px}',css)
         self.assertEqual(self.html.count('class="artwork-detail-link"'),len(self.data))
 
+    def test_css_fingerprint_consistent_across_generated_pages(self):
+        import hashlib
+        css=(ROOT/'assets/styles.css').read_bytes()
+        version=hashlib.sha1(f'blob {len(css)}'.encode('ascii')+bytes([0])+css).hexdigest()[:12]
+        expected=[
+            (ROOT/'index.html','assets/styles.css'),
+            (ROOT/'exposiciones/rostros-oniricos/index.html','../../assets/styles.css'),
+        ]
+        expected.extend((ROOT/'obras'/w['slug']/'index.html','../../assets/styles.css') for w in self.data)
+        self.assertEqual(len(expected),13)
+        for page,relative in expected:
+            html=page.read_text('utf-8')
+            self.assertIn(f'href="{relative}?v={version}"',html,str(page))
+            self.assertNotIn(f'href="{relative}"',html,str(page))
+            self.assertEqual(html.count('styles.css?v='),1,str(page))
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
