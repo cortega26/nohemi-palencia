@@ -1,0 +1,13 @@
+[
+  {"slug":"guardiana","titulo":"Guardiana","tecnica":"Técnica mixta sobre MDF","dimensiones":"76 × 100 cm","anio":2026,"pagina_pdf":3,"archivo":"guardiana-preview.webp","destacada":true},
+  {"slug":"princesa-onirica","titulo":"Princesa onírica","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2026,"pagina_pdf":4,"archivo":"princesa-onirica-preview.webp"},
+  {"slug":"vision-frontal-sueno-con-el-iznik","titulo":"Visión frontal / Sueño con el Iznik","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2026,"pagina_pdf":5,"archivo":"vision-frontal-sueno-con-el-iznik-preview.webp"},
+  {"slug":"hilos-del-subconciente","titulo":"Hilos del subconciente","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2026,"pagina_pdf":6,"archivo":"hilos-del-subconciente-preview.webp"},
+  {"slug":"shitikari","titulo":"Shitikari","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2026,"pagina_pdf":7,"archivo":"shitikari-preview.webp"},
+  {"slug":"aura-cosmica-ii","titulo":"Aura cósmica II","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2026,"pagina_pdf":8,"archivo":"aura-cosmica-ii-preview.webp"},
+  {"slug":"atomica-ii","titulo":"Atómica II","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2026,"pagina_pdf":9,"archivo":"atomica-ii-preview.webp"},
+  {"slug":"sacerdotiza-solar","titulo":"Sacerdotiza solar","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2026,"pagina_pdf":10,"archivo":"sacerdotiza-solar-preview.webp"},
+  {"slug":"hindu-celular","titulo":"Hindú celular","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2017,"pagina_pdf":11,"archivo":"hindu-celular-preview.jpg"},
+  {"slug":"guardiana-del-umbral","titulo":"Guardiana del umbral","tecnica":"Técnica mixta sobre MDF","dimensiones":"81 × 64 cm","anio":2026,"pagina_pdf":12,"archivo":"guardiana-del-umbral-preview.jpg"},
+  {"slug":"el-aroma-a-canelo","titulo":"El aroma a canelo","tecnica":"Técnica mixta sobre MDF","dimensiones":"120 × 90 cm","anio":2026,"pagina_pdf":13,"archivo":"el-aroma-a-canelo-preview.jpg"}
+]
