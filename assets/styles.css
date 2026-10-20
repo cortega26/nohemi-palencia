@@ -57,3 +57,17 @@
   .statement h2{font-size:clamp(36px,9.5vw,57px);overflow-wrap:break-word}
   .contact h2{font-size:clamp(48px,14vw,72px)}
 }
+
+/* Editorial refinement II: grouped, verifiable artistic trajectory. */
+.statement-context{font-size:15px;line-height:1.8;max-width:700px;color:#e1e7dc;margin:0 0 20px}
+.history-groups{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(270px,.82fr);gap:clamp(46px,6vw,100px);align-items:start}
+.history-group{min-width:0}
+.career-heading{font:400 29px/1.2 var(--serif);letter-spacing:-.015em;color:var(--ink);padding:0 0 22px;margin:0;border-bottom:1px solid #b8bfb4}
+.history .timeline{border-top:0}
+.history .timeline-item{grid-template-columns:80px minmax(0,1fr);gap:24px;padding:22px 0}
+.timeline-item h4{font:400 25px/1.23 var(--serif);margin:0 0 9px;color:var(--ink)}
+.history-group--support .timeline-item{grid-template-columns:58px minmax(0,1fr);gap:15px}
+.history-group--support .timeline-item h4{font-size:23px}
+.history-source{font:400 12px/1.8 var(--sans);margin:30px 0 0;color:#4e5b51;max-width:300px}
+@media(max-width:930px){.history-groups{grid-template-columns:1fr;gap:75px}.history-group--support .timeline-item{grid-template-columns:80px minmax(0,1fr);gap:24px}.history-source{max-width:unset}}
+@media(max-width:620px){.career-heading{font-size:27px}.history .timeline-item,.history-group--support .timeline-item{grid-template-columns:63px minmax(0,1fr);gap:13px;padding:19px 0}.timeline-item h4,.history-group--support .timeline-item h4{font-size:22px}.history-groups{gap:58px}.statement-context{font-size:14px}}
