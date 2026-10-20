@@ -19,15 +19,38 @@ class PortfolioTests(unittest.TestCase):
     def setUpClass(cls):
         cls.html=(ROOT/'index.html').read_text('utf-8'); cls.data=json.loads((ROOT/'data/obras.json').read_text('utf-8'))
         cls.parser=Collector();cls.parser.feed(cls.html)
-    def test_gallery_all_eleven_unique(self):
-        self.assertEqual(len(self.data),11)
-        self.assertEqual(len(self.parser.art),11)
-        self.assertEqual(len({w['slug'] for w in self.data}),11)
+    def test_gallery_all_fourteen_unique(self):
+        self.assertEqual(len(self.data),14)
+        self.assertEqual(len(self.parser.art),14)
+        self.assertEqual(len({w['slug'] for w in self.data}),14)
     def test_works_have_metadata(self):
         for work in self.data:
-            for f in ('slug','titulo','anio','tecnica','dimensiones','pagina_pdf','archivo'):self.assertTrue(work.get(f))
+            for f in ('slug','titulo','anio','tecnica','dimensiones','archivo'):self.assertTrue(work.get(f))
             self.assertIn(work['titulo'],self.html)
             self.assertTrue((ROOT/'assets/obras'/work['archivo']).stat().st_size>1000)
+    def test_three_new_artworks_are_artist_sourced(self):
+        expected={
+            'aura-cosmica-i': ('Aura cósmica I',2026,'aura-cosmica-i-original-web.webp'),
+            'huelliches-ii': ('Huelliches II',2026,'huelliches-ii-original-web.webp'),
+            'plumaje-azul': ('Plumaje azul',2017,'plumaje-azul-original-web.webp'),
+        }
+        indexed={w['slug']:w for w in self.data}
+        for slug,(title,year,image) in expected.items():
+            work=indexed[slug]
+            self.assertEqual(work['titulo'],title)
+            self.assertEqual(work['anio'],year)
+            self.assertEqual(work['archivo'],image)
+            self.assertNotIn('pagina_pdf',work)
+            self.assertIn('Correo de Nohemi',work['fuente_fotografia'])
+            path=ROOT/'assets/obras'/image
+            self.assertTrue(path.is_file(),image)
+            self.assertGreater(path.stat().st_size,500_000,image)
+            header=path.read_bytes()[:12]
+            self.assertEqual(header[:4],b'RIFF')
+            self.assertEqual(header[8:12],b'WEBP')
+        self.assertNotIn('Las fotografías originales se incorporarán posteriormente',self.html)
+        self.assertNotIn('class="asset-note"',self.html)
+
     def test_referenced_images_exist(self):
         for image in self.parser.images:
             if image.get('id')=='lightbox-img':
@@ -92,8 +115,8 @@ class PortfolioTests(unittest.TestCase):
         self.assertTrue((exhibit_path.parent/'../../assets/styles.css').resolve().is_file())
 
     def test_all_artworks_have_linked_permanent_records(self):
-        self.assertEqual(self.html.count('class="artwork-detail-link"'),11)
-        self.assertEqual(len({w['slug'] for w in self.data}),11)
+        self.assertEqual(self.html.count('class="artwork-detail-link"'),14)
+        self.assertEqual(len({w['slug'] for w in self.data}),14)
         for work in self.data:
             url=f"obras/{work['slug']}/"
             self.assertIn(f'href="{url}"',self.html)
@@ -187,7 +210,7 @@ class PortfolioTests(unittest.TestCase):
         works=self.data
         pages=[('', ROOT/'index.html'), ('exposiciones/rostros-oniricos/', ROOT/'exposiciones/rostros-oniricos/index.html')]
         pages += [(f"obras/{w['slug']}/", ROOT/'obras'/w['slug']/'index.html') for w in works]
-        self.assertEqual(len(pages),13)
+        self.assertEqual(len(pages),16)
         for route,filename in pages:
             html=filename.read_text('utf-8')
             canonical=re.search(r'<link rel="canonical" href="([^"]+)"',html)
@@ -205,7 +228,7 @@ class PortfolioTests(unittest.TestCase):
         sitemap=(ROOT/'sitemap.xml').read_text('utf-8')
         doc=ElementTree.fromstring(sitemap)
         urls=[e.text for e in doc.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
-        self.assertEqual(len(urls),13)
+        self.assertEqual(len(urls),16)
         self.assertEqual(set(urls),{base+route for route,_ in pages})
 
     def test_upcoming_facts_readability(self):
@@ -272,7 +295,7 @@ class PortfolioTests(unittest.TestCase):
             (ROOT/'exposiciones/rostros-oniricos/index.html','../../assets/styles.css'),
         ]
         expected.extend((ROOT/'obras'/w['slug']/'index.html','../../assets/styles.css') for w in self.data)
-        self.assertEqual(len(expected),13)
+        self.assertEqual(len(expected),16)
         for page,relative in expected:
             html=page.read_text('utf-8')
             self.assertIn(f'href="{relative}?v={version}"',html,str(page))

@@ -47,30 +47,31 @@ def inject_seo(document, page_path, image_path, image_alt):
 def render_sitemap():
     works=json.loads((ROOT/'data/obras.json').read_text(encoding='utf-8'))
     pages=['', 'exposiciones/rostros-oniricos/'] + [f"obras/{work['slug']}/" for work in works]
-    assert len(pages)==13 and len(set(pages))==13, 'Sitemap must list 13 distinct canonical pages'
+    assert len(pages)==len(works)+2 and len(set(pages))==len(pages), 'Sitemap must list every canonical page once'
     urls='\n'.join(f'  <url><loc>{html.escape(public_url(path), quote=True)}</loc></url>' for path in pages)
     return '<?xml version="1.0" encoding="utf-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'+urls+'\n</urlset>\n'
 
 def render():
     works = json.loads((ROOT / 'data/obras.json').read_text(encoding='utf-8'))
-    assert len(works) == 11, 'Expected 11 artworks sourced from the artist portfolio'
+    assert len(works) == 14, 'Expected 14 documented artist works'
     seen = set()
     cards = []
     for i, w in enumerate(works, 1):
         assert w['slug'] not in seen, f"Duplicate artwork slug: {w['slug']}"
         seen.add(w['slug'])
-        assert all(w.get(k) for k in ('titulo', 'tecnica', 'dimensiones', 'anio', 'archivo', 'pagina_pdf')), w
-        assert 3 <= w['pagina_pdf'] <= 13
+        assert all(w.get(k) for k in ('titulo', 'tecnica', 'dimensiones', 'anio', 'archivo')), w
+        if 'pagina_pdf' in w:
+            assert 3 <= w['pagina_pdf'] <= 13
         image = ROOT / 'assets/obras' / w['archivo']
         assert image.is_file() and image.stat().st_size > 100, f"Missing artwork image: {image}"
         esc = lambda s: html.escape(str(s), quote=True)
         img_path = f"assets/obras/{w['archivo']}"
         details = f"{w['tecnica']} · {w['dimensiones']} · {w['anio']}"
         cards.append(f'''<article class="artwork {'artwork-feature' if w.get('destacada') else ''}" id="obra-{esc(w['slug'])}">
-  <a class="artwork-link" href="{esc(img_path)}" data-artwork data-title="{esc(w['titulo'])}" data-details="{esc(details)}" data-number="{i:02d} / 11" aria-label="Ampliar {esc(w['titulo'])}, {esc(details)}">
+  <a class="artwork-link" href="{esc(img_path)}" data-artwork data-title="{esc(w['titulo'])}" data-details="{esc(details)}" data-number="{i:02d} / {len(works)}" aria-label="Ampliar {esc(w['titulo'])}, {esc(details)}">
     <div class="artwork-image"><img src="{esc(img_path)}" alt="{esc(w['titulo'])}, obra de Nohemi Palencia Cisneros" loading="lazy" decoding="async"><span class="artwork-zoom" aria-hidden="true">↗</span></div>
   </a>
-  <div class="artwork-info"><div><span class="artwork-number">{i:02d} / 11</span><h3>{esc(w['titulo'])}</h3><p>{esc(w['tecnica'])} · {esc(w['dimensiones'])}</p><a class="artwork-detail-link" href="obras/{esc(w['slug'])}/">Ficha de la obra <span aria-hidden="true">↗</span></a></div><span class="artwork-year">{w['anio']}</span></div>
+  <div class="artwork-info"><div><span class="artwork-number">{i:02d} / {len(works)}</span><h3>{esc(w['titulo'])}</h3><p>{esc(w['tecnica'])} · {esc(w['dimensiones'])}</p><a class="artwork-detail-link" href="obras/{esc(w['slug'])}/">Ficha de la obra <span aria-hidden="true">↗</span></a></div><span class="artwork-year">{w['anio']}</span></div>
 </article>''')
     exhibitions = json.loads((ROOT / 'data/exposiciones.json').read_text(encoding='utf-8'))
     assert len(exhibitions) == 1, 'Expected one verified institutional exhibition'
@@ -194,7 +195,7 @@ def render_artwork_pages():
     """Render artwork records from the artist's portfolio, with no invented curatorial descriptions."""
     import re
     works = json.loads((ROOT / 'data/obras.json').read_text(encoding='utf-8'))
-    assert len(works) == 11, 'Expected eleven authored artwork records'
+    assert len(works) == 14, 'Expected fourteen authored artwork records'
     template = (ROOT / 'templates/obra.html').read_text(encoding='utf-8')
     assert len({w['slug'] for w in works}) == len(works), 'Duplicate artwork slug'
     output = {}
