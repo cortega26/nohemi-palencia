@@ -86,6 +86,12 @@ def render_exhibition():
     assert ex['ruta_permanente'] == 'exposiciones/rostros-oniricos/'
     assert ex['obras_exhibidas_confirmadas'] == []
     assert ex['fecha_cierre'] is None
+    confirmation = json.loads((ROOT / 'data/confirmaciones-artista.json').read_text(encoding='utf-8'))
+    artist_works = confirmation['rostros_oniricos']
+    assert artist_works['incluyo_otras_obras'] is True
+    assert artist_works['otras_etapas_y_tecnicas'] is True
+    assert artist_works['obra_especifica_confirmada'] == []
+    assert ex['obras_exhibidas_confirmadas'] == []
     page = (ROOT / 'templates/exposicion-rostros-oniricos.html').read_text(encoding='utf-8')
     mapping = {
         '{{TITLE}}': ex['titulo_evento'],
@@ -96,6 +102,7 @@ def render_exhibition():
         '{{CITY}}': ex['ciudad'],
         '{{EVENT_URL}}': ex['fuente_institucional'],
         '{{ARTIST_URL}}': ex['fuente_declaracion'],
+        '{{ARTIST_NOTE}}': artist_works['nota_publicable'],
     }
     for token,value in mapping.items():
         assert token in page, f'Missing template placeholder: {token}'
