@@ -47,6 +47,16 @@ class PortfolioTests(unittest.TestCase):
         self.assertNotIn('class="marquee-bar"', self.html)
         self.assertNotIn('class="hero-index"', self.html)
         self.assertNotIn('class="timeline-icon"', self.html)
+    def test_curatorial_sections_are_distinct_and_grounded(self):
+        self.assertIn('id="exhibitions-heading"', self.html)
+        self.assertIn('id="background-heading"', self.html)
+        self.assertIn('Exposición individual «Galería Urbana»', self.html)
+        self.assertIn('Proyecto Artístico Fusión', self.html)
+        self.assertIn('Escuela de Artes Plásticas Arturo Michelena', self.html)
+        self.assertIn('Gregorio Adán Palencia Castellanos', self.html)
+        self.assertNotIn('Las Condes', self.html)
+        self.assertNotIn('Una trayectoria<br>', self.html)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
