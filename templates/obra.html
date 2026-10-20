@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f8f7f3">
+  <meta name="description" content="{{DESCRIPTION}}">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{TITLE}} — Nohemi Palencia Cisneros">
+  <meta property="og:description" content="{{DESCRIPTION}}">
+  <meta property="og:locale" content="es_CL">
+  <meta name="robots" content="index,follow">
+  <title>{{TITLE}} ({{YEAR}}) · Obra de Nohemi Palencia Cisneros</title>
+  <link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Italiana&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/styles.css">
+  <script type="application/ld+json">{{SCHEMA_JSON}}</script>
+</head>
+<body class="artwork-detail-body">
+  <a class="skip-link" href="#artwork-main">Ir al contenido</a>
+  <header class="site-header">
+    <div class="shell header-inner">
+      <a class="brand" href="../../" aria-label="Nohemi Palencia, inicio"><span class="brand-mark" aria-hidden="true">NP<span>.</span></span><span class="brand-name">NOHEMI PALENCIA <small>ARTISTA PLÁSTICA</small></span></a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="../../#obra">Obras</a>
+        <a href="../../#sobre-mi">La artista</a>
+        <a href="../../#trayectoria">Trayectoria</a>
+        <a href="../../#contacto" class="nav-contact">Contacto <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+  <main id="artwork-main">
+    <div class="shell artwork-breadcrumb"><a href="../../#obra">Obras</a><span aria-hidden="true">/</span><span aria-current="page">{{TITLE}}</span></div>
+    <article class="shell artwork-detail">
+      <div class="artwork-detail-view">
+        <figure class="artwork-detail-figure">
+          <a href="{{IMAGE_URL}}" target="_blank" rel="noopener" aria-label="Ver la reproducción de {{TITLE}} en una pestaña nueva">
+            <img src="{{IMAGE_URL}}" alt="{{IMAGE_ALT}}" decoding="async" fetchpriority="high">
+          </a>
+          <figcaption>Reproducción de referencia · © Nohemi Palencia Cisneros</figcaption>
+        </figure>
+      </div>
+      <div class="artwork-detail-copy">
+        <p class="kicker">Archivo de obra <span aria-hidden="true">·</span> {{INDEX}} / {{TOTAL}}</p>
+        <h1>{{TITLE}}</h1>
+        <p class="artwork-detail-year">{{YEAR}}</p>
+        <dl class="artwork-details-list">
+          <div><dt>Artista</dt><dd>Nohemi Palencia Cisneros</dd></div>
+          <div><dt>Técnica y soporte</dt><dd>{{MEDIUM}}</dd></div>
+          <div><dt>Dimensiones</dt><dd>{{DIMENSIONS}}</dd></div>
+          <div><dt>Año</dt><dd><time datetime="{{YEAR}}">{{YEAR}}</time></dd></div>
+        </dl>
+        <p class="artwork-detail-credit">Ficha técnica transcrita del portafolio facilitado por la artista. La fotografía actual es provisional y se sustituirá por el original autorizado en alta resolución.</p>
+        <a class="artwork-detail-return" href="../../#obra">← Volver a la galería</a>
+      </div>
+    </article>
+    <nav class="shell artwork-detail-next" aria-label="Navegación entre obras">
+      <a href="../{{PREVIOUS_SLUG}}/" rel="prev"><span>← Obra anterior</span><strong>{{PREVIOUS_TITLE}}</strong></a>
+      <a href="../{{NEXT_SLUG}}/" rel="next"><span>Obra siguiente →</span><strong>{{NEXT_TITLE}}</strong></a>
+    </nav>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><span>© 2026 Nohemi Palencia Cisneros. Obras © la artista.</span><a href="../../#contacto">Contacto</a></div></footer>
+</body>
+</html>
