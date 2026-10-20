@@ -129,6 +129,30 @@ class PortfolioTests(unittest.TestCase):
             for relative in (f'../../assets/obras/{work["archivo"]}','../../assets/styles.css','../../assets/img/favicon.svg'):
                 self.assertTrue((path.parent/relative).resolve().is_file(),relative)
 
+    def test_artist_confirmations_preserve_uncertainty(self):
+        confirmed=json.loads((ROOT/'data/confirmaciones-artista.json').read_text('utf-8'))
+        self.assertEqual(confirmed['identidad']['nombre_artistico'], 'Nohemi Palencia Cisneros')
+        self.assertTrue(confirmed['identidad']['sin_tilde'])
+        self.assertEqual(confirmed['identidad']['nacionalidad'], 'venezolana')
+        ex=confirmed['rostros_oniricos']
+        self.assertTrue(ex['incluyo_otras_obras'])
+        self.assertTrue(ex['otras_etapas_y_tecnicas'])
+        self.assertEqual(ex['obra_especifica_confirmada'], [])
+        self.assertIsNone(ex['fecha_fin_confirmada'])
+        page=(ROOT/'exposiciones/rostros-oniricos/index.html').read_text('utf-8')
+        self.assertIn(ex['nota_publicable'],page)
+        self.assertNotIn('31 de septiembre',page)
+        next_ex=confirmed['proxima_exposicion']
+        self.assertIsNone(next_ex['nombre_oficial'])
+        self.assertIsNone(next_ex['sede'])
+        expected=[
+            ('montaje','2026-10-28','12:00'),
+            ('inauguracion','2026-11-06','18:00'),
+            ('encuentro con artistas','2026-11-14','12:00'),
+            ('desmontaje','2026-11-27',None),
+        ]
+        self.assertEqual([(a['tipo'],a['fecha'],a['hora_local']) for a in next_ex['actividades']],expected)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
