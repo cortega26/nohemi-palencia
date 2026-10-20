@@ -26,7 +26,7 @@ def render():
   <a class="artwork-link" href="{esc(img_path)}" data-artwork data-title="{esc(w['titulo'])}" data-details="{esc(details)}" data-number="{i:02d} / 11" aria-label="Ampliar {esc(w['titulo'])}, {esc(details)}">
     <div class="artwork-image"><img src="{esc(img_path)}" alt="{esc(w['titulo'])}, obra de Nohemi Palencia Cisneros" loading="lazy" decoding="async"><span class="artwork-zoom" aria-hidden="true">↗</span></div>
   </a>
-  <div class="artwork-info"><div><span class="artwork-number">{i:02d} / 11</span><h3>{esc(w['titulo'])}</h3><p>{esc(w['tecnica'])} · {esc(w['dimensiones'])}</p></div><span class="artwork-year">{w['anio']}</span></div>
+  <div class="artwork-info"><div><span class="artwork-number">{i:02d} / 11</span><h3>{esc(w['titulo'])}</h3><p>{esc(w['tecnica'])} · {esc(w['dimensiones'])}</p><a class="artwork-detail-link" href="obras/{esc(w['slug'])}/">Ficha de la obra <span aria-hidden="true">↗</span></a></div><span class="artwork-year">{w['anio']}</span></div>
 </article>''')
     exhibitions = json.loads((ROOT / 'data/exposiciones.json').read_text(encoding='utf-8'))
     assert len(exhibitions) == 1, 'Expected one verified institutional exhibition'
@@ -103,6 +103,58 @@ def render_exhibition():
     assert '{{' not in page, 'Unresolved exhibition template placeholders'
     return page
 
+def render_artwork_pages():
+    """Render artwork records from the artist's portfolio, with no invented curatorial descriptions."""
+    import re
+    works = json.loads((ROOT / 'data/obras.json').read_text(encoding='utf-8'))
+    assert len(works) == 11, 'Expected eleven authored artwork records'
+    template = (ROOT / 'templates/obra.html').read_text(encoding='utf-8')
+    assert len({w['slug'] for w in works}) == len(works), 'Duplicate artwork slug'
+    output = {}
+    for i, work in enumerate(works):
+        slug = work['slug']
+        assert re.fullmatch(r'[a-z0-9]+(?:-[a-z0-9]+)*', slug), f'Unsafe artwork slug: {slug}'
+        assert work['titulo'] and work['tecnica'] and work['dimensiones'] and work['anio']
+        assert re.fullmatch(r'[\w-]+\.(?:webp|jpg|jpeg|png)',work['archivo']), 'Unsafe image filename'
+        image_path = ROOT / 'assets' / 'obras' / work['archivo']
+        assert image_path.is_file(), f'Missing original preview: {image_path}'
+        previous = works[i-1]
+        following = works[(i+1)%len(works)]
+        details = f"{work['tecnica']}, {work['dimensiones']}"
+        schema = {
+            '@context': 'https://schema.org', '@type': 'VisualArtwork',
+            'name': work['titulo'],
+            'creator': {'@type':'Person', 'name':'Nohemi Palencia Cisneros'},
+            'dateCreated': str(work['anio']),
+            'artMedium': work['tecnica'],
+            'size': work['dimensiones'],
+            'image': f"../../assets/obras/{work['archivo']}",
+            'copyrightHolder': {'@type':'Person','name':'Nohemi Palencia Cisneros'},
+        }
+        replacements = {
+            '{{TITLE}}': work['titulo'],
+            '{{DESCRIPTION}}': f"{work['titulo']}, obra de Nohemi Palencia Cisneros ({work['anio']}). {details}.",
+            '{{YEAR}}': str(work['anio']),
+            '{{INDEX}}': f'{i+1:02d}',
+            '{{TOTAL}}': str(len(works)),
+            '{{IMAGE_URL}}': f"../../assets/obras/{work['archivo']}",
+            '{{IMAGE_ALT}}': f"{work['titulo']}, obra de Nohemi Palencia Cisneros",
+            '{{MEDIUM}}': work['tecnica'],
+            '{{DIMENSIONS}}': work['dimensiones'],
+            '{{PREVIOUS_SLUG}}': previous['slug'],
+            '{{PREVIOUS_TITLE}}': previous['titulo'],
+            '{{NEXT_SLUG}}': following['slug'],
+            '{{NEXT_TITLE}}': following['titulo'],
+            '{{SCHEMA_JSON}}': json.dumps(schema, ensure_ascii=False, separators=(',',':')).replace('<','\\u003c'),
+        }
+        rendered = template
+        for token,value in replacements.items():
+            assert token in rendered, f'Missing artwork template placeholder: {token}'
+            rendered = rendered.replace(token, value if token == '{{SCHEMA_JSON}}' else html.escape(value,quote=True))
+        assert '{{' not in rendered, f'Unresolved placeholders in {slug}'
+        output[ROOT / 'obras' / slug / 'index.html'] = rendered + '\n'
+    return output
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--check',action='store_true',help='Fail when generated index.html is stale')
@@ -111,6 +163,7 @@ if __name__=='__main__':
         ROOT/'index.html': render()+'\n',
         ROOT/'exposiciones/rostros-oniricos/index.html': render_exhibition()+'\n',
     }
+    expected_pages.update(render_artwork_pages())
     if args.check:
         for output,expected in expected_pages.items():
             assert output.exists() and output.read_text(encoding='utf-8')==expected, f'{output} is out of sync. Run python3 scripts/build.py'
