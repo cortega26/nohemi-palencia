@@ -21,7 +21,7 @@ def public_url(path=''):
 def version_stylesheet(document):
     """Fingerprint stylesheet content so Pages/CDN/browser caches cannot keep obsolete CSS."""
     data=(ROOT/'assets/styles.css').read_bytes()
-    digest=hashlib.sha1(f'blob {len(data)}\\0'.encode('ascii')+data).hexdigest()[:12]
+    digest=hashlib.sha1(f'blob {len(data)}'.encode('ascii')+bytes([0])+data).hexdigest()[:12]
     sources=['href="assets/styles.css"', 'href="../../assets/styles.css"']
     assert sum(document.count(source) for source in sources)==1, 'Expected exactly one stylesheet link'
     for source in sources:
