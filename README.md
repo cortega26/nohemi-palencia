@@ -111,3 +111,15 @@ Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canó
 - Los datos provienen del portafolio de la artista; fotografías extraídas del PDF siguen siendo **provisionales**. No se inventan interpretaciones de obras, estatus comercial, procedencia de colecciones ni pertenencia a una exposición.
 - Se mantiene la URL de ruta para futuros QR, pero **no imprimir QR definitivos** antes de elegir un dominio estable que controle la artista.
 - Integridad: `python3 scripts/build.py --check` y `python3 -m unittest discover -s tests -v`. El generador verifica y produce portada, exposición y once fichas.
+
+### Confirmaciones directas de Nohemi — 20-10-2026
+
+Se recibió una respuesta de la artista, conservada de forma estructurada en `data/confirmaciones-artista.json`:
+
+- Nombre artístico: **Nohemi Palencia Cisneros**, **sin tilde**. Nacionalidad indicada por la artista: **venezolana**, residente en Valdivia, Chile. Estos valores ya coincidían con la identidad pública empleada por la web.
+- **Rostros Oníricos en Santo Tomás:** la exposición incluyó **algunas** obras del portafolio entregado y **otras obras de distintas etapas y técnicas**. No hay aún identificaciones individuales; `obras_exhibidas_confirmadas` sigue vacío, intencionalmente.
+- La artista escribió una fecha de cierre imposible («31 de septiembre») y después indicó que la corregía, sin que en la captura se vea una fecha válida. No publicar ninguna fecha de término hasta obtenerla.
+- **Próxima exposición en Las Condes:** informó montaje el **28 de octubre de 2026 a las 12:00**, inauguración el **6 de noviembre a las 18:00**, encuentro con artistas el **14 de noviembre a las 12:00** y desmontaje el **27 de noviembre**. Título, sede, dirección y catálogo expositivo aún pendientes, por lo que **no se ha publicado una convocatoria** con esta información.
+- Las fotografías originales de alta resolución permanecen pendientes; no aplicar upscaling a la copia del PDF.
+
+**Fuentes y prioridad:** información primaria expresada por la artista en comunicación directa, aportada por el responsable del sitio; para el título y la fecha de presentación de la muestra Santo Tomás, también se mantiene la referencia institucional de CCLR. No confundir material del portafolio con catálogo completo de una exposición.
