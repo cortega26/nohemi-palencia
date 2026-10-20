@@ -7,7 +7,7 @@ Sitio estático en español de la artista **Nohemi Palencia Cisneros**, basado e
 - **Versión publicada:** https://tooltician.com/nohemi-palencia/ (sitio público verificado el 20-10-2026). El mecanismo de sincronización de ese sitio externo con GitHub no está documentado aquí; un merge en `main` no demuestra por sí solo que el dominio público se haya actualizado.
 - **11 obras** con título, técnica, medidas y año; todas las fichas se basan en el PDF facilitado por la artista (páginas 3–13).
 - **Fotografías provisionales** extraídas del mismo PDF; reemplazables por las fotografías originales en alta resolución que proporcionará la artista. Son vistas previas, **no recursos finales**.
-- Biografía, declaración artística y trayectoria documentadas por el PDF (páginas 2 y 14). La muestra de Las Condes se agregará cuando estén confirmados oficialmente su nombre, lugar y fechas.
+- Biografía, declaración artística y trayectoria documentadas por el PDF (páginas 2 y 14). La participación de noviembre de 2026 en CA660 (Las Condes) tiene sede y calendario comunicados por la artista; el título definitivo de la edición y las obras participantes siguen pendientes.
 - Instagram oficial indicado en el PDF: **[@nohe.palencia](https://www.instagram.com/nohe.palencia/)**. La disponibilidad del perfil no se ha verificado directamente.
 
 ## Uso
@@ -61,7 +61,7 @@ La versión visible actualmente está en **https://tooltician.com/nohemi-palenci
 
 Elegir dominio antes de imprimir un QR permanente. Si se necesita imprimir antes, usar primero una URL estable propia o un redireccionador administrado por el responsable del sitio para evitar QR obsoletos.
 
-Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canónica, meta `og:image` absoluta, imagen social final, verificación de contacto, fotos de alta resolución y fechas de la exposición de Las Condes.
+Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canónica, meta `og:image` absoluta, imagen social final, verificación de contacto, fotos de alta resolución, título definitivo de la edición de Las Condes y obras participantes.
 
 ### Refinamiento editorial — primera iteración (20-10-2026)
 
@@ -119,7 +119,17 @@ Se recibió una respuesta de la artista, conservada de forma estructurada en `da
 - Nombre artístico: **Nohemi Palencia Cisneros**, **sin tilde**. Nacionalidad indicada por la artista: **venezolana**, residente en Valdivia, Chile. Estos valores ya coincidían con la identidad pública empleada por la web.
 - **Rostros Oníricos en Santo Tomás:** la exposición incluyó **algunas** obras del portafolio entregado y **otras obras de distintas etapas y técnicas**. No hay aún identificaciones individuales; `obras_exhibidas_confirmadas` sigue vacío, intencionalmente.
 - La artista escribió una fecha de cierre imposible («31 de septiembre») y después indicó que la corregía, sin que en la captura se vea una fecha válida. No publicar ninguna fecha de término hasta obtenerla.
-- **Próxima exposición en Las Condes:** informó montaje el **28 de octubre de 2026 a las 12:00**, inauguración el **6 de noviembre a las 18:00**, encuentro con artistas el **14 de noviembre a las 12:00** y desmontaje el **27 de noviembre**. Título, sede, dirección y catálogo expositivo aún pendientes, por lo que **no se ha publicado una convocatoria** con esta información.
+- **Próxima exposición en Las Condes:** informó montaje el **28 de octubre de 2026 a las 12:00**, inauguración el **6 de noviembre a las 18:00**, encuentro con artistas el **14 de noviembre a las 12:00** y desmontaje el **27 de noviembre**. La presentación facilitada posteriormente identifica **CA660, Rosario Norte 660, Las Condes**; el título definitivo de la edición y las obras participantes aún no se han confirmado. La portada publica una mención cautelosa de la participación, no un catálogo comercial.
 - Las fotografías originales de alta resolución permanecen pendientes; no aplicar upscaling a la copia del PDF.
 
 **Fuentes y prioridad:** información primaria expresada por la artista en comunicación directa, aportada por el responsable del sitio; para el título y la fecha de presentación de la muestra Santo Tomás, también se mantiene la referencia institucional de CCLR. No confundir material del portafolio con catálogo completo de una exposición.
+
+### Participación anunciada en CA660 — 20-10-2026
+
+- **Fuente primaria:** presentación de «La Escena de Arte» facilitada por Nohemi. Identifica **CA660, Rosario Norte 660, Las Condes**, y explica el sistema de atriles y tarjetas de artista.
+- **Nombre no resuelto:** la portada de esa presentación dice «La Escena de Arte», mientras una tarjeta de ejemplo dice «La Escena del Arte»; este último nombre también aparece en el catálogo de AMF Gallery para su edición **septiembre–octubre**, que **no** verifica la denominación de noviembre. Ambos quedan documentados en `data/confirmaciones-artista.json`; la portada evita declarar uno como título oficial.
+- **Calendario comunicado por la artista:** montaje 28-10 12:00; inauguración 06-11 18:00; encuentro con artistas 14-11 12:00; desmontaje 27-11 (sin hora).
+- **Documentación del recinto:** CA660 es un espacio cultural de Fundación CorpArtes, en la dirección indicada. No se afirma que Fundación CorpArtes sea organizadora de la exposición.
+- **Referencia de galería:** [AMF Gallery Chile](https://www.instagram.com/amfchile/) y [sitio AMF](https://www.amfchile.com/). El vínculo con el evento se apoya en material promocional compartido, no en un contrato de representación.
+- **Sistema de tarjetas:** 15 × 30 cm, incluye nombre, redes/sitio, biografía, presentación y un QR que lleva al **catálogo del organizador**. Ese catálogo anuncia fichas y precios con contacto WhatsApp **centralizado del organizador**. El sitio propio de Nohemi permanece separado: no debe redirigir ni apropiarse de precios, catálogo ni QR ajenos.
+- **Pendientes:** nombre final, lista de pinturas participantes, fotografías definitivas y si la galería acepta mostrar en la tarjeta la URL de Nohemi. Las fotos de ejemplo del dossier no pertenecen a Nohemi y no se han añadido a la página.
