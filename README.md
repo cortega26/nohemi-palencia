@@ -140,3 +140,14 @@ Se recibió una respuesta de la artista, conservada de forma estructurada en `da
 - El bloque «Nohemi en CA660» muestra ahora el nombre confirmado sin mezclar las piezas de la edición anterior ni inventar participantes.
 - Se agregó padding horizontal responsive (20–48 px) con `box-sizing: border-box` en la sección `.upcoming`, preservando el ancho de la `.shell` y evitando textos pegados al borde.
 - El catálogo del organizador conserva su QR y WhatsApp comercial; el portafolio de Nohemi es independiente.
+
+### Metadatos sociales y URLs canónicas — iteración SEO (20-10-2026)
+
+- `data/site.json` centraliza `public_base_url` — **actualmente temporal: https://tooltician.com/nohemi-palencia/** — y la imagen social general. Al escoger dominio definitivo, actualizar este archivo y regenerar HTML + sitemap mediante `python3 scripts/build.py`.
+- El generador aplica `rel="canonical"`, `og:url`, `og:image`, `og:image:alt` y un `twitter:card` moderado en **portada, exposición documentada y once fichas de obra**. Las fichas enlazan a su propia imagen y a su URL individual; el campo `VisualArtwork.image` ahora es absoluto.
+- `sitemap.xml` registra las trece páginas públicas desde la misma fuente de datos. Como el proyecto vive en un **subdirectorio de Tooltician**, no se publica un `robots.txt` en esa carpeta: no sustituiría al del dominio raíz.
+- Las imágenes sociales son **provisionales** y necesitan fotografías originales autorizadas y posiblemente una portada social curada para mejorar la calidad visual de las tarjetas.
+- **No imprimir QR definitivos** antes de determinar y configurar el dominio estable de Nohemi. Al migrar, considerar redirecciones 301 desde las rutas antiguas y verificar metadatos/cachés en aplicaciones sociales; no asumir que cambiar el JSON actualiza por sí mismo el dominio ni los enlaces impresos.
+- Las pruebas verifican URL canónica única, `og:url`, existencia de imagen social y coherencia de las trece URLs del sitemap.
+
+Esta fase cubre la **infraestructura técnica** del issue #11; permanece abierta hasta decidir el dominio y reemplazar las imágenes sociales provisionales.
