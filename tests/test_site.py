@@ -90,6 +90,45 @@ class PortfolioTests(unittest.TestCase):
         self.assertEqual(ex['obras_exhibidas_confirmadas'],[])
         self.assertTrue((exhibit_path.parent/'../../assets/styles.css').resolve().is_file())
 
+    def test_all_artworks_have_linked_permanent_records(self):
+        self.assertEqual(self.html.count('class="artwork-detail-link"'),11)
+        self.assertEqual(len({w['slug'] for w in self.data}),11)
+        for work in self.data:
+            url=f"obras/{work['slug']}/"
+            self.assertIn(f'href="{url}"',self.html)
+            target=ROOT/url/'index.html'
+            self.assertTrue(target.is_file(),url)
+            page=target.read_text('utf-8')
+            self.assertIn(f'<h1>{work["titulo"]}</h1>',page)
+            self.assertIn(work['tecnica'],page)
+            self.assertIn(work['dimensiones'],page)
+            self.assertIn(str(work['anio']),page)
+            self.assertIn(f'../../assets/obras/{work["archivo"]}',page)
+            self.assertIn('href="../../#obra"',page)
+            self.assertIn('nohemi',page.lower())
+            self.assertNotIn('{{',page)
+            self.assertNotIn('Precio de venta',page)
+            self.assertNotIn('Obra exhibida en',page)
+
+    def test_artwork_schema_and_navigation(self):
+        slugs=[w['slug'] for w in self.data]
+        for i,work in enumerate(self.data):
+            path=ROOT/'obras'/work['slug']/'index.html'
+            page=path.read_text('utf-8')
+            m=re.search(r'<script type="application/ld\\+json">(.*?)</script>',page,re.S)
+            self.assertIsNotNone(m,work['slug'])
+            schema=json.loads(m.group(1))
+            self.assertEqual(schema['@type'],'VisualArtwork')
+            self.assertEqual(schema['name'],work['titulo'])
+            self.assertEqual(schema['dateCreated'],str(work['anio']))
+            self.assertEqual(schema['size'],work['dimensiones'])
+            self.assertEqual(schema['artMedium'],work['tecnica'])
+            self.assertEqual(schema['creator']['name'],'Nohemi Palencia Cisneros')
+            self.assertIn(f'href="../{slugs[(i-1)%len(slugs)]}/"',page)
+            self.assertIn(f'href="../{slugs[(i+1)%len(slugs)]}/"',page)
+            for relative in (f'../../assets/obras/{work["archivo"]}','../../assets/styles.css','../../assets/img/favicon.svg'):
+                self.assertTrue((path.parent/relative).resolve().is_file(),relative)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
