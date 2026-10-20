@@ -165,3 +165,11 @@ Esta fase cubre la **infraestructura técnica** del issue #11; permanece abierta
 Se detectó en producción que el archivo `assets/styles.css` sin parámetros podía devolver la versión anterior incluso después de un despliegue aprobado de GitHub Pages, mientras la solicitud con una query nueva devolvía el CSS actualizado.
 
 `scripts/build.py` calcula una huella de contenido a partir de `assets/styles.css` y añade `?v=<huella>` al enlace de estilos de portada, exposición y las once fichas de obra. La misma huella cambia automáticamente en cada modificación de CSS; no se introduce una nueva dependencia de JavaScript ni se modifica la URL canónica de ninguna página. La prueba de integridad verifica las trece páginas y la sincronización con el generador.
+
+### Retrato de la artista — ampliación 2× no generativa (20-10-2026)
+
+- Fuente realmente disponible: `assets/img/nohemi-galeria-preview.jpg`, extraída del portafolio facilitado por Nohemi (936 × 716 px). El PDF contiene la misma resolución, **no** un original de cámara de mayor tamaño.
+- Nuevo recurso: `assets/img/nohemi-galeria-mejorada-2x.webp`, 1784 × 1352 px, creado con un recorte de la banda documental, ajustes mínimos de color y contraste, interpolación Lanczos 2× y enfoque moderado. Sin composición generativa, reconstrucción facial ni detalles de obras inventados.
+- Para reproducirlo: instalar `Pillow==12.3.0` y ejecutar `python scripts/enhance_artist_photo.py` desde el repositorio. El script comprueba el SHA-256 exacto de la fuente y la resolución de salida.
+- La sección «La artista» utiliza ahora WebP; el JPEG fuente permanece disponible y el `og:image` social de la portada y del archivo expositivo apunta a la mejora.
+- Esta operación **no** reemplaza el objetivo pendiente de obtener fotografías originales autorizadas de las obras y de la artista. No confundir el aumento de píxeles con recuperación fiel de detalle que no existe en la fuente.
