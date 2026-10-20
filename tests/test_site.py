@@ -217,6 +217,27 @@ class PortfolioTests(unittest.TestCase):
         self.assertNotIn('18:00 h</time>',self.html)
         self.assertNotIn('12:00 h</time>',self.html)
 
+    def test_small_functional_text_is_not_set_in_display_typeface(self):
+        css=(ROOT/'assets/styles.css').read_text('utf-8')
+        for selector in (
+            '.hero-art-label strong', '.collection-subtitle', '.about-copy .about-lead',
+            '.timeline-item h3', '.timeline-item h4',
+            '.exhibition-facts dd', '.archive-date time', '.archive-record dd',
+            '.artwork-details-list dd'
+        ):
+            match=re.search(re.escape(selector)+r'\{([^}]*)\}',css)
+            self.assertIsNotNone(match,selector)
+            declaration=match.group(1)
+            self.assertIn('var(--sans)',declaration,selector)
+            self.assertNotIn('var(--serif)',declaration,selector)
+
+    def test_upcoming_year_is_not_repeated_in_reading_copy(self):
+        upcoming=self.html.split('<section class="upcoming shell"',1)[1].split('</section>',1)[0]
+        self.assertNotIn('<span>NOVIEMBRE 2026</span>',upcoming)
+        self.assertEqual(upcoming.count('edición Noviembre 2026'),1)
+        self.assertIn('datetime="2026-11-06T18:00"',upcoming)
+        self.assertIn('datetime="2026-11-14T12:00"',upcoming)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
