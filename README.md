@@ -102,3 +102,12 @@ Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canó
 - El subtítulo procede del portafolio entregado por Nohemi. No se asignan obras individuales a la exposición sin validación documental.
 - La galería con once obras se mantiene separada, y los archivos originales de mayor resolución siguen pendientes.
 - El despliegue en Tooltician debe verificarse para confirmar que también publica el subdirectorio nuevo.
+
+### Fichas individuales de obra — iteración 4
+
+- Se crean once rutas permanentes relativas `obras/<slug>/`, por ejemplo `obras/guardiana/`, con `VisualArtwork` en JSON-LD, título, año, técnica, medidas y fotografía de referencia.
+- Todas las páginas se generan desde `data/obras.json` por `scripts/build.py`. No existe copia manual de metadatos que pueda desincronizarse.
+- La galería conserva su visor y añade enlaces explícitos a las fichas. Cada ficha enlaza a la obra anterior, la siguiente y a la galería.
+- Los datos provienen del portafolio de la artista; fotografías extraídas del PDF siguen siendo **provisionales**. No se inventan interpretaciones de obras, estatus comercial, procedencia de colecciones ni pertenencia a una exposición.
+- Se mantiene la URL de ruta para futuros QR, pero **no imprimir QR definitivos** antes de elegir un dominio estable que controle la artista.
+- Integridad: `python3 scripts/build.py --check` y `python3 -m unittest discover -s tests -v`. El generador verifica y produce portada, exposición y once fichas.
