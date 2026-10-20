@@ -82,3 +82,13 @@ Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canó
 - Se mantuvo la cita original de Nohemi, las once obras, sus fichas y las imágenes provisionales sin alteración.
 - La exposición de Las Condes queda pendiente de documentación y las fotografías en alta resolución pendientes de entrega.
 - Para confirmar publicación en tooltician.com no basta con el merge en GitHub; verificar manualmente en ese host después de desplegar.
+
+### Registro expositivo documentado — iteración 3 (20-10-2026)
+
+- Fuente institucional: [CCLR: «Exposición Rostros Oníricos»](https://comunidadcreativalosrios.cultura.gob.cl/events/exposicion-rostros-oniricos-nohemi-palencia/), con **fecha anunciada de presentación 3/9/2026** y **Galería Urbana Santo Tomás, Valdivia**. Fecha de cierre no acreditada.
+- [CCLR: declaración de Nohemi](https://comunidadcreativalosrios.cultura.gob.cl/catalogo/nohemi-palencia-cisneros/) documenta su descripción de dibujo, pintura y figura femenina.
+- El subtítulo **«Cartografía de lo invisible»** procede del portafolio de la artista, no de la ficha del evento de CCLR.
+- `data/exposiciones.json` centraliza la exposición verificada y conserva nulos explícitos: no asigna ninguna de las once obras a la muestra hasta recibir confirmación.
+- `scripts/build.py` compila la ficha expositiva y su registro en la cronología desde la misma fuente de datos; no duplicar el registro manualmente.
+- Se incorporaron dos pruebas de regresión sobre procedencia, fecha, sede y ausencia de atribuciones no confirmadas.
+- Pendientes de Nohemi: piezas efectivamente expuestas, fecha de cierre (si quiere publicarla), crédito/fotos oficiales y nombre preferido para exposiciones futuras.

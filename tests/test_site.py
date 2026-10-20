@@ -50,12 +50,30 @@ class PortfolioTests(unittest.TestCase):
     def test_curatorial_sections_are_distinct_and_grounded(self):
         self.assertIn('id="exhibitions-heading"', self.html)
         self.assertIn('id="background-heading"', self.html)
-        self.assertIn('Exposición individual «Galería Urbana»', self.html)
+        self.assertIn('id="exposicion"', self.html)
         self.assertIn('Proyecto Artístico Fusión', self.html)
         self.assertIn('Escuela de Artes Plásticas Arturo Michelena', self.html)
         self.assertIn('Gregorio Adán Palencia Castellanos', self.html)
         self.assertNotIn('Las Condes', self.html)
         self.assertNotIn('Una trayectoria<br>', self.html)
+
+    def test_verified_exhibition_provenance_and_no_assumed_works(self):
+        exhibitions=json.loads((ROOT/'data/exposiciones.json').read_text('utf-8'))
+        self.assertEqual(len(exhibitions),1)
+        ex=exhibitions[0]
+        self.assertEqual(ex['titulo_evento'],'Rostros Oníricos')
+        self.assertEqual(ex['fecha_evento'],'2026-09-03')
+        self.assertEqual(ex['espacio'],'Galería Urbana Santo Tomás')
+        self.assertIsNone(ex['fecha_cierre'])
+        self.assertEqual(ex['obras_exhibidas_confirmadas'], [])
+        self.assertIn(ex['fuente_institucional'],self.html)
+        self.assertIn(ex['fuente_declaracion'],self.html)
+        self.assertIn('href="#exposicion"',self.html)
+        self.assertNotIn('Exposición individual «Galería Urbana»',self.html)
+        self.assertNotIn('Todas las obras fueron exhibidas',self.html)
+    def test_single_source_exhibition_timeline(self):
+        self.assertIn('<time datetime="2026-09-03">',self.html)
+        self.assertEqual(self.html.count('Galería Urbana Santo Tomás'),3)
 
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
