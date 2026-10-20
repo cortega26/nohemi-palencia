@@ -250,6 +250,19 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('.gallery-grid{row-gap:52px}',css)
         self.assertEqual(self.html.count('class="artwork-detail-link"'),len(self.data))
 
+    def test_artwork_creation_year_appears_once_in_visible_record(self):
+        template=(ROOT/'templates/obra.html').read_text('utf-8')
+        self.assertNotIn('class="artwork-detail-year"',template)
+        self.assertIn('<dt>Año</dt><dd><time datetime="{{YEAR}}">{{YEAR}}</time></dd>',template)
+        for work in self.data:
+            page=(ROOT/'obras'/work['slug']/'index.html').read_text('utf-8')
+            self.assertNotIn('class="artwork-detail-year"',page,work['slug'])
+            self.assertEqual(page.count('<dt>Año</dt>'),1,work['slug'])
+            self.assertIn(
+                f'<dt>Año</dt><dd><time datetime="{work["anio"]}">{work["anio"]}</time></dd>',
+                page,work['slug']
+            )
+
     def test_css_fingerprint_consistent_across_generated_pages(self):
         import hashlib
         css=(ROOT/'assets/styles.css').read_bytes()
