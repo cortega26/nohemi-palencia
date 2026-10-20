@@ -125,6 +125,7 @@ class PortfolioTests(unittest.TestCase):
             self.assertEqual(schema['size'],work['dimensiones'])
             self.assertEqual(schema['artMedium'],work['tecnica'])
             self.assertEqual(schema['creator']['name'],'Nohemi Palencia Cisneros')
+            self.assertEqual(schema['image'],'https://tooltician.com/nohemi-palencia/assets/obras/'+work['archivo'])
             self.assertIn(f'href="../{slugs[(i-1)%len(slugs)]}/"',page)
             self.assertIn(f'href="../{slugs[(i+1)%len(slugs)]}/"',page)
             for relative in (f'../../assets/obras/{work["archivo"]}','../../assets/styles.css','../../assets/img/favicon.svg'):
@@ -176,6 +177,36 @@ class PortfolioTests(unittest.TestCase):
         css=(ROOT/'assets/styles.css').read_text('utf-8')
         self.assertIn('.upcoming{box-sizing:border-box',css)
         self.assertIn('padding-inline:clamp(20px,3.4vw,48px)',css)
+
+
+    def test_canonical_and_social_metadata_for_all_pages(self):
+        from xml.etree import ElementTree
+        site=json.loads((ROOT/'data/site.json').read_text('utf-8'))
+        base=site['public_base_url']
+        self.assertEqual(base,'https://tooltician.com/nohemi-palencia/')
+        works=self.data
+        pages=[('', ROOT/'index.html'), ('exposiciones/rostros-oniricos/', ROOT/'exposiciones/rostros-oniricos/index.html')]
+        pages += [(f"obras/{w['slug']}/", ROOT/'obras'/w['slug']/'index.html') for w in works]
+        self.assertEqual(len(pages),13)
+        for route,filename in pages:
+            html=filename.read_text('utf-8')
+            canonical=re.search(r'<link rel="canonical" href="([^"]+)"',html)
+            ogurl=re.search(r'<meta property="og:url" content="([^"]+)"',html)
+            image=re.search(r'<meta property="og:image" content="([^"]+)"',html)
+            self.assertIsNotNone(canonical,route)
+            self.assertIsNotNone(ogurl,route)
+            self.assertIsNotNone(image,route)
+            self.assertEqual(canonical.group(1),base+route)
+            self.assertEqual(ogurl.group(1),base+route)
+            self.assertTrue(image.group(1).startswith(base+'assets/'),route)
+            self.assertTrue((ROOT/image.group(1)[len(base):]).is_file(),route)
+            self.assertIn('<meta name="twitter:card" content="summary">',html)
+            self.assertIn('property="og:image:alt"',html)
+        sitemap=(ROOT/'sitemap.xml').read_text('utf-8')
+        doc=ElementTree.fromstring(sitemap)
+        urls=[e.text for e in doc.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
+        self.assertEqual(len(urls),13)
+        self.assertEqual(set(urls),{base+route for route,_ in pages})
 
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
