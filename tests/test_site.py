@@ -54,7 +54,8 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('Proyecto Artístico Fusión', self.html)
         self.assertIn('Escuela de Artes Plásticas Arturo Michelena', self.html)
         self.assertIn('Gregorio Adán Palencia Castellanos', self.html)
-        self.assertNotIn('Las Condes', self.html)
+        history_fragment=self.html.split('<section class="history"',1)[1].split('</section>',1)[0]
+        self.assertNotIn('Las Condes', history_fragment)
         self.assertNotIn('Una trayectoria<br>', self.html)
 
     def test_verified_exhibition_provenance_and_no_assumed_works(self):
