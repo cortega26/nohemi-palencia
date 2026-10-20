@@ -151,3 +151,11 @@ Se recibió una respuesta de la artista, conservada de forma estructurada en `da
 - Las pruebas verifican URL canónica única, `og:url`, existencia de imagen social y coherencia de las trece URLs del sitemap.
 
 Esta fase cubre la **infraestructura técnica** del issue #11; permanece abierta hasta decidir el dominio y reemplazar las imágenes sociales provisionales.
+
+### Ajuste de lectura de galería — iteración siguiente
+
+- El diseño conserva el número de columnas, el aspecto de las reproducciones, las once obras y la jerarquía general. No agranda indiscriminadamente imágenes provisionales.
+- Metadatos de obra y años más legibles (`13px` y `12px`), numeración con mejor contraste y enlaces a fichas individuales con área mínima de `44px`.
+- Ritmo vertical aumentado a `76px` en escritorio, `62px` en tableta y `52px` en móvil para separar las obras sin introducir ornamentos.
+- Se agregó prueba de regresión de CSS y se mantiene la verificación del generador en CI.
+- **Pendiente:** inspección visual final y ajuste de la disposición según las fotografías originales de Nohemi; no afirmar que los previews sean ya reproducciones museográficas.
