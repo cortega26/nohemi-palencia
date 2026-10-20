@@ -173,3 +173,10 @@ Se detectó en producción que el archivo `assets/styles.css` sin parámetros po
 - Para reproducirlo: instalar `Pillow==12.3.0` y ejecutar `python scripts/enhance_artist_photo.py` desde el repositorio. El script comprueba el SHA-256 exacto de la fuente y la resolución de salida.
 - La sección «La artista» utiliza ahora WebP; el JPEG fuente permanece disponible y el `og:image` social de la portada y del archivo expositivo apunta a la mejora.
 - Esta operación **no** reemplaza el objetivo pendiente de obtener fotografías originales autorizadas de las obras y de la artista. No confundir el aumento de píxeles con recuperación fiel de detalle que no existe en la fuente.
+
+### La foto de la artista: corrección del encuadre visual (posterior al 2×)
+
+- Diagnóstico en `main@9d48e68`: el archivo mejorado ya estaba publicado, pero la sección `about` usaba un marco **vertical** (`aspect-ratio:.78`) para una fotografía horizontal (1784 × 1352 px). `object-fit:cover` descartaba una parte importante de los cuadros y `filter:saturate(.75)` restaba color. Al tamaño mostrado, el upscale 2× no era apreciable.
+- Solución: mostrar la fotografía **completa y sin desaturación**, con proporción nativa, `object-fit:contain`, mayor proporción de columna visual y presentación horizontal también en móvil. No introducir filtros de estilo ni recreaciones de pinturas o rostro.
+- Se conserva el original y su mejora 2×, pero no se afirma que esta operación recupere nuevos detalles: corrige principalmente **composición y fidelidad visual**.
+- La huella del CSS está actualizada en las 13 páginas. Prueba de regresión añadida contra recortes y filtros desaturadores.
