@@ -43,6 +43,10 @@ class PortfolioTests(unittest.TestCase):
         self.assertNotIn('nohemipalencia',self.html.lower().replace('nohemi palencia',''))
     def test_no_pending_placeholders(self):
         self.assertNotIn('{{',self.html);self.assertNotIn('POR CONFIRMAR',self.html)
+    def test_decorative_controls_are_not_mistaken_for_navigation(self):
+        self.assertNotIn('class="marquee-bar"', self.html)
+        self.assertNotIn('class="hero-index"', self.html)
+        self.assertNotIn('class="timeline-icon"', self.html)
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
