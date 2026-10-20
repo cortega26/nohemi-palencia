@@ -68,12 +68,27 @@ class PortfolioTests(unittest.TestCase):
         self.assertEqual(ex['obras_exhibidas_confirmadas'], [])
         self.assertIn(ex['fuente_institucional'],self.html)
         self.assertIn(ex['fuente_declaracion'],self.html)
-        self.assertIn('href="#exposicion"',self.html)
+        self.assertIn('href="exposiciones/rostros-oniricos/"',self.html)
         self.assertNotIn('Exposición individual «Galería Urbana»',self.html)
         self.assertNotIn('Todas las obras fueron exhibidas',self.html)
     def test_single_source_exhibition_timeline(self):
         self.assertIn('<time datetime="2026-09-03">',self.html)
         self.assertEqual(self.html.count('Galería Urbana Santo Tomás'),3)
+
+    def test_permanent_exhibition_page(self):
+        ex=json.loads((ROOT/'data/exposiciones.json').read_text('utf-8'))[0]
+        exhibit_path=ROOT/ex['ruta_permanente']/'index.html'
+        self.assertTrue(exhibit_path.is_file())
+        rendered=exhibit_path.read_text('utf-8')
+        self.assertIn('href="exposiciones/rostros-oniricos/"',self.html)
+        self.assertIn('Rostros Oníricos: Cartografía de lo invisible',rendered)
+        self.assertIn('datetime="2026-09-03"',rendered)
+        self.assertIn(ex['fuente_institucional'],rendered)
+        self.assertIn(ex['fuente_declaracion'],rendered)
+        self.assertIn('La obra de la artista puede explorarse por separado',rendered)
+        self.assertNotIn('{{',rendered)
+        self.assertEqual(ex['obras_exhibidas_confirmadas'],[])
+        self.assertTrue((exhibit_path.parent/'../../assets/styles.css').resolve().is_file())
 
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
