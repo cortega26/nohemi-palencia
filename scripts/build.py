@@ -120,7 +120,7 @@ def render():
     def eh(v):
         return html.escape(str(v), quote=True)
     feature_upcoming = f'''<section class="upcoming shell" id="proxima-exposicion" aria-labelledby="upcoming-title">
-      <div class="upcoming-label"><span>AGENDA CULTURAL</span><span>NOVIEMBRE 2026</span></div>
+      <div class="upcoming-label"><span>AGENDA CULTURAL</span></div>
       <div class="upcoming-body">
         <div class="upcoming-intro">
           <p class="kicker">Próxima participación · Exposición colectiva</p>
