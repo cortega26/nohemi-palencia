@@ -168,7 +168,7 @@
 @media(max-width:620px){.artwork-breadcrumb{padding-top:30px;padding-bottom:24px;gap:9px}.artwork-detail{padding-bottom:65px;gap:36px}.artwork-detail-view{padding:18px}.artwork-detail-copy h1{font-size:clamp(51px,12vw,80px);overflow-wrap:anywhere}.artwork-detail-year{font-size:27px}.artwork-details-list div{grid-template-columns:94px minmax(0,1fr);gap:12px;padding:18px 0}.artwork-details-list dd{font-size:20px}.artwork-detail-next{gap:16px;padding-bottom:75px}.artwork-detail-next a strong{font-size:26px}.artwork-detail-credit{font-size:11px}}
 
 /* Upcoming exhibition: restrained artist-announced dates; no borrowed event visuals. */
-.upcoming{margin-top:32px;margin-bottom:40px;padding-block:34px 42px;border-top:1px solid #bdc8bc;border-bottom:1px solid #bdc8bc;background:#edf0e9}
+.upcoming{box-sizing:border-box;margin-top:32px;margin-bottom:40px;padding-block:34px 42px;padding-inline:clamp(20px,3.4vw,48px);border-top:1px solid #bdc8bc;border-bottom:1px solid #bdc8bc;background:#edf0e9}
 .upcoming-label{display:flex;justify-content:space-between;gap:20px;font-size:10px;font-weight:600;letter-spacing:.15em;color:#526254}
 .upcoming-body{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(270px,.72fr);gap:clamp(40px,6vw,100px);margin-top:43px}
 .upcoming-intro,.upcoming-details{min-width:0}
