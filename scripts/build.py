@@ -130,8 +130,8 @@ def render():
         </div>
         <div class="upcoming-details">
           <dl>
-            <div><dt>Inauguración</dt><dd><time datetime="{eh(opening['fecha'])}T{eh(opening['hora_local'])}">Viernes 6 de noviembre · 18:00 h</time></dd></div>
-            <div><dt>Encuentro con artistas</dt><dd><time datetime="{eh(meeting['fecha'])}T{eh(meeting['hora_local'])}">Sábado 14 de noviembre · 12:00 h</time></dd></div>
+            <div><dt>Inauguración</dt><dd><time datetime="{eh(opening['fecha'])}T{eh(opening['hora_local'])}">Viernes 6 de noviembre · 18:00&nbsp;h</time></dd></div>
+            <div><dt>Encuentro con artistas</dt><dd><time datetime="{eh(meeting['fecha'])}T{eh(meeting['hora_local'])}">Sábado 14 de noviembre · 12:00&nbsp;h</time></dd></div>
             <div><dt>Lugar</dt><dd>CA660 · Rosario Norte 660, Las Condes</dd></div>
           </dl>
           <p>Fechas comunicadas por la artista; catálogo y obras participantes pendientes.</p>

@@ -208,6 +208,15 @@ class PortfolioTests(unittest.TestCase):
         self.assertEqual(len(urls),13)
         self.assertEqual(set(urls),{base+route for route,_ in pages})
 
+    def test_upcoming_facts_readability(self):
+        css=(ROOT/'assets/styles.css').read_text('utf-8')
+        self.assertIn('.upcoming-details dd{font:500 16px/1.55 var(--sans)',css)
+        self.assertIn('.upcoming-details dl div{grid-template-columns:minmax(0,1fr);gap:6px}',css)
+        self.assertIn('18:00&nbsp;h',self.html)
+        self.assertIn('12:00&nbsp;h',self.html)
+        self.assertNotIn('18:00 h</time>',self.html)
+        self.assertNotIn('12:00 h</time>',self.html)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
