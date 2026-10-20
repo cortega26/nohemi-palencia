@@ -238,6 +238,18 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('datetime="2026-11-06T18:00"',upcoming)
         self.assertIn('datetime="2026-11-14T12:00"',upcoming)
 
+    def test_gallery_caption_legibility_and_touch_targets(self):
+        css=(ROOT/'assets/styles.css').read_text('utf-8')
+        self.assertIn('.artwork-number{display:block;margin-bottom:9px;color:#4b594f;font-size:11px',css)
+        self.assertIn('.artwork-info p{font-size:13px;line-height:1.7;color:#46564a}',css)
+        self.assertIn('.artwork-year{font-size:12px;color:#48594e}',css)
+        self.assertIn('.artwork-detail-link{display:inline-flex;align-items:center;min-height:44px',css)
+        self.assertIn('font-size:13px;font-weight:700',css)
+        self.assertIn('.gallery-grid{column-gap:36px;row-gap:76px}',css)
+        self.assertIn('.gallery-grid{column-gap:24px;row-gap:62px}',css)
+        self.assertIn('.gallery-grid{row-gap:52px}',css)
+        self.assertEqual(self.html.count('class="artwork-detail-link"'),len(self.data))
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
