@@ -144,7 +144,23 @@ class PortfolioTests(unittest.TestCase):
         self.assertNotIn('31 de septiembre',page)
         next_ex=confirmed['proxima_exposicion']
         self.assertIsNone(next_ex['nombre_oficial'])
-        self.assertIsNone(next_ex['sede'])
+        self.assertEqual(next_ex['sede'],'CA660 · Centro Cultural de Fundación CorpArtes')
+        self.assertEqual(next_ex['direccion'],'Rosario Norte 660, Las Condes, Santiago, Chile')
+        self.assertIsNone(next_ex['nombre_oficial'])
+        self.assertEqual(next_ex['obras_confirmadas'], [])
+        self.assertEqual(next_ex['titulo_promocional_presentacion'],'La Escena de Arte')
+        self.assertEqual(next_ex['titulo_ejemplo_tarjeta'],'La Escena del Arte')
+        self.assertFalse(next_ex['organizador_formal_confirmado'])
+        self.assertEqual(next_ex['tarjeta_artista_formato_cm'],'15 × 30')
+        self.assertIn('QR al catálogo digital del organizador',next_ex['tarjeta_artista_contenido'])
+        self.assertIn('id="proxima-exposicion"',self.html)
+        self.assertIn('datetime="2026-11-06T18:00"',self.html)
+        self.assertIn('datetime="2026-11-14T12:00"',self.html)
+        self.assertIn('CA660 · Rosario Norte 660, Las Condes',self.html)
+        self.assertIn(next_ex['referencia_galeria_url'],self.html)
+        self.assertNotIn('La Escena de Arte',self.html)
+        self.assertNotIn('La Escena del Arte',self.html)
+
         expected=[
             ('montaje','2026-10-28','12:00'),
             ('inauguracion','2026-11-06','18:00'),
