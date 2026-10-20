@@ -52,6 +52,7 @@ def render():
             <p class="exhibition-subtitle">Cartografía de lo invisible</p>
             <p class="exhibition-intro">La exposición se presentó en Valdivia en 2026. La figura femenina, la geometría y los elementos de la naturaleza forman parte de la investigación artística que Nohemi describe en su propia declaración.</p>
             <div class="exhibition-links">
+              <a class="exhibition-detail-link" href="{h('ruta_permanente')}">Conocer la exposición <span aria-hidden="true">↗</span></a>
               <a href="{h('fuente_institucional')}" target="_blank" rel="noopener noreferrer">Consultar registro de la exposición <span aria-hidden="true">↗</span></a>
               <a href="{h('fuente_declaracion')}" target="_blank" rel="noopener noreferrer">Leer la presentación de la artista <span aria-hidden="true">↗</span></a>
             </div>
@@ -68,7 +69,7 @@ def render():
         </div>
       </div>
     </section>'''
-    timeline = f'''<div class="timeline-item"><span class="year">2026</span><div><h4><a class="timeline-link" href="#exposicion">{h('titulo_evento')} <span aria-hidden="true">↗</span></a></h4><p>{h('espacio')} · {h('ciudad')}</p></div></div>'''
+    timeline = f'''<div class="timeline-item"><span class="year">2026</span><div><h4><a class="timeline-link" href="{h('ruta_permanente')}">{h('titulo_evento')} <span aria-hidden="true">↗</span></a></h4><p>{h('espacio')} · {h('ciudad')}</p></div></div>'''
     schema = {"@context":"https://schema.org", "@type":"Person", "name":"Nohemi Palencia Cisneros", "jobTitle":"Artista plástica", "description":"Artista plástica venezolana radicada en Valdivia, Chile, dedicada al dibujo y la pintura.", "homeLocation":{"@type":"Place","name":"Valdivia, Chile"}, "sameAs":["https://www.instagram.com/nohe.palencia/"]}
     template = (ROOT / 'templates/index.html').read_text(encoding='utf-8')
     assert all(token in template for token in ('{{GALLERY_ITEMS}}', '{{SCHEMA_JSON}}', '{{EXHIBITION_FEATURE}}', '{{EXHIBITION_TIMELINE}}'))
@@ -77,14 +78,45 @@ def render():
                     .replace('{{EXHIBITION_TIMELINE}}',timeline)
                     .replace('{{SCHEMA_JSON}}',json.dumps(schema, ensure_ascii=False).replace('<','\\u003c')))
 
+def render_exhibition():
+    exhibitions = json.loads((ROOT / 'data/exposiciones.json').read_text(encoding='utf-8'))
+    assert len(exhibitions) == 1
+    ex = exhibitions[0]
+    assert ex['id'] == 'rostros-oniricos-2026'
+    assert ex['ruta_permanente'] == 'exposiciones/rostros-oniricos/'
+    assert ex['obras_exhibidas_confirmadas'] == []
+    assert ex['fecha_cierre'] is None
+    page = (ROOT / 'templates/exposicion-rostros-oniricos.html').read_text(encoding='utf-8')
+    mapping = {
+        '{{TITLE}}': ex['titulo_evento'],
+        '{{SUBTITLE}}': ex['titulo_portafolio'].split(': ',1)[1],
+        '{{DATE}}': ex['fecha_presentacion'],
+        '{{ISO_DATE}}': ex['fecha_evento'],
+        '{{VENUE}}': ex['espacio'],
+        '{{CITY}}': ex['ciudad'],
+        '{{EVENT_URL}}': ex['fuente_institucional'],
+        '{{ARTIST_URL}}': ex['fuente_declaracion'],
+    }
+    for token,value in mapping.items():
+        assert token in page, f'Missing template placeholder: {token}'
+        page = page.replace(token, html.escape(str(value), quote=True))
+    assert '{{' not in page, 'Unresolved exhibition template placeholders'
+    return page
+
 if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--check',action='store_true',help='Fail when generated index.html is stale')
     args=parser.parse_args()
-    expected=render()+'\n'
-    output=ROOT/'index.html'
+    expected_pages = {
+        ROOT/'index.html': render()+'\n',
+        ROOT/'exposiciones/rostros-oniricos/index.html': render_exhibition()+'\n',
+    }
     if args.check:
-        assert output.exists() and output.read_text(encoding='utf-8')==expected, 'index.html is out of sync. Run python3 scripts/build.py'
-        print('Generated HTML is up to date')
+        for output,expected in expected_pages.items():
+            assert output.exists() and output.read_text(encoding='utf-8')==expected, f'{output} is out of sync. Run python3 scripts/build.py'
+        print('Generated HTML pages are up to date')
     else:
-        output.write_text(expected,encoding='utf-8');print(f'Built {output}')
+        for output,expected in expected_pages.items():
+            output.parent.mkdir(parents=True, exist_ok=True)
+            output.write_text(expected, encoding='utf-8')
+            print(f'Built {output}')
