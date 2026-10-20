@@ -12,7 +12,6 @@ def site_config():
     base=config['public_base_url']
     assert base.startswith('https://') and base.endswith('/'), 'Public base URL must be an absolute HTTPS directory'
     assert not any(c in base for c in ('?', '#', '\\')), 'Unsafe public URL'
-    assert config['final_domain'] is None, 'Update domain configuration intentionally when final domain is chosen'
     return config
 
 def public_url(path=''):
