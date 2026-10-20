@@ -279,6 +279,21 @@ class PortfolioTests(unittest.TestCase):
             self.assertNotIn(f'href="{relative}"',html,str(page))
             self.assertEqual(html.count('styles.css?v='),1,str(page))
 
+    def test_artist_portrait_is_enhanced_and_preserves_attribution(self):
+        photo=ROOT/'assets/img/nohemi-galeria-mejorada-2x.webp'
+        original=ROOT/'assets/img/nohemi-galeria-preview.jpg'
+        self.assertTrue(original.exists())
+        self.assertTrue(photo.is_file())
+        self.assertGreater(photo.stat().st_size,100_000)
+        data=photo.read_bytes()
+        self.assertEqual(data[:4],b'RIFF')
+        self.assertEqual(data[8:12],b'WEBP')
+        self.assertIn('src="assets/img/nohemi-galeria-mejorada-2x.webp"',self.html)
+        self.assertIn('width="1784" height="1352"',self.html)
+        self.assertIn('alt="Nohemi Palencia en una sala rodeada de sus pinturas"',self.html)
+        self.assertIn('nohemi-galeria-mejorada-2x.webp',json.loads(
+            (ROOT/'data/site.json').read_text('utf-8'))['social_image_default'])
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
