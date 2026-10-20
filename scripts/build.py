@@ -70,11 +70,46 @@ def render():
       </div>
     </section>'''
     timeline = f'''<div class="timeline-item"><span class="year">2026</span><div><h4><a class="timeline-link" href="{h('ruta_permanente')}">{h('titulo_evento')} <span aria-hidden="true">↗</span></a></h4><p>{h('espacio')} · {h('ciudad')}</p></div></div>'''
+
+    # Dates and venue come from the artist and her exhibition documentation.
+    confirmations = json.loads((ROOT / 'data/confirmaciones-artista.json').read_text(encoding='utf-8'))
+    upcoming = confirmations['proxima_exposicion']
+    assert upcoming['nombre_oficial'] is None, 'Do not publish ambiguous title as official'
+    assert upcoming['obras_confirmadas'] == [], 'Do not infer participating pieces'
+    assert upcoming['sede'] == 'CA660 · Centro Cultural de Fundación CorpArtes'
+    assert upcoming['direccion'] == 'Rosario Norte 660, Las Condes, Santiago, Chile'
+    schedule = {a['tipo']:a for a in upcoming['actividades']}
+    opening=schedule['inauguracion']
+    meeting=schedule['encuentro con artistas']
+    assert opening['fecha'] == '2026-11-06' and opening['hora_local'] == '18:00'
+    assert meeting['fecha'] == '2026-11-14' and meeting['hora_local'] == '12:00'
+    def eh(v):
+        return html.escape(str(v), quote=True)
+    feature_upcoming = f'''<section class="upcoming shell" id="proxima-exposicion" aria-labelledby="upcoming-title">
+      <div class="upcoming-label"><span>AGENDA CULTURAL</span><span>NOVIEMBRE 2026</span></div>
+      <div class="upcoming-body">
+        <div class="upcoming-intro">
+          <p class="kicker">Próxima participación · Exposición colectiva</p>
+          <h2 id="upcoming-title">Nohemi en <em>CA660.</em></h2>
+          <p>La artista participará en una exposición colectiva en el Centro Cultural CA660 de Fundación CorpArtes, en Las Condes. El título definitivo de esta edición está pendiente de confirmación.</p>
+          <a href="{eh(upcoming['referencia_galeria_url'])}" target="_blank" rel="noopener noreferrer">Conocer AMF Gallery <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="upcoming-details">
+          <dl>
+            <div><dt>Inauguración</dt><dd><time datetime="{eh(opening['fecha'])}T{eh(opening['hora_local'])}">Viernes 6 de noviembre · 18:00 h</time></dd></div>
+            <div><dt>Encuentro con artistas</dt><dd><time datetime="{eh(meeting['fecha'])}T{eh(meeting['hora_local'])}">Sábado 14 de noviembre · 12:00 h</time></dd></div>
+            <div><dt>Lugar</dt><dd>CA660 · Rosario Norte 660, Las Condes</dd></div>
+          </dl>
+          <p>Fechas comunicadas por la artista; catálogo y obras participantes pendientes.</p>
+        </div>
+      </div>
+    </section>'''
     schema = {"@context":"https://schema.org", "@type":"Person", "name":"Nohemi Palencia Cisneros", "jobTitle":"Artista plástica", "description":"Artista plástica venezolana radicada en Valdivia, Chile, dedicada al dibujo y la pintura.", "homeLocation":{"@type":"Place","name":"Valdivia, Chile"}, "sameAs":["https://www.instagram.com/nohe.palencia/"]}
     template = (ROOT / 'templates/index.html').read_text(encoding='utf-8')
-    assert all(token in template for token in ('{{GALLERY_ITEMS}}', '{{SCHEMA_JSON}}', '{{EXHIBITION_FEATURE}}', '{{EXHIBITION_TIMELINE}}'))
+    assert all(token in template for token in ('{{GALLERY_ITEMS}}', '{{SCHEMA_JSON}}', '{{EXHIBITION_FEATURE}}', '{{EXHIBITION_TIMELINE}}', '{{UPCOMING_FEATURE}}'))
     return (template.replace('{{GALLERY_ITEMS}}','\n'.join(cards))
                     .replace('{{EXHIBITION_FEATURE}}',feature)
+                    .replace('{{UPCOMING_FEATURE}}',feature_upcoming)
                     .replace('{{EXHIBITION_TIMELINE}}',timeline)
                     .replace('{{SCHEMA_JSON}}',json.dumps(schema, ensure_ascii=False).replace('<','\\u003c')))
 
