@@ -4,7 +4,7 @@ Sitio estático en español de la artista **Nohemi Palencia Cisneros**, basado e
 
 ## Estado
 
-- **Boceto funcional**, sin dominio definitivo ni publicación en GitHub Pages.
+- **Versión publicada:** https://tooltician.com/nohemi-palencia/ (sitio público verificado el 20-10-2026). El mecanismo de sincronización de ese sitio externo con GitHub no está documentado aquí; un merge en `main` no demuestra por sí solo que el dominio público se haya actualizado.
 - **11 obras** con título, técnica, medidas y año; todas las fichas se basan en el PDF facilitado por la artista (páginas 3–13).
 - **Fotografías provisionales** extraídas del mismo PDF; reemplazables por las fotografías originales en alta resolución que proporcionará la artista. Son vistas previas, **no recursos finales**.
 - Biografía, declaración artística y trayectoria documentadas por el PDF (páginas 2 y 14). La muestra de Las Condes se agregará cuando estén confirmados oficialmente su nombre, lugar y fechas.
@@ -57,11 +57,19 @@ El script verifica el sitio, crea el repositorio **público** `cortega26/nohemi-
 
 ## Publicación y QR
 
-El despliegue previsto es **GitHub Pages** con una carpeta raíz, sin pipeline de compilación en el servidor. Se puede probar inicialmente en `https://cortega26.github.io/nohemi-palencia/` *si se crea el repositorio y se activa GitHub Pages*. Esta dirección es **una ruta propuesta, no confirmada ni publicada**.
+La versión visible actualmente está en **https://tooltician.com/nohemi-palencia/**. Este repositorio también puede alojarse en GitHub Pages, pero no se presume que el despliegue externo sea automático. Verificarlo en vivo después de cada publicación.
 
 Elegir dominio antes de imprimir un QR permanente. Si se necesita imprimir antes, usar primero una URL estable propia o un redireccionador administrado por el responsable del sitio para evitar QR obsoletos.
 
-Pendientes para publicar: URL canónica, meta `og:image` absoluta, favicon/imagen social finales, verificación de contacto y fechas de la exposición de Las Condes.
+Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canónica, meta `og:image` absoluta, imagen social final, verificación de contacto, fotos de alta resolución y fechas de la exposición de Las Condes.
+
+### Refinamiento editorial — primera iteración (20-10-2026)
+
+- Se eliminaron ornamentos redundantes (franja de palabras, círculos decorativos, indicadores de sección no funcionales y flechas que aparentaban enlaces).
+- Se simplificaron las superficies alrededor de las pinturas y se ajustaron la composición de galería y el contraste de la tipografía secundaria.
+- Se corrigieron las zonas táctiles de la navegación móvil y la adaptación del título de contacto a pantallas estrechas.
+- No se modificaron las once obras, su autoría ni sus fichas técnicas.
+- El proceso de despliegue en Tooltician debe comprobarse por separado de la integración del código.
 
 ## Derechos
 
