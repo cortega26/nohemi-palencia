@@ -74,3 +74,11 @@ Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canó
 ## Derechos
 
 **© Nohemi Palencia Cisneros. Todos los derechos reservados sobre las obras, fotografías y contenido artístico.** La autorización a preparar y publicar este portafolio no constituye licencia libre ni autorización de reutilización por terceros.
+
+### Iteración editorial 2 — trayectoria y contenido curatorial (2026-10-20)
+
+- Se reemplazaron eslóganes genéricos por una presentación de la serie y del lenguaje plástico extraída/parafraseada del portafolio entregado por la artista (página 2).
+- La trayectoria se organizó en **Exposiciones seleccionadas** y **Reconocimientos y formación**. No se afirma exhaustividad; los hitos provienen de la página 14 del mismo PDF.
+- Se mantuvo la cita original de Nohemi, las once obras, sus fichas y las imágenes provisionales sin alteración.
+- La exposición de Las Condes queda pendiente de documentación y las fotografías en alta resolución pendientes de entrega.
+- Para confirmar publicación en tooltician.com no basta con el merge en GitHub; verificar manualmente en ese host después de desplegar.
