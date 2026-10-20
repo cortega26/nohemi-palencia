@@ -115,7 +115,7 @@ class PortfolioTests(unittest.TestCase):
         for i,work in enumerate(self.data):
             path=ROOT/'obras'/work['slug']/'index.html'
             page=path.read_text('utf-8')
-            m=re.search(r'<script type="application/ld\\+json">(.*?)</script>',page,re.S)
+            m=re.search(r'<script type="application/ld\+json">(.*?)</script>',page,re.S)
             self.assertIsNotNone(m,work['slug'])
             schema=json.loads(m.group(1))
             self.assertEqual(schema['@type'],'VisualArtwork')
