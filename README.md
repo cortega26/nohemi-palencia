@@ -180,3 +180,11 @@ Se detectó en producción que el archivo `assets/styles.css` sin parámetros po
 - Solución: mostrar la fotografía **completa y sin desaturación**, con proporción nativa, `object-fit:contain`, mayor proporción de columna visual y presentación horizontal también en móvil. No introducir filtros de estilo ni recreaciones de pinturas o rostro.
 - Se conserva el original y su mejora 2×, pero no se afirma que esta operación recupere nuevos detalles: corrige principalmente **composición y fidelidad visual**.
 - La huella del CSS está actualizada en las 13 páginas. Prueba de regresión añadida contra recortes y filtros desaturadores.
+
+### Superresolución neuronal real — retrato de Nohemi
+
+- La fotografía original del portafolio (936 × 716 px) fue procesada mediante el modelo abierto **RealESRGAN_x2plus**, con pesos externos verificados por SHA-256 (`49fafd45f8fd7aa8d31ab2a22d14d91b536c34494a5cfe31eb5d89c2fa266abb`). No es la interpolación Lanczos de la versión anterior.
+- **Salida:** `assets/img/nohemi-galeria-neural-2x.webp`, 1784 × 1352 px, tras el mismo recorte documental utilizado anteriormente. El resultado combina 84% de reconstrucción neuronal y 16% de interpolación documental para reducir alucinaciones. Ajustes posteriores suaves: contraste, color, enfoque.
+- Código reproducible en `scripts/neural_upscale_artist.py`; la inferencia se ejecutó en una rama aislada mediante un workflow temporal, retirado después. El modelo preentrenado está disponible en [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN).
+- El archivo fuente y la versión convencional anterior **siguen intactos**. La portada, sección «La artista» y vista previa social de la exposición utilizan la nueva versión.
+- **Limitación fundamental:** el modelo estima microdetalles sin información física verificable. Esta fotografía es válida como retrato ambiental/editorial, **no** como reproducción fidedigna ampliada de cada pintura ni como documento de referencia de su técnica. Para las fichas de obra, conservar las reproducciones originales autorizadas.
