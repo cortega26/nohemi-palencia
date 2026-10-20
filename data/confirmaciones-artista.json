@@ -19,8 +19,8 @@
   "proxima_exposicion": {
     "lugar_general": "Las Condes, Santiago de Chile",
     "nombre_oficial": null,
-    "sede": null,
-    "direccion": null,
+    "sede": "CA660 · Centro Cultural de Fundación CorpArtes",
+    "direccion": "Rosario Norte 660, Las Condes, Santiago, Chile",
     "obras_confirmadas": [],
     "actividades": [
       {
@@ -44,7 +44,29 @@
         "hora_local": null
       }
     ],
-    "nota": "Fechas comunicadas por la artista. Aún sin título, dirección ni catálogo de obras confirmados; no publicar convocatoria definitiva."
+    "nota": "Sede y dirección acreditadas en material compartido por la artista, corroborada la dirección de CA660 por fuentes externas. El título definitivo de noviembre y lista de obras siguen pendientes. No confundir QR comercial del organizador con la página independiente de la artista.",
+    "titulo_promocional_presentacion": "La Escena de Arte",
+    "titulo_ejemplo_tarjeta": "La Escena del Arte",
+    "nombre_oficial_estado": "Pendiente de confirmar variante exacta del título de la edición noviembre 2026: la portada del dossier difiere del ejemplo de tarjeta y del catálogo AMF de septiembre-octubre",
+    "referencia_galeria": "AMF Gallery Chile (@amfchile)",
+    "referencia_galeria_url": "https://www.instagram.com/amfchile/",
+    "sitio_galeria": "https://www.amfchile.com/",
+    "organizador_formal_confirmado": false,
+    "procedencia_sede_y_titulo": "Láminas promocionales de la exposición facilitadas por la artista el 20-10-2026",
+    "procedencia_fechas": "Calendario de montaje, inauguración, encuentro y desmontaje confirmado por la artista en mensaje previo",
+    "tarjeta_artista_formato_cm": "15 × 30",
+    "tarjeta_artista_contenido": [
+      "nombre",
+      "redes sociales o sitio web",
+      "biografía breve",
+      "texto introductorio",
+      "QR al catálogo digital del organizador"
+    ],
+    "catalogo_organizador_incluye": [
+      "fichas técnicas",
+      "precios",
+      "consulta mediante WhatsApp centralizado del organizador"
+    ]
   },
   "fotografias_alta_resolucion": "pendientes de envío por la artista"
 }
