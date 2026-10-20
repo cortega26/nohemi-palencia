@@ -13,7 +13,8 @@
     "otras_etapas_y_tecnicas": true,
     "obra_especifica_confirmada": [],
     "fecha_fin_confirmada": null,
-    "fecha_fin_estado": "La fecha indicada inicialmente era imposible y la corrección posterior no incluyó una fecha válida visible"
+    "fecha_fin_estado": "La fecha indicada inicialmente era imposible y la corrección posterior no incluyó una fecha válida visible",
+    "nota_publicable": "Según la artista, la exposición reunió algunas obras del portafolio y otras de diferentes etapas y técnicas. La identificación de cada pieza exhibida sigue pendiente de documentación."
   },
   "proxima_exposicion": {
     "lugar_general": "Las Condes, Santiago de Chile",
