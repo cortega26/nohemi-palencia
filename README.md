@@ -188,3 +188,19 @@ Se detectó en producción que el archivo `assets/styles.css` sin parámetros po
 - Código reproducible en `scripts/neural_upscale_artist.py`; la inferencia se ejecutó en una rama aislada mediante un workflow temporal, retirado después. El modelo preentrenado está disponible en [Real-ESRGAN](https://github.com/xinntao/Real-ESRGAN).
 - El archivo fuente y la versión convencional anterior **siguen intactos**. La portada, sección «La artista» y vista previa social de la exposición utilizan la nueva versión.
 - **Limitación fundamental:** el modelo estima microdetalles sin información física verificable. Esta fotografía es válida como retrato ambiental/editorial, **no** como reproducción fidedigna ampliada de cada pintura ni como documento de referencia de su técnica. Para las fichas de obra, conservar las reproducciones originales autorizadas.
+
+### Tres nuevas obras y archivos originales — 20-10-2026
+
+**Inventario público:** se amplía de once a catorce obras con tres fichas permanentes nuevas. La procedencia es el correo de la artista y las fechas confirmadas:
+
+| Título | Año | Técnica | Medidas | Fotografía original |
+|---|---|---|---|---|
+| Aura cósmica I | 2026 (confirmación del usuario a partir de Nohemi) | Mixta sobre MDF | 81,5 × 64 cm | `17634.jpg` |
+| Huelliches II | 2026 (confirmación del usuario a partir de Nohemi) | Mixta sobre MDF vitrificado | 81,5 × 64 cm | `17661.jpg` |
+| Plumaje azul | 2017 (correo de la artista) | Mixta sobre MDF vitrificado | 81,5 × 64 cm | `17651.jpg` |
+
+Las fotos originales tienen 4000 × 3000 px en el archivo JPEG y orientación EXIF vertical (3000 × 4000 px). Se generaron fielmente versiones WebP de 1800 × 2400 px, sin reconstrucción por IA ni recorte de obras; estas viven en `assets/obras/*-original-web.webp`. El original íntegro permanece en los correos de Nohemi, en vez de duplicar archivos de cámara pesados en el sitio estático.
+
+La nota editorial «Las fotografías originales se incorporarán posteriormente» se **retiró de la portada** por obsoleta. Las once obras que ya estaban publicadas **mantienen por ahora sus imágenes provisionales**, a la espera de incorporar las nueve reproducciones originales recibidas para otras obras. De ellas, **Aura cósmica II** y **El aroma a canelo** siguen sin un archivo HD recibido en los correos revisados. La correspondencia entre obra de catálogo y participación en la exposición de Valdivia **no se infiere** de este inventario.
+
+El generador, enlaces de navegación circular, numeración, sitemap, metadatos Open Graph y pruebas de integridad se actualizaron para catorce obras y dieciséis rutas públicas.
