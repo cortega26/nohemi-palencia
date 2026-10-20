@@ -74,7 +74,8 @@ def render():
     # Dates and venue come from the artist and her exhibition documentation.
     confirmations = json.loads((ROOT / 'data/confirmaciones-artista.json').read_text(encoding='utf-8'))
     upcoming = confirmations['proxima_exposicion']
-    assert upcoming['nombre_oficial'] is None, 'Do not publish ambiguous title as official'
+    assert upcoming['nombre_oficial'] == 'La Escena del Arte', 'Use title confirmed by the artist'
+    assert upcoming['edicion_confirmada'] == 'Noviembre 2026', 'November edition must be sourced'
     assert upcoming['obras_confirmadas'] == [], 'Do not infer participating pieces'
     assert upcoming['sede'] == 'CA660 · Centro Cultural de Fundación CorpArtes'
     assert upcoming['direccion'] == 'Rosario Norte 660, Las Condes, Santiago, Chile'
@@ -91,7 +92,7 @@ def render():
         <div class="upcoming-intro">
           <p class="kicker">Próxima participación · Exposición colectiva</p>
           <h2 id="upcoming-title">Nohemi en <em>CA660.</em></h2>
-          <p>La artista participará en una exposición colectiva en el Centro Cultural CA660 de Fundación CorpArtes, en Las Condes. El título definitivo de esta edición está pendiente de confirmación.</p>
+          <p>La artista participará en <strong>«{eh(upcoming['nombre_oficial'])}» — edición {eh(upcoming['edicion_confirmada'])}</strong>, una exposición colectiva en el Centro Cultural CA660 de Fundación CorpArtes, en Las Condes.</p>
           <a href="{eh(upcoming['referencia_galeria_url'])}" target="_blank" rel="noopener noreferrer">Conocer AMF Gallery <span aria-hidden="true">↗</span></a>
         </div>
         <div class="upcoming-details">

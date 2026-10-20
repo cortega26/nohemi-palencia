@@ -133,3 +133,10 @@ Se recibió una respuesta de la artista, conservada de forma estructurada en `da
 - **Referencia de galería:** [AMF Gallery Chile](https://www.instagram.com/amfchile/) y [sitio AMF](https://www.amfchile.com/). El vínculo con el evento se apoya en material promocional compartido, no en un contrato de representación.
 - **Sistema de tarjetas:** 15 × 30 cm, incluye nombre, redes/sitio, biografía, presentación y un QR que lleva al **catálogo del organizador**. Ese catálogo anuncia fichas y precios con contacto WhatsApp **centralizado del organizador**. El sitio propio de Nohemi permanece separado: no debe redirigir ni apropiarse de precios, catálogo ni QR ajenos.
 - **Pendientes:** nombre final, lista de pinturas participantes, fotografías definitivas y si la galería acepta mostrar en la tarjeta la URL de Nohemi. Las fotos de ejemplo del dossier no pertenecen a Nohemi y no se han añadido a la página.
+
+### Confirmación de edición noviembre y corrección visual — 20-10-2026
+
+- La artista confirmó expresamente que la edición de noviembre utiliza **el mismo nombre que la exposición de septiembre–octubre: «La Escena del Arte»**, identificándola como «Edición Noviembre». Fuente: captura de sus respuestas por WhatsApp compartida el 20-10-2026. Esta confirmación prevalece sobre la grafía «La Escena de Arte» que aparece en la portada del material de referencia, que se conserva en los datos con su procedencia.
+- El bloque «Nohemi en CA660» muestra ahora el nombre confirmado sin mezclar las piezas de la edición anterior ni inventar participantes.
+- Se agregó padding horizontal responsive (20–48 px) con `box-sizing: border-box` en la sección `.upcoming`, preservando el ancho de la `.shell` y evitando textos pegados al borde.
+- El catálogo del organizador conserva su QR y WhatsApp comercial; el portafolio de Nohemi es independiente.

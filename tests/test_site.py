@@ -144,10 +144,10 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn(ex['nota_publicable'],page)
         self.assertNotIn('31 de septiembre',page)
         next_ex=confirmed['proxima_exposicion']
-        self.assertIsNone(next_ex['nombre_oficial'])
+        self.assertEqual(next_ex['nombre_oficial'],'La Escena del Arte')
         self.assertEqual(next_ex['sede'],'CA660 · Centro Cultural de Fundación CorpArtes')
         self.assertEqual(next_ex['direccion'],'Rosario Norte 660, Las Condes, Santiago, Chile')
-        self.assertIsNone(next_ex['nombre_oficial'])
+        self.assertEqual(next_ex['nombre_oficial'],'La Escena del Arte')
         self.assertEqual(next_ex['obras_confirmadas'], [])
         self.assertEqual(next_ex['titulo_promocional_presentacion'],'La Escena de Arte')
         self.assertEqual(next_ex['titulo_ejemplo_tarjeta'],'La Escena del Arte')
@@ -160,7 +160,9 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('CA660 · Rosario Norte 660, Las Condes',self.html)
         self.assertIn(next_ex['referencia_galeria_url'],self.html)
         self.assertNotIn('La Escena de Arte',self.html)
-        self.assertNotIn('La Escena del Arte',self.html)
+        self.assertIn('La Escena del Arte',self.html)
+        self.assertIn('edición Noviembre 2026',self.html)
+        self.assertEqual(next_ex['edicion_confirmada'],'Noviembre 2026')
 
         expected=[
             ('montaje','2026-10-28','12:00'),
@@ -169,6 +171,11 @@ class PortfolioTests(unittest.TestCase):
             ('desmontaje','2026-11-27',None),
         ]
         self.assertEqual([(a['tipo'],a['fecha'],a['hora_local']) for a in next_ex['actividades']],expected)
+
+    def test_upcoming_horizontal_padding(self):
+        css=(ROOT/'assets/styles.css').read_text('utf-8')
+        self.assertIn('.upcoming{box-sizing:border-box',css)
+        self.assertIn('padding-inline:clamp(20px,3.4vw,48px)',css)
 
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
