@@ -225,7 +225,7 @@ class PortfolioTests(unittest.TestCase):
             '.exhibition-facts dd', '.archive-date time', '.archive-record dd',
             '.artwork-details-list dd'
         ):
-            match=re.search(re.escape(selector)+r'\\{([^}]*)\\}',css)
+            match=re.search(re.escape(selector)+r'\{([^}]*)\}',css)
             self.assertIsNotNone(match,selector)
             declaration=match.group(1)
             self.assertIn('var(--sans)',declaration,selector)
