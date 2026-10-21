@@ -55,15 +55,6 @@
     "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17652.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
-    "slug": "aura-cosmica-ii",
-    "titulo": "Aura cósmica II",
-    "tecnica": "Técnica mixta sobre MDF",
-    "dimensiones": "81 × 64 cm",
-    "anio": 2026,
-    "pagina_pdf": 8,
-    "archivo": "aura-cosmica-ii-preview.webp"
-  },
-  {
     "slug": "atomica-ii",
     "titulo": "Atómica II",
     "tecnica": "Técnica mixta sobre MDF",
@@ -111,18 +102,20 @@
     "dimensiones": "120 × 90 cm",
     "anio": 2026,
     "pagina_pdf": 13,
-    "archivo": "el-aroma-a-canelo-preview.jpg"
+    "archivo": "el-aroma-a-canelo-preview.jpg",
+    "fuente_titulo": "Título «El aroma a canelo» confirmado por Nohemi Palencia, según comunicación del responsable del sitio el 21-10-2026. Soporte aún no rectificado: el PDF del correo lo describe como lienzo barnizado y la ficha existente como MDF."
   },
   {
-    "slug": "aura-cosmica-i",
-    "titulo": "Aura cósmica I",
+    "slug": "aura-cosmica-ii",
+    "titulo": "Aura cósmica II",
     "tecnica": "Técnica mixta sobre MDF",
     "dimensiones": "81,5 × 64 cm",
     "anio": 2026,
-    "archivo": "aura-cosmica-i-reframed-original-web.webp",
+    "archivo": "aura-cosmica-ii-reframed-original-web.webp",
     "fuente_fotografia": "Correo de Nohemi del 20-10-2026 · 17634.jpg",
     "archivo_original_sin_recorte": "aura-cosmica-i-original-web.webp",
-    "nota_recorte": "Reproducción de la superficie pictórica; elimina pared, marco y paspartú de la fotografía, conserva composición y firma. Original fotográfico preservado."
+    "nota_recorte": "Reproducción de la superficie pictórica; elimina pared, marco y paspartú de la fotografía, conserva composición y firma. Original fotográfico preservado. La fotografía fuente y sus antiguos archivos con sufijo -i quedan preservados únicamente como historial técnico de atribución errónea.",
+    "fuente_identidad": "Identificación directa de Nohemi Palencia transmitida por el responsable del sitio el 21-10-2026: las pinturas previamente numeradas 6 y 12 son la misma obra, titulada Aura cósmica II; Aura cósmica I no está incluida."
   },
   {
     "slug": "huelliches-ii",

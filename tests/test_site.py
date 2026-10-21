@@ -19,10 +19,10 @@ class PortfolioTests(unittest.TestCase):
     def setUpClass(cls):
         cls.html=(ROOT/'index.html').read_text('utf-8'); cls.data=json.loads((ROOT/'data/obras.json').read_text('utf-8'))
         cls.parser=Collector();cls.parser.feed(cls.html)
-    def test_owner_corrected_all_fourteen_work_years_to_2026(self):
+    def test_owner_corrected_all_current_work_years_to_2026(self):
         # Direct correction from website owner supersedes the 2017 catalog entries;
         # documentation of the historical discrepancy must remain available.
-        self.assertEqual(len(self.data),14)
+        self.assertEqual(len(self.data),13)
         self.assertTrue(all(w['anio']==2026 for w in self.data))
         for slug in ('hindu-celular','plumaje-azul'):
             work=next(w for w in self.data if w['slug']==slug)
@@ -37,17 +37,17 @@ class PortfolioTests(unittest.TestCase):
             self.assertIn('class="artwork-year">2026',item)
             self.assertNotIn('2017',item)
 
-    def test_gallery_all_fourteen_unique(self):
-        self.assertEqual(len(self.data),14)
-        self.assertEqual(len(self.parser.art),14)
-        self.assertEqual(len({w['slug'] for w in self.data}),14)
+    def test_gallery_all_thirteen_unique(self):
+        self.assertEqual(len(self.data),13)
+        self.assertEqual(len(self.parser.art),13)
+        self.assertEqual(len({w['slug'] for w in self.data}),13)
     def test_works_have_metadata(self):
         for work in self.data:
             for f in ('slug','titulo','anio','tecnica','dimensiones','archivo'):self.assertTrue(work.get(f))
             self.assertIn(work['titulo'],self.html)
             self.assertTrue((ROOT/'assets/obras'/work['archivo']).stat().st_size>1000)
     def test_three_reframed_paintings_are_responsive_and_keep_full_file(self):
-        for slug in ('aura-cosmica-i','huelliches-ii','plumaje-azul'):
+        for slug in ('aura-cosmica-ii','huelliches-ii','plumaje-azul'):
             work=next(w for w in self.data if w['slug']==slug)
             full='assets/obras/'+work['archivo']
             gallery='assets/obras/gallery/'+slug+'-480.webp'
@@ -61,7 +61,7 @@ class PortfolioTests(unittest.TestCase):
 
     def test_three_new_artworks_are_artist_sourced(self):
         expected={
-            'aura-cosmica-i': ('Aura cósmica I',2026,'aura-cosmica-i-reframed-original-web.webp'),
+            'aura-cosmica-ii': ('Aura cósmica II',2026,'aura-cosmica-ii-reframed-original-web.webp'),
             'huelliches-ii': ('Huelliches II',2026,'huelliches-ii-reframed-original-web.webp'),
             'plumaje-azul': ('Plumaje azul',2026,'plumaje-azul-reframed-original-web.webp'),
         }
@@ -71,7 +71,7 @@ class PortfolioTests(unittest.TestCase):
             self.assertEqual(work['titulo'],title)
             self.assertEqual(work['anio'],year)
             self.assertEqual(work['archivo'],image)
-            self.assertEqual(work['archivo_original_sin_recorte'],slug+'-original-web.webp')
+            self.assertEqual(work['archivo_original_sin_recorte'],('aura-cosmica-i' if slug=='aura-cosmica-ii' else slug)+'-original-web.webp')
             self.assertIn('superficie pictórica',work['nota_recorte'])
             self.assertTrue((ROOT/'assets/obras'/work['archivo_original_sin_recorte']).is_file())
             self.assertNotIn('pagina_pdf',work)
@@ -116,7 +116,7 @@ class PortfolioTests(unittest.TestCase):
         # Contradictions must not be silently rewritten from a later catalog.
         records={w['slug']:w for w in self.data}
         self.assertEqual(records['plumaje-azul']['anio'],2026)
-        self.assertEqual(records['aura-cosmica-ii']['archivo'],'aura-cosmica-ii-preview.webp')
+        self.assertEqual(records['aura-cosmica-ii']['archivo'],'aura-cosmica-ii-reframed-original-web.webp')
         self.assertNotIn('Exposición individual «Galería Urbana»',self.html)
 
     def test_curatorial_sections_are_distinct_and_grounded(self):
@@ -164,8 +164,8 @@ class PortfolioTests(unittest.TestCase):
         self.assertTrue((exhibit_path.parent/'../../assets/styles.css').resolve().is_file())
 
     def test_all_artworks_have_linked_permanent_records(self):
-        self.assertEqual(self.html.count('class="artwork-detail-link"'),14)
-        self.assertEqual(len({w['slug'] for w in self.data}),14)
+        self.assertEqual(self.html.count('class="artwork-detail-link"'),13)
+        self.assertEqual(len({w['slug'] for w in self.data}),13)
         for work in self.data:
             url=f"obras/{work['slug']}/"
             self.assertIn(f'href="{url}"',self.html)
@@ -221,7 +221,14 @@ class PortfolioTests(unittest.TestCase):
         self.assertEqual(next_ex['sede'],'CA660 · Centro Cultural de Fundación CorpArtes')
         self.assertEqual(next_ex['direccion'],'Rosario Norte 660, Las Condes, Santiago, Chile')
         self.assertEqual(next_ex['nombre_oficial'],'La Escena del Arte')
-        self.assertEqual(next_ex['obras_confirmadas'], [])
+        self.assertEqual(next_ex['obras_confirmadas'],[
+            'princesa-onirica','shitikari','hindu-celular','vision-frontal-sueno-con-el-iznik'
+        ])
+        for slug in next_ex['obras_confirmadas']:
+            work=next(w for w in self.data if w['slug']==slug)
+            self.assertIn(f'href="obras/{slug}/"',self.html)
+            self.assertIn(f'assets/obras/gallery/{slug}-480.webp',self.html)
+            self.assertIn(work['titulo'],self.html)
         self.assertEqual(next_ex['titulo_promocional_presentacion'],'La Escena de Arte')
         self.assertEqual(next_ex['titulo_ejemplo_tarjeta'],'La Escena del Arte')
         self.assertFalse(next_ex['organizador_formal_confirmado'])
@@ -259,7 +266,7 @@ class PortfolioTests(unittest.TestCase):
         works=self.data
         pages=[('', ROOT/'index.html'), ('exposiciones/rostros-oniricos/', ROOT/'exposiciones/rostros-oniricos/index.html')]
         pages += [(f"obras/{w['slug']}/", ROOT/'obras'/w['slug']/'index.html') for w in works]
-        self.assertEqual(len(pages),16)
+        self.assertEqual(len(pages),15)
         for route,filename in pages:
             html=filename.read_text('utf-8')
             canonical=re.search(r'<link rel="canonical" href="([^"]+)"',html)
@@ -277,7 +284,7 @@ class PortfolioTests(unittest.TestCase):
         sitemap=(ROOT/'sitemap.xml').read_text('utf-8')
         doc=ElementTree.fromstring(sitemap)
         urls=[e.text for e in doc.findall('{http://www.sitemaps.org/schemas/sitemap/0.9}url/{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
-        self.assertEqual(len(urls),16)
+        self.assertEqual(len(urls),15)
         self.assertEqual(set(urls),{base+route for route,_ in pages})
 
     def test_upcoming_facts_readability(self):
@@ -344,7 +351,7 @@ class PortfolioTests(unittest.TestCase):
             (ROOT/'exposiciones/rostros-oniricos/index.html','../../assets/styles.css'),
         ]
         expected.extend((ROOT/'obras'/w['slug']/'index.html','../../assets/styles.css') for w in self.data)
-        self.assertEqual(len(expected),16)
+        self.assertEqual(len(expected),15)
         for page,relative in expected:
             html=page.read_text('utf-8')
             self.assertIn(f'href="{relative}?v={version}"',html,str(page))
@@ -413,9 +420,41 @@ class PortfolioTests(unittest.TestCase):
             self.assertIn('../../assets/obras/'+work['archivo'],page)
         self.assertEqual(self.html.count('-retouched-original-web.webp'),2)
 
+    def test_aura_deduplication_and_authorized_canelo_title(self):
+        slugs=[w['slug'] for w in self.data]
+        self.assertNotIn('aura-cosmica-i',slugs)
+        self.assertEqual(slugs.count('aura-cosmica-ii'),1)
+        self.assertEqual(slugs.index('aura-cosmica-ii'),10)
+        self.assertNotIn('Aura cósmica I',self.html)
+        self.assertNotIn('assets/obras/aura-cosmica-ii-preview.webp',self.html)
+        self.assertIn('aura-cosmica-ii-reframed-original-web.webp',self.html)
+        alias=(ROOT/'obras/aura-cosmica-i/index.html').read_text('utf-8')
+        self.assertIn('noindex,follow',alias)
+        self.assertIn('http-equiv="refresh"',alias)
+        self.assertIn('/obras/aura-cosmica-ii/',alias)
+        self.assertNotIn('/obras/aura-cosmica-i/</loc>',(ROOT/'sitemap.xml').read_text('utf-8'))
+        canelo=next(w for w in self.data if w['slug']=='el-aroma-a-canelo')
+        self.assertEqual(canelo['titulo'],'El aroma a canelo')
+        self.assertIn('confirmado por Nohemi',canelo['fuente_titulo'])
+        self.assertIn('Sin nueva confirmación',json.dumps(json.loads(
+            (ROOT/'data/confirmaciones-artista.json').read_text('utf-8')),ensure_ascii=False))
+
+    def test_ca660_has_exactly_four_distinct_linked_artworks(self):
+        confirmed=json.loads((ROOT/'data/confirmaciones-artista.json').read_text('utf-8'))
+        selected=confirmed['proxima_exposicion']['obras_confirmadas']
+        self.assertEqual(selected,['princesa-onirica','shitikari','hindu-celular',
+                                   'vision-frontal-sueno-con-el-iznik'])
+        upcoming=self.html.split('<section class="upcoming shell"',1)[1].split('</section>',1)[0]
+        self.assertEqual(upcoming.count('class="upcoming-work"'),4)
+        for slug in selected:
+            self.assertIn(f'href="obras/{slug}/"',upcoming)
+            self.assertIn(f'assets/obras/gallery/{slug}-480.webp',upcoming)
+        self.assertIn('Obras que participarán',upcoming)
+        self.assertNotIn('obras participantes pendientes',upcoming)
+
     def test_responsive_gallery_only_for_confirmed_originals(self):
         expected_full = {w['slug']:w for w in self.data}
-        self.assertEqual(len(self.parser.art),14)
+        self.assertEqual(len(self.parser.art),13)
         self.assertEqual(sum(bool(w.get('fuente_fotografia')) for w in self.data),12)
         for work in self.data:
             slug = work['slug']

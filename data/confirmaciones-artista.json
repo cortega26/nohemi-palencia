@@ -21,7 +21,12 @@
     "nombre_oficial": "La Escena del Arte",
     "sede": "CA660 · Centro Cultural de Fundación CorpArtes",
     "direccion": "Rosario Norte 660, Las Condes, Santiago, Chile",
-    "obras_confirmadas": [],
+    "obras_confirmadas": [
+      "princesa-onirica",
+      "shitikari",
+      "hindu-celular",
+      "vision-frontal-sueno-con-el-iznik"
+    ],
     "actividades": [
       {
         "tipo": "montaje",
@@ -44,7 +49,7 @@
         "hora_local": null
       }
     ],
-    "nota": "Nombre «La Escena del Arte» y edición noviembre confirmados directamente por Nohemi. La portada de una presentación mostraba «La Escena de Arte», variante conservada como antecedente del material. Lista de obras pendientes. No confundir el QR comercial del organizador con la página independiente de la artista.",
+    "nota": "Nombre «La Escena del Arte» y edición noviembre confirmados directamente por Nohemi. La portada de una presentación mostraba «La Escena de Arte», variante conservada como antecedente del material. Cuatro obras identificadas; los títulos se enlazan a sus fichas actuales. No confundir el QR comercial del organizador con la página independiente de la artista.",
     "titulo_promocional_presentacion": "La Escena de Arte",
     "titulo_ejemplo_tarjeta": "La Escena del Arte",
     "nombre_oficial_estado": "Confirmado directamente por la artista por WhatsApp el 20-10-2026: misma denominación que la edición de septiembre–octubre, nueva edición de noviembre.",
@@ -68,7 +73,25 @@
       "consulta mediante WhatsApp centralizado del organizador"
     ],
     "edicion_confirmada": "Noviembre 2026",
-    "fuente_confirmacion_nombre": "Respuesta directa de Nohemi Palencia Cisneros: «Sí. Con el mismo nombre» y «Edición Noviembre»."
+    "fuente_confirmacion_nombre": "Respuesta directa de Nohemi Palencia Cisneros: «Sí. Con el mismo nombre» y «Edición Noviembre».",
+    "fuente_obras": "Identificación visual de las cuatro fotografías facilitadas por el responsable del sitio el 21-10-2026, cotejadas individualmente con los originales existentes; orden de la cuadrícula: arriba izquierda, arriba derecha, abajo izquierda, abajo derecha."
   },
-  "fotografias_alta_resolucion": "pendientes de envío por la artista"
+  "fotografias_alta_resolucion": "pendientes de envío por la artista",
+  "identificacion_auras": {
+    "fecha": "2026-10-21",
+    "fuente": "Respuesta de Nohemi vía WhatsApp, comunicada por el responsable del sitio",
+    "misma_pintura_en_fichas_anteriores": [
+      6,
+      12
+    ],
+    "titulo_confirmado": "Aura cósmica II",
+    "accion": "Quitar la ficha 6 duplicada y retitular la ficha 12 como II; no incluir la obra I en el catálogo.",
+    "aura_cosmica_i_en_catalogo": false
+  },
+  "titulo_canelo": {
+    "fecha": "2026-10-21",
+    "titulo_confirmado": "El aroma a canelo",
+    "fuente": "Confirmación de la autora comunicada por el responsable del sitio",
+    "soporte_estado": "Sin nueva confirmación; divergencia documental entre MDF (catálogo) y lienzo barnizado (PDF de correo)"
+  }
 }
