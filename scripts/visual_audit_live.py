@@ -36,6 +36,20 @@ def shot(page,name,selector=None,full=False):
     except Exception as exc:
         report.setdefault("screenshot_warnings",[]).append({"name":name,"error":str(exc)[:180]})
         return False
+def preload_imgs(page):
+    """Simulate visiting each painting; element screenshots alone do not trigger lazy images."""
+    failures=[]
+    for loc in page.locator("main img").all():
+        try:
+            loc.scroll_into_view_if_needed(timeout=15000)
+            loc.evaluate("(img) => img.decode()",timeout=15000)
+            if not loc.evaluate("(img) => img.complete && img.naturalWidth > 0"):
+                raise RuntimeError("image did not finish loading")
+        except Exception as exc:
+            failures.append({"src":loc.get_attribute("src"),"error":str(exc)[:180]})
+    page.evaluate("window.scrollTo(0, 0)")
+    return failures
+
 def scan(page):
     return page.evaluate("""() => {
       const els=[...document.querySelectorAll('main img, footer img, .upcoming-work img, .gallery-grid img')];
@@ -67,10 +81,11 @@ with sync_playwright() as play:
         errors=[];page.on("pageerror",lambda e: errors.append(str(e)[:200]))
         resp=page.goto(BASE+"/",wait_until="networkidle",timeout=35000)
         page.evaluate("document.fonts.ready")
-        page.locator(".gallery-grid img").last.scroll_into_view_if_needed()
-        page.wait_for_timeout(700)
-        page.evaluate("scrollTo(0,0)")
-        data=scan(page);data["http_status"]=resp.status if resp else None
+        preload_errors=preload_imgs(page)
+        data=scan(page);
+        if preload_errors:
+            data["preload_errors"]=preload_errors
+            bad_pages.append({"name":label,"error":"images failed to load during full sequential scroll","details":preload_errors})data["http_status"]=resp.status if resp else None
         data["js_errors"]=errors
         report["viewports"][label]=data
         shot(page,label+"_hero")
@@ -82,7 +97,10 @@ with sync_playwright() as play:
         link=page.locator("[data-artwork]").first
         if link.count() and label in ("desktop","phone"):
             link.click()
-            page.wait_for_timeout(100)
+            try:
+                page.locator("#lightbox-img").evaluate("(img) => img.decode()", timeout=15000)
+            except Exception as exc:
+                bad_pages.append({"name":label+"_lightbox","error":"dialog image failed to decode","details":str(exc)[:180]})
             is_open=page.locator("#artwork-dialog").evaluate("(el)=>el.open")
             shot(page,label+"_lightbox","#artwork-dialog")
             page.keyboard.press("Escape")
