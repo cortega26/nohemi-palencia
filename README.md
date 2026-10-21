@@ -220,3 +220,12 @@ El generador, enlaces de navegación circular, numeración, sitemap, metadatos O
 - Las dos imágenes todavía provisionales (**Aura cósmica II** y **El aroma a canelo**) no reciben un tratamiento que aparente ser un nuevo original; sus archivos de catálogo siguen intactos.
 - GitHub Actions verifica que las 24 miniaturas comprometidas coincidan byte por byte con el generador determinista (`Pillow==12.3.0`), además de las pruebas y la sincronización del HTML.
 - Regeneración reproducible: `python3 scripts/generate_gallery_variants.py && python3 scripts/build.py`; comprobación: `python3 scripts/generate_gallery_variants.py --check && python3 scripts/build.py --check && python3 -m unittest discover -s tests -v`.
+
+### Reencuadre pictórico de obras 12–14 — 20-10-2026
+
+- Solicitud editorial: Aura cósmica I, Huelliches II y Plumaje azul deben mostrar **solo la pintura** como protagonista, sin pared, marco de madera ni paspartú negro.
+- Nuevas reproducciones: `assets/obras/*-reframed-original-web.webp`; los tres `*-original-web.webp` originales previos quedan **intactos** como registro fotográfico.
+- Archivos fuente autorizados: `17634.jpg`, `17661.jpg`, `17651.jpg`; originales JPEG 4000×3000 píxeles con orientación EXIF=6, verificados por SHA-256 dentro de `scripts/reframe_three_artist_originals.py`.
+- Rectángulos de superficie pintada, inspeccionados en fotografía original orientada (left, top, right, bottom; tamaño base 3000×4000): Aura I (637,1060,2386,3532), Huelliches II (709,711,2411,3265), Plumaje azul (553,749,2350,3040). Incluyen margen de seguridad para evitar cortar firmas o pinceladas de borde. Sin reconstrucción, relleno generativo, corrección engañosa de color ni transformación de perspectiva.
+- Las miniaturas responsivas 480/960 se regeneran desde las nuevas reproducciones; fichas, visor, `og:image` y Schema.org apuntan a la versión fiel reencuadrada. La información técnica no se modifica.
+- **Operación reproducible:** `python3 scripts/reframe_three_artist_originals.py --source-dir /ruta/a/jpg-originales && python3 scripts/generate_gallery_variants.py && python3 scripts/build.py`; validación usual del CI en GitHub.
