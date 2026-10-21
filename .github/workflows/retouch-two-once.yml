@@ -1,0 +1,40 @@
+name: One-shot non-generative glare adjustment
+on:
+  push:
+    branches:
+      - feat/controlled-glare-reduction-20261021
+    paths:
+      - .github/workflows/retouch-two-once.yml
+permissions:
+  contents: write
+jobs:
+  glare_retouch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install reproducible imaging dependencies
+        run: python3 -m pip install 'Pillow==12.3.0' 'numpy==2.2.6'
+      - name: Render conservative, source-preserving glare correction
+        run: python3 scripts/retouch_artworks.py
+      - name: Build four responsive variants and regenerate static HTML
+        run: |
+          python3 scripts/generate_gallery_variants.py
+          python3 scripts/build.py
+      - name: Verify entire source, image and HTML pipeline
+        run: |
+          python3 scripts/retouch_artworks.py --check
+          python3 scripts/generate_gallery_variants.py --check
+          python3 scripts/build.py --check
+          python3 -m unittest discover -s tests -v
+      - name: Commit derived images and generated routes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/obras/*-retouched-original-web.webp assets/obras/gallery/ index.html obras/ sitemap.xml
+          if git diff --cached --quiet; then echo "No generated changes"; exit 0; fi
+          git commit -m "assets: preserve originals and publish conservative glare correction"
+          git push origin "HEAD:feat/controlled-glare-reduction-20261021"
