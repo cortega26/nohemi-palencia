@@ -10,6 +10,10 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
+      - name: Install pinned image verification dependency
+        run: python3 -m pip install 'Pillow==12.3.0'
+      - name: Verify 24 reproducible gallery derivatives
+        run: python3 scripts/generate_gallery_variants.py --check
       - name: Verify generated HTML
         run: python3 scripts/build.py --check
       - name: Run tests

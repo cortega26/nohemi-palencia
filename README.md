@@ -212,3 +212,11 @@ El generador, enlaces de navegación circular, numeración, sitemap, metadatos O
 - Las nueve entradas originales mantienen título, año y técnica del registro canónico; las discrepancias documentales se revisan separadamente. Aura cósmica II y El aroma a canelo quedan fuera de esta importación por identidad no confirmada.
 - `data/obras.json` conserva la procedencia de cada fotografía y el generador propaga la URL de cada imagen a las páginas y metadatos.
 - La galería y las fichas reducen márgenes, fondos y sombras artificiales para dar prioridad a la pintura.
+
+### Galería responsiva y reproducciones fieles — 20-10-2026
+
+- `scripts/generate_gallery_variants.py` genera, desde las **12 fotografías originales ya autorizadas**, WebP de **480 y 960 píxeles de ancho**, conservando las proporciones, sin IA generativa, reencuadres nuevos ni cambios de color.
+- En la portada, cada tarjeta original utiliza `srcset` y `sizes` para adaptar la transferencia al dispositivo. El enlace accesible de la tarjeta, el visor ampliado, las fichas de obra, Schema.org y Open Graph mantienen las reproducciones en alta resolución existentes.
+- Las dos imágenes todavía provisionales (**Aura cósmica II** y **El aroma a canelo**) no reciben un tratamiento que aparente ser un nuevo original; sus archivos de catálogo siguen intactos.
+- GitHub Actions verifica que las 24 miniaturas comprometidas coincidan byte por byte con el generador determinista (`Pillow==12.3.0`), además de las pruebas y la sincronización del HTML.
+- Regeneración reproducible: `python3 scripts/generate_gallery_variants.py && python3 scripts/build.py`; comprobación: `python3 scripts/generate_gallery_variants.py --check && python3 scripts/build.py --check && python3 -m unittest discover -s tests -v`.

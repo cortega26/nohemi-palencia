@@ -349,6 +349,37 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('.artwork-detail-view{padding:0;background:transparent}',styles)
 
 
+    def test_responsive_gallery_only_for_confirmed_originals(self):
+        expected_full = {w['slug']:w for w in self.data}
+        self.assertEqual(len(self.parser.art),14)
+        self.assertEqual(sum(bool(w.get('fuente_fotografia')) for w in self.data),12)
+        for work in self.data:
+            slug = work['slug']
+            matching = [i for i in self.parser.images if i.get('alt') ==
+                        f"{work['titulo']}, obra de Nohemi Palencia Cisneros"]
+            self.assertEqual(len(matching),1,slug)
+            image = matching[0]
+            full = f"assets/obras/{work['archivo']}"
+            full_link = [a for a in self.parser.art if a.get('href') == full]
+            self.assertEqual(len(full_link),1,slug)
+            detail = (ROOT/'obras'/slug/'index.html').read_text('utf-8')
+            self.assertIn(f"../../{full}",detail)
+            if work.get('fuente_fotografia'):
+                small=f"assets/obras/gallery/{slug}-480.webp"
+                big=f"assets/obras/gallery/{slug}-960.webp"
+                self.assertEqual(image.get('src'),small,slug)
+                self.assertEqual(image.get('srcset'),f"{small} 480w, {big} 960w",slug)
+                self.assertTrue(image.get('sizes'),slug)
+                for candidate in (small,big):
+                    p=ROOT/candidate
+                    self.assertTrue(p.is_file(),candidate)
+                    self.assertGreater(p.stat().st_size,4000,candidate)
+                    self.assertLess(p.stat().st_size,(ROOT/full).stat().st_size,candidate)
+            else:
+                self.assertEqual(image.get('src'),full,slug)
+                self.assertNotIn('srcset',image,slug)
+        self.assertNotIn('assets/obras/gallery/',json.dumps(self.data))
+
     def test_artwork_provenance_credit_matches_actual_image(self):
         self.assertEqual(sum(bool(w.get('fuente_fotografia')) for w in self.data),12)
         for work in self.data:
