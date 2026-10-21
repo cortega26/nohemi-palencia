@@ -1,0 +1,856 @@
+{
+  "origin": "https://nohemipalencia.com",
+  "viewports": {
+    "desktop": {
+      "viewport": 1440,
+      "scrollWidth": 1440,
+      "bodyScrollWidth": 1440,
+      "images": 19,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [
+        {
+          "name": "Princesa onírica",
+          "imageMid": 250.5,
+          "captionMid": 250.5,
+          "captionWidth": 91
+        },
+        {
+          "name": "Shitikari",
+          "imageMid": 563.5,
+          "captionMid": 563.5,
+          "captionWidth": 47
+        },
+        {
+          "name": "Hindú celular",
+          "imageMid": 876.5,
+          "captionMid": 876.5,
+          "captionWidth": 75
+        },
+        {
+          "name": "Visión frontal / Sueño con el Iznik",
+          "imageMid": 1189.5,
+          "captionMid": 1189.5,
+          "captionWidth": 187
+        }
+      ],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Conocer AMF Gallery ↗",
+          "w": 134,
+          "h": 16
+        },
+        {
+          "tag": "A",
+          "text": "Conocer la exposición ↗",
+          "w": 140,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Consultar registro de la exposición ↗",
+          "w": 213,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Leer la presentación de la artista ↗",
+          "w": 203,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 50,
+          "h": 13
+        },
+        {
+          "tag": "A",
+          "text": "Volver arriba ↑",
+          "w": 81,
+          "h": 13
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Nohemi\nPalencia."
+      ],
+      "http_status": 200,
+      "js_errors": [],
+      "lightbox_opened": true,
+      "lightbox_escape_closed": true
+    },
+    "tablet": {
+      "viewport": 768,
+      "scrollWidth": 768,
+      "bodyScrollWidth": 768,
+      "images": 19,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [
+        {
+          "name": "Princesa onírica",
+          "imageMid": 127,
+          "captionMid": 127,
+          "captionWidth": 91
+        },
+        {
+          "name": "Shitikari",
+          "imageMid": 298.3,
+          "captionMid": 298.3,
+          "captionWidth": 47
+        },
+        {
+          "name": "Hindú celular",
+          "imageMid": 469.7,
+          "captionMid": 469.7,
+          "captionWidth": 75
+        },
+        {
+          "name": "Visión frontal / Sueño con el Iznik",
+          "imageMid": 641,
+          "captionMid": 641,
+          "captionWidth": 153.703125
+        }
+      ],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Conocer AMF Gallery ↗",
+          "w": 134,
+          "h": 16
+        },
+        {
+          "tag": "A",
+          "text": "Conocer la exposición ↗",
+          "w": 140,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Consultar registro de la exposición ↗",
+          "w": 213,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Leer la presentación de la artista ↗",
+          "w": 203,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 50,
+          "h": 13
+        },
+        {
+          "tag": "A",
+          "text": "Volver arriba ↑",
+          "w": 81,
+          "h": 13
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Nohemi\nPalencia."
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "phone": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 19,
+      "broken": [],
+      "waiting": 3,
+      "wide": [],
+      "thumbs": [
+        {
+          "name": "Princesa onírica",
+          "imageMid": 113.3,
+          "captionMid": 113.3,
+          "captionWidth": 91
+        },
+        {
+          "name": "Shitikari",
+          "imageMid": 276.8,
+          "captionMid": 276.8,
+          "captionWidth": 47
+        },
+        {
+          "name": "Hindú celular",
+          "imageMid": 113.3,
+          "captionMid": 113.3,
+          "captionWidth": 75
+        },
+        {
+          "name": "Visión frontal / Sueño con el Iznik",
+          "imageMid": 276.8,
+          "captionMid": 276.8,
+          "captionWidth": 148.5
+        }
+      ],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Conocer AMF Gallery ↗",
+          "w": 134,
+          "h": 16
+        },
+        {
+          "tag": "A",
+          "text": "Conocer la exposición ↗",
+          "w": 140,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Consultar registro de la exposición ↗",
+          "w": 213,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Leer la presentación de la artista ↗",
+          "w": 203,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Volver arriba ↑",
+          "w": 70,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Nohemi\nPalencia."
+      ],
+      "http_status": 200,
+      "js_errors": [],
+      "lightbox_opened": true,
+      "lightbox_escape_closed": true
+    },
+    "compact": {
+      "viewport": 320,
+      "scrollWidth": 320,
+      "bodyScrollWidth": 320,
+      "images": 19,
+      "broken": [],
+      "waiting": 2,
+      "wide": [],
+      "thumbs": [
+        {
+          "name": "Princesa onírica",
+          "imageMid": 95.8,
+          "captionMid": 95.8,
+          "captionWidth": 91
+        },
+        {
+          "name": "Shitikari",
+          "imageMid": 224.3,
+          "captionMid": 224.3,
+          "captionWidth": 47
+        },
+        {
+          "name": "Hindú celular",
+          "imageMid": 95.8,
+          "captionMid": 95.8,
+          "captionWidth": 75
+        },
+        {
+          "name": "Visión frontal / Sueño con el Iznik",
+          "imageMid": 224.3,
+          "captionMid": 224.3,
+          "captionWidth": 113.5
+        }
+      ],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Conocer AMF Gallery ↗",
+          "w": 134,
+          "h": 16
+        },
+        {
+          "tag": "A",
+          "text": "Conocer la exposición ↗",
+          "w": 140,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Consultar registro de la exposición ↗",
+          "w": 213,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Leer la presentación de la artista ↗",
+          "w": 203,
+          "h": 19
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Volver arriba ↑",
+          "w": 70,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Nohemi\nPalencia."
+      ],
+      "http_status": 200,
+      "js_errors": []
+    }
+  },
+  "pages": {
+    "guardiana": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Guardiana"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "princesa-onirica": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Princesa onírica"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "vision-frontal-sueno-con-el-iznik": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Visión frontal / Sueño con el Iznik"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "hilos-del-subconciente": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Hilos del subconciente"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "shitikari": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Shitikari"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "atomica-ii": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Atómica II"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "sacerdotiza-solar": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Sacerdotiza solar"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "hindu-celular": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Hindú celular"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "guardiana-del-umbral": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Guardiana del umbral"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "el-aroma-a-canelo": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "El aroma a canelo"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "aura-cosmica-ii": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Aura cósmica II"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "huelliches-ii": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Huelliches II"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "plumaje-azul": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 1,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Obras",
+          "w": 35,
+          "h": 18
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Contacto",
+          "w": 44,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Plumaje azul"
+      ],
+      "http_status": 200,
+      "js_errors": []
+    },
+    "exposition": {
+      "viewport": 390,
+      "scrollWidth": 390,
+      "bodyScrollWidth": 390,
+      "images": 0,
+      "broken": [],
+      "waiting": 0,
+      "wide": [],
+      "thumbs": [],
+      "undersized": [
+        {
+          "tag": "A",
+          "text": "Agenda institucional de la exposición ↗",
+          "w": 232,
+          "h": 21
+        },
+        {
+          "tag": "A",
+          "text": "Tooltician",
+          "w": 41,
+          "h": 12
+        },
+        {
+          "tag": "A",
+          "text": "Inicio",
+          "w": 25,
+          "h": 12
+        }
+      ],
+      "fontsReady": "loaded",
+      "headings": [
+        "Rostros Oníricos."
+      ],
+      "http_status": 200
+    }
+  },
+  "console_errors": [],
+  "request_errors": [],
+  "screenshots": [
+    "visual-audit/evidence/desktop_hero.jpg",
+    "visual-audit/evidence/desktop_ca660.jpg",
+    "visual-audit/evidence/desktop_gallery.jpg",
+    "visual-audit/evidence/desktop_footer.jpg",
+    "visual-audit/evidence/desktop_full.jpg",
+    "visual-audit/evidence/desktop_lightbox.jpg",
+    "visual-audit/evidence/tablet_hero.jpg",
+    "visual-audit/evidence/phone_hero.jpg",
+    "visual-audit/evidence/phone_ca660.jpg",
+    "visual-audit/evidence/phone_gallery.jpg",
+    "visual-audit/evidence/phone_footer.jpg",
+    "visual-audit/evidence/phone_full.jpg",
+    "visual-audit/evidence/phone_lightbox.jpg",
+    "visual-audit/evidence/compact_hero.jpg",
+    "visual-audit/evidence/compact_ca660.jpg",
+    "visual-audit/evidence/compact_gallery.jpg",
+    "visual-audit/evidence/compact_footer.jpg",
+    "visual-audit/evidence/detail_phone_guardiana.jpg",
+    "visual-audit/evidence/detail_phone_vision-frontal-sueno-con-el-iznik.jpg",
+    "visual-audit/evidence/detail_phone_el-aroma-a-canelo.jpg",
+    "visual-audit/evidence/exposition_phone.jpg"
+  ],
+  "critical": []
+}
