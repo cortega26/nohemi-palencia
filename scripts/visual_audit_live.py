@@ -10,7 +10,7 @@ from pathlib import Path
 from playwright.sync_api import sync_playwright
 
 BASE = "https://nohemipalencia.com"
-OUT = Path("visual-audit/evidence")
+OUT = Path("visual-audit/evidence-post")
 OUT.mkdir(parents=True, exist_ok=True)
 SLUGS = [
     "guardiana","princesa-onirica","vision-frontal-sueno-con-el-iznik",
