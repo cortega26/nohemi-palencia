@@ -285,3 +285,19 @@ El aroma a canelo: **MDF**, confirmado por el responsable. La reproducción foto
 9. No almacenar credenciales, tokens DNS, secretos, correo privado de la artista ni datos de Nameslink en el repositorio.
 
 La URL histórica `tooltician.com/nohemi-palencia/` no debe confundirse con el origen GH Pages ni modificarse sin verificar la ruta de redirección real. Para pruebas use `dig NS nohemipalencia.com`, `dig A nohemipalencia.com` (con proxy activo verá IPs Cloudflare), `curl -I https://nohemipalencia.com/`, `curl -I https://www.nohemipalencia.com/`, validar certificado y HTML de cada ficha.
+
+## Auditoría visual final — 21-10-2026
+
+**Entorno real:** Chromium headless contra `https://nohemipalencia.com/`, anchuras 1440, 768, 390 y 320 píxeles; las trece fichas a 390 px y la página de exposición; apertura y cierre con Escape del visor de obras. Evidencia en la rama temporal `audit/visual-final-20261021`, artefacto `visual-audit/evidence/report.json` y capturas antes del cambio.
+
+**Resultado:** ninguna de las trece fichas tiene desbordamiento horizontal, imagen rota o error JavaScript detectable en las pruebas; el bloque CA660 centra geométricamente títulos y pinturas; el visor de la galería abre y cierra con Escape.
+
+**Correcciones publicadas:**
+1. La portada usaba un JPG antiguo de *El aroma a canelo* con franjas negras mientras su ficha individual mostraba el WebP documental mejor reencuadrado. Se unifica la portada con `el-aroma-a-canelo-reference-cropped.webp` (540 × 677 px; sin interpolación, ni detalles inventados) y se mantienen sus límites documentales de resolución.
+2. Los enlaces secundarios de la exposición, el catálogo y los créditos de pie de página tenían cajas interactivas de entre 12 y 19 px de altura. Se eleva el área de interacción a un mínimo de 28 px, manteniendo tipografía y estética.
+
+**Advertencias, no fallos probados:** las capturas de página completa pueden mostrar imágenes `loading=lazy` en blanco porque los navegadores no necesariamente descargan contenido situado fuera de la ventana. La captura de la misma portada durante desplazamiento y las rutas de detalle confirman que esas fotos existen y cargan. No se presentan como imágenes rotas.
+
+**Pendiente externo:** la foto HD original de cámara de *El aroma a canelo*. La corrección visual no es una sustitución de ese insumo.
+
+**Límite del método:** pruebas automatizadas en emulación de tamaños y navegadores Chromium, no test manual sobre teléfonos físicos ni calibración colorimétrica de pinturas impresas. Conservar fuentes de imagen y no modificar pigmentos por interpretación del inspector.

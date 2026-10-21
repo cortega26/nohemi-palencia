@@ -532,6 +532,21 @@ class PortfolioTests(unittest.TestCase):
             },str(page))
             self.assertIn('© 2026 Nohemi Palencia Cisneros',footer.group(1))
 
+    def test_documented_canelo_photo_is_also_used_in_hero(self):
+        source=(ROOT/'templates/index.html').read_text('utf-8')
+        for page in (source,self.html):
+            self.assertIn('src="assets/obras/el-aroma-a-canelo-reference-cropped.webp"',page)
+            self.assertNotIn('src="assets/obras/el-aroma-a-canelo-preview.jpg"',page)
+            self.assertIn('width="540" height="677"',page)
+        canelo=next(x for x in self.data if x['slug']=='el-aroma-a-canelo')
+        self.assertEqual(canelo['archivo'],'el-aroma-a-canelo-reference-cropped.webp')
+        self.assertTrue((ROOT/'assets/obras'/canelo['archivo']).is_file())
+
+    def test_secondary_editorial_links_have_mobile_touch_targets(self):
+        css=(ROOT/'assets/styles.css').read_text('utf-8')
+        self.assertIn('.upcoming-intro a,.exhibition-links a,.site-footer a{display:inline-flex;align-items:center;min-height:28px}',css)
+        self.assertIn('Hecho por ',self.html)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
