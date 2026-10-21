@@ -204,3 +204,11 @@ Las fotos originales tienen 4000 × 3000 px en el archivo JPEG y orientación EX
 La nota editorial «Las fotografías originales se incorporarán posteriormente» se **retiró de la portada** por obsoleta. Las once obras que ya estaban publicadas **mantienen por ahora sus imágenes provisionales**, a la espera de incorporar las nueve reproducciones originales recibidas para otras obras. De ellas, **Aura cósmica II** y **El aroma a canelo** siguen sin un archivo HD recibido en los correos revisados. La correspondencia entre obra de catálogo y participación en la exposición de Valdivia **no se infiere** de este inventario.
 
 El generador, enlaces de navegación circular, numeración, sitemap, metadatos Open Graph y pruebas de integridad se actualizaron para catorce obras y dieciséis rutas públicas.
+
+### Reproducciones originales de nueve obras — 20-10-2026
+
+- Las fotografías de cámara facilitadas por Nohemi se identifican por los archivos 17677, 17679, 17678, 17673, 17663, 17662, 17659, 17653 y 17652 (JPEG).
+- `scripts/import_nine_artist_originals.py` valida SHA-256, corrige EXIF, recorta únicamente el entorno fotografiado de cada pintura (pared, marco y paspartú) y genera WebP con un máximo de 2400 px en el lado mayor. No hay generación ni reconstitución de detalles.
+- Las nueve entradas originales mantienen título, año y técnica del registro canónico; las discrepancias documentales se revisan separadamente. Aura cósmica II y El aroma a canelo quedan fuera de esta importación por identidad no confirmada.
+- `data/obras.json` conserva la procedencia de cada fotografía y el generador propaga la URL de cada imagen a las páginas y metadatos.
+- La galería y las fichas reducen márgenes, fondos y sombras artificiales para dar prioridad a la pintura.

@@ -6,8 +6,9 @@
     "dimensiones": "76 × 100 cm",
     "anio": 2026,
     "pagina_pdf": 3,
-    "archivo": "guardiana-preview.webp",
-    "destacada": true
+    "archivo": "guardiana-original-web.webp",
+    "destacada": true,
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17677.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "princesa-onirica",
@@ -16,7 +17,8 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 4,
-    "archivo": "princesa-onirica-preview.webp"
+    "archivo": "princesa-onirica-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17662.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "vision-frontal-sueno-con-el-iznik",
@@ -25,7 +27,8 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 5,
-    "archivo": "vision-frontal-sueno-con-el-iznik-preview.webp"
+    "archivo": "vision-frontal-sueno-con-el-iznik-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17673.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "hilos-del-subconciente",
@@ -34,7 +37,8 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 6,
-    "archivo": "hilos-del-subconciente-preview.webp"
+    "archivo": "hilos-del-subconciente-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17679.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "shitikari",
@@ -43,7 +47,8 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 7,
-    "archivo": "shitikari-preview.webp"
+    "archivo": "shitikari-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17652.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "aura-cosmica-ii",
@@ -61,7 +66,8 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 9,
-    "archivo": "atomica-ii-preview.webp"
+    "archivo": "atomica-ii-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17659.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "sacerdotiza-solar",
@@ -70,7 +76,8 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 10,
-    "archivo": "sacerdotiza-solar-preview.webp"
+    "archivo": "sacerdotiza-solar-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17663.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "hindu-celular",
@@ -79,7 +86,8 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2017,
     "pagina_pdf": 11,
-    "archivo": "hindu-celular-preview.jpg"
+    "archivo": "hindu-celular-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17653.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "guardiana-del-umbral",
@@ -88,7 +96,8 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 12,
-    "archivo": "guardiana-del-umbral-preview.jpg"
+    "archivo": "guardiana-del-umbral-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17678.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
   },
   {
     "slug": "el-aroma-a-canelo",

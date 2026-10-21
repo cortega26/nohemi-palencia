@@ -183,3 +183,10 @@
 .upcoming-details p{font-size:11px;line-height:1.65;color:#526257;margin-top:20px}
 @media(max-width:820px){.upcoming-body{grid-template-columns:1fr;gap:37px}.upcoming{margin-top:18px}.upcoming-details dl div{grid-template-columns:130px minmax(0,1fr)}}
 @media(max-width:620px){.upcoming{padding-block:25px 31px}.upcoming-label{font-size:9px;gap:7px}.upcoming-body{margin-top:32px}.upcoming-intro h2{font-size:47px}.upcoming-details dl div{grid-template-columns:minmax(0,1fr);gap:6px}.upcoming-details dd{font-size:15px;line-height:1.6}}
+
+/* Original camera photos: no artificial passepartout, shadows, or heavy backing. */
+.artwork-image,.artwork-feature .artwork-image{padding:0;background:transparent}
+.artwork-image::before,.artwork-image:before{display:none}
+.artwork-image img{filter:none}
+.artwork-detail-view{padding:0;background:transparent}
+.lightbox-frame{padding:clamp(12px,2vw,28px);background:var(--paper)}
