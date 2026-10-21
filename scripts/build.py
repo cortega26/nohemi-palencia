@@ -66,10 +66,24 @@ def render():
         assert image.is_file() and image.stat().st_size > 100, f"Missing artwork image: {image}"
         esc = lambda s: html.escape(str(s), quote=True)
         img_path = f"assets/obras/{w['archivo']}"
+        # Use small, artist-faithful reproductions on gallery cards only.
+        # Links, modal, artwork pages and social metadata retain full resolution.
+        gallery_src = img_path
+        gallery_srcset = ''
+        if w.get('fuente_fotografia'):
+            preview_480 = f"assets/obras/gallery/{w['slug']}-480.webp"
+            preview_960 = f"assets/obras/gallery/{w['slug']}-960.webp"
+            assert all((ROOT/p).is_file() for p in (preview_480, preview_960)), f"Missing gallery derivative: {w['slug']}"
+            gallery_src = preview_480
+            sizes = ('(max-width: 620px) calc(100vw - 38px), (max-width: 850px) calc(100vw - 48px), '
+                     '(max-width: 1160px) 61vw, 60vw') if w.get('destacada') else (
+                     '(max-width: 620px) calc(100vw - 38px), (max-width: 850px) 46vw, '
+                     '(max-width: 1160px) 31vw, 30vw')
+            gallery_srcset = f' srcset="{esc(preview_480)} 480w, {esc(preview_960)} 960w" sizes="{esc(sizes)}"'
         details = f"{w['tecnica']} · {w['dimensiones']} · {w['anio']}"
         cards.append(f'''<article class="artwork {'artwork-feature' if w.get('destacada') else ''}" id="obra-{esc(w['slug'])}">
   <a class="artwork-link" href="{esc(img_path)}" data-artwork data-title="{esc(w['titulo'])}" data-details="{esc(details)}" data-number="{i:02d} / {len(works)}" aria-label="Ampliar {esc(w['titulo'])}, {esc(details)}">
-    <div class="artwork-image"><img src="{esc(img_path)}" alt="{esc(w['titulo'])}, obra de Nohemi Palencia Cisneros" loading="lazy" decoding="async"><span class="artwork-zoom" aria-hidden="true">↗</span></div>
+    <div class="artwork-image"><img src="{esc(gallery_src)}"{gallery_srcset} alt="{esc(w['titulo'])}, obra de Nohemi Palencia Cisneros" loading="lazy" decoding="async"><span class="artwork-zoom" aria-hidden="true">↗</span></div>
   </a>
   <div class="artwork-info"><div><span class="artwork-number">{i:02d} / {len(works)}</span><h3>{esc(w['titulo'])}</h3><p>{esc(w['tecnica'])} · {esc(w['dimensiones'])}</p><a class="artwork-detail-link" href="obras/{esc(w['slug'])}/">Ficha de la obra <span aria-hidden="true">↗</span></a></div><span class="artwork-year">{w['anio']}</span></div>
 </article>''')
