@@ -227,6 +227,13 @@ def render_artwork_pages():
             '{{TOTAL}}': str(len(works)),
             '{{IMAGE_URL}}': f"../../assets/obras/{work['archivo']}",
             '{{IMAGE_ALT}}': f"{work['titulo']}, obra de Nohemi Palencia Cisneros",
+            '{{PROVENANCE_NOTE}}': (
+                ('Ficha técnica del portafolio de la artista. ' if work.get('pagina_pdf')
+                 else 'Ficha técnica proporcionada por la artista. ')
+                + 'Fotografía original proporcionada por Nohemi Palencia.'
+                if work.get('fuente_fotografia')
+                else 'Ficha técnica del portafolio de la artista. Imagen provisional del catálogo; fotografía original pendiente.'
+            ),
             '{{MEDIUM}}': work['tecnica'],
             '{{DIMENSIONS}}': work['dimensiones'],
             '{{PREVIOUS_SLUG}}': previous['slug'],
