@@ -86,6 +86,21 @@ class PortfolioTests(unittest.TestCase):
         self.assertNotIn('class="marquee-bar"', self.html)
         self.assertNotIn('class="hero-index"', self.html)
         self.assertNotIn('class="timeline-icon"', self.html)
+    def test_2026_portfolio_additions_are_artist_sourced_and_selective(self):
+        # The artist's 16-page PDF, page 3, lists these earlier career events.
+        self.assertIn('En su trayectoria venezolana participó en muestras y salones',self.html)
+        for title in (
+            'Gran Salón de Pintura · Aniversario de la Cámara de Comercio',
+            'Muestra de Artes Visuales del Estado Carabobo',
+            '2.ª Muestra de Artes en homenaje al profesor Luis Díaz',
+        ):
+            self.assertIn(title,self.html)
+        # Contradictions must not be silently rewritten from a later catalog.
+        records={w['slug']:w for w in self.data}
+        self.assertEqual(records['plumaje-azul']['anio'],2017)
+        self.assertEqual(records['aura-cosmica-ii']['archivo'],'aura-cosmica-ii-preview.webp')
+        self.assertNotIn('Exposición individual «Galería Urbana»',self.html)
+
     def test_curatorial_sections_are_distinct_and_grounded(self):
         self.assertIn('id="exhibitions-heading"', self.html)
         self.assertIn('id="background-heading"', self.html)

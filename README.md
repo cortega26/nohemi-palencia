@@ -229,3 +229,14 @@ El generador, enlaces de navegación circular, numeración, sitemap, metadatos O
 - Rectángulos de superficie pintada, inspeccionados en fotografía original orientada (left, top, right, bottom; tamaño base 3000×4000): Aura I (637,1060,2386,3532), Huelliches II (709,711,2411,3265), Plumaje azul (553,749,2350,3040). Incluyen margen de seguridad para evitar cortar firmas o pinceladas de borde. Sin reconstrucción, relleno generativo, corrección engañosa de color ni transformación de perspectiva.
 - Las miniaturas responsivas 480/960 se regeneran desde las nuevas reproducciones; fichas, visor, `og:image` y Schema.org apuntan a la versión fiel reencuadrada. La información técnica no se modifica.
 - **Operación reproducible:** `python3 scripts/reframe_three_artist_originals.py --source-dir /ruta/a/jpg-originales && python3 scripts/generate_gallery_variants.py && python3 scripts/build.py`; validación usual del CI en GitHub.
+
+
+### Portafolio adicional de 16 páginas — recibido el 20/10/2026
+
+Fuente: `Presentación Portafolio Creativo Moderno Corporativo Gris y Crema (1).pdf`, material recibido directamente de Nohemi Palencia. Revisadas especialmente las **páginas 2 (biografía) y 3 (currículum)**; no sustituye automáticamente los documentos previos.
+
+Aporta participaciones históricas menos representadas: segunda Muestra de Artes en homenaje al profesor Luis Díaz (2001, Universidad de Carabobo), Muestra de Artes Visuales del Estado Carabobo (2002, Museo de la Cultura de Valencia), Gran Salón de Pintura por aniversario de la Cámara de Comercio (2004, Estado Carabobo). La portada integra una selección breve sin reproducir todo el currículo.
+
+**Discrepancias reservadas:** (1) la nueva página 11 indica 2026 para **Plumaje azul**, pero el correo individual enviado por Nohemi el 20-10-2026 especifica 2017: conservar 2017 y pedir aclaración; (2) el currículum de la nueva página 3 denomina «exposición individual» a una presentación de 2026 en Galería Urbana, mientras la fuente institucional se refiere a «Rostros Oníricos»: no modificar modalidad hasta verificación; (3) la nueva presentación no documenta la identidad fotográfica de Aura cósmica II; su vista previa sigue mostrando la misma pintura que la reproducida como Aura cósmica I y no debe pasarse por una reproducción original independiente; (4) el PDF presenta «Huelliche II», mientras el registro y correo anterior usan «Huelliches II»: conservar forma previamente verificada hasta aclaración.
+
+No publicar el teléfono personal repetido en el diseño de Canva sin necesidad editorial y aprobación explícita. No usar como URL literal el texto `www.Nohemi Palencia Cisneros. cl`: no es un dominio válido. El PDF incluye además diapositivas en blanco y una ficha de obra titulada «Fotografía de producto», que no se interpretará como título artístico oficial.
