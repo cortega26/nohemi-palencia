@@ -1,4 +1,4 @@
-name: Temporary visual audit capture
+name: Post-deployment visual audit capture
 on:
   push:
     branches:
@@ -27,7 +27,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -f visual-audit/evidence/
+          git add -f visual-audit/evidence-post/
           if ! git diff --cached --quiet; then
             git commit -m "audit: temporary Chromium evidence for human visual review"
             git push origin HEAD:audit/visual-final-20261021
