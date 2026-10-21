@@ -547,6 +547,10 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('.upcoming-intro a,.exhibition-links a,.site-footer a{display:inline-flex;align-items:center;min-height:28px}',css)
         self.assertIn('Hecho por ',self.html)
 
+    def test_breadcrumb_and_archive_source_targets_are_large_enough(self):
+        css=(ROOT/'assets/styles.css').read_text('utf-8')
+        self.assertIn('.artwork-breadcrumb a,.archive-sources a{display:inline-flex;align-items:center;min-height:28px}',css)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):

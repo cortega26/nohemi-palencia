@@ -209,3 +209,6 @@
 
 /* Final rendered-device audit 2026-10-21: minimum comfortable touch targets for editorial links. */
 .upcoming-intro a,.exhibition-links a,.site-footer a{display:inline-flex;align-items:center;min-height:28px}
+
+/* Final visual QA: min 28px targets for detail breadcrumbs and archive citations. */
+.artwork-breadcrumb a,.archive-sources a{display:inline-flex;align-items:center;min-height:28px}
