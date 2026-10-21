@@ -425,7 +425,7 @@ class PortfolioTests(unittest.TestCase):
         self.assertNotIn('aura-cosmica-i',slugs)
         self.assertEqual(slugs.count('aura-cosmica-ii'),1)
         self.assertEqual(slugs.index('aura-cosmica-ii'),10)
-        self.assertNotIn('Aura cósmica I',self.html)
+        self.assertNotIn('data-title="Aura cósmica I"',self.html)
         self.assertNotIn('assets/obras/aura-cosmica-ii-preview.webp',self.html)
         self.assertIn('aura-cosmica-ii-reframed-original-web.webp',self.html)
         alias=(ROOT/'obras/aura-cosmica-i/index.html').read_text('utf-8')
