@@ -6,9 +6,11 @@
     "dimensiones": "76 × 100 cm",
     "anio": 2026,
     "pagina_pdf": 3,
-    "archivo": "guardiana-original-web.webp",
+    "archivo": "guardiana-retouched-original-web.webp",
     "destacada": true,
-    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17677.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17677.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura",
+    "archivo_original_sin_retoque": "guardiana-original-web.webp",
+    "retoque_fotografico": "Atenuación fotográfica localizada y reversible del brillo especular; sin reconstrucción ni modificación de trazos. Se conserva la reproducción anterior."
   },
   {
     "slug": "princesa-onirica",
@@ -27,8 +29,10 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 5,
-    "archivo": "vision-frontal-sueno-con-el-iznik-original-web.webp",
-    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17673.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
+    "archivo": "vision-frontal-sueno-con-el-iznik-retouched-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17673.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura",
+    "archivo_original_sin_retoque": "vision-frontal-sueno-con-el-iznik-original-web.webp",
+    "retoque_fotografico": "Atenuación fotográfica localizada y reversible del brillo especular; sin reconstrucción ni modificación de trazos. Se conserva la reproducción anterior."
   },
   {
     "slug": "hilos-del-subconciente",

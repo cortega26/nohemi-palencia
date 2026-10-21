@@ -386,7 +386,9 @@ class PortfolioTests(unittest.TestCase):
         indexed={w['slug']:w for w in self.data}
         for slug,source in expected.items():
             work=indexed[slug]
-            self.assertEqual(work['archivo'],slug+'-original-web.webp')
+            self.assertEqual(work['archivo'],slug+(
+                '-retouched-original-web.webp' if slug in ('guardiana','vision-frontal-sueno-con-el-iznik')
+                else '-original-web.webp'))
             self.assertIn(source,work['fuente_fotografia'])
             path=ROOT/'assets/obras'/work['archivo']
             self.assertGreater(path.stat().st_size,300_000,slug)
@@ -397,6 +399,19 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('.artwork-image,.artwork-feature .artwork-image{padding:0;background:transparent}',styles)
         self.assertIn('.artwork-detail-view{padding:0;background:transparent}',styles)
 
+
+    def test_retouched_paintings_are_reversible_and_only_two(self):
+        treated=('guardiana','vision-frontal-sueno-con-el-iznik')
+        self.assertEqual([w['slug'] for w in self.data if 'retoque_fotografico' in w],list(treated))
+        for slug in treated:
+            work=next(w for w in self.data if w['slug']==slug)
+            self.assertEqual(work['archivo_original_sin_retoque'],slug+'-original-web.webp')
+            self.assertIn('reversible',work['retoque_fotografico'])
+            self.assertTrue((ROOT/'assets/obras'/work['archivo_original_sin_retoque']).exists())
+            self.assertTrue((ROOT/'assets/obras'/work['archivo']).exists())
+            page=(ROOT/'obras'/slug/'index.html').read_text('utf-8')
+            self.assertIn('../../assets/obras/'+work['archivo'],page)
+        self.assertEqual(self.html.count('-retouched-original-web.webp'),2)
 
     def test_responsive_gallery_only_for_confirmed_originals(self):
         expected_full = {w['slug']:w for w in self.data}
