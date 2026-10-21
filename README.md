@@ -4,7 +4,7 @@ Sitio estático en español de la artista **Nohemi Palencia Cisneros**, basado e
 
 ## Estado
 
-- **Versión publicada:** https://tooltician.com/nohemi-palencia/ (sitio público verificado el 20-10-2026). El mecanismo de sincronización de ese sitio externo con GitHub no está documentado aquí; un merge en `main` no demuestra por sí solo que el dominio público se haya actualizado.
+- **Dominio canónico después del corte:** https://nohemipalencia.com/. La anterior dirección temporal permanece como referencia de historial. Confirmar el nuevo dominio solo tras completar DNS, SSL y verificación HTTP real.
 - **11 obras** con título, técnica, medidas y año; todas las fichas se basan en el PDF facilitado por la artista (páginas 3–13).
 - **Fotografías:** 12 reproducciones originales autorizadas y una reproducción provisional de El aroma a canelo, pendiente de fotografía HD confirmada.
 - Biografía y trayectoria documentadas; CA660 noviembre 2026 incluye cuatro obras identificadas y enlazadas desde el catálogo.
@@ -268,3 +268,20 @@ El responsable del sitio confirmó expresamente que **las 14 obras representadas
 
 ## Cierre editorial P0 21-10-2026
 El aroma a canelo: **MDF**, confirmado por el responsable. La reproducción fotográfica actual se reencuadra desde el archivo suministrado por la artista, sin aumento artificial de píxeles; no se recibió fotografía HD de cámara. Guardiana, Visión frontal / Sueño con el Iznik, Hilos del subconciente y Atómica II tienen corrección localizada, no generativa, de la luz reflejada, y se conservan intactas sus fuentes.
+
+
+## Cutover del dominio nohemipalencia.com (Nameslink → Cloudflare → GitHub Pages)
+
+**PR de preparación:** no fusionar hasta completar los pasos externos. El origen es GitHub Pages del repositorio `cortega26/nohemi-palencia`; Cloudflare será su DNS autoritativo y proxy HTTPS.
+
+1. Cloudflare Dashboard → Add domain → `nohemipalencia.com` → Free plan → seleccionar la pareja exacta de nameservers asignados. Revisar registros existentes y preservar MX/TXT si aparecen; no activar registros parking o wildcard.
+2. Nameslink → Domain Detail → **Editar servidor DNS** → reemplazar `ns1.nameslink.com` y `ns2.nameslink.com` por la pareja Cloudflare **real** (no asumir valores de otros dominios). Si existiera DNSSEC previo, retirar DS antiguo antes de delegación; activar DNSSEC Cloudflare solo después de zona activa.
+3. En Cloudflare DNS (inicialmente **DNS only**, gris): cuatro A `@` hacia `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153`. CNAME `www` → `cortega26.github.io` DNS only. No añadir un CNAME `www` apuntando al apex. No añadir wildcard.
+4. Si es posible, verificar la propiedad del dominio desde GitHub **Settings → Pages → Verified domains**, mediante TXT solicitado allí; no inventar token y conservar TXT después.
+5. Fusionar PR (CNAME de la raíz de repo con `nohemipalencia.com` y URL canónica única en `data/site.json`, 15 HTML y sitemap) o usar GitHub repo Settings → Pages → Custom domain, siempre evitando simultáneamente configuraciones inconsistentes.
+6. GitHub Pages: esperar que termine de emitir certificado para `nohemipalencia.com`, y activar **Enforce HTTPS**. Verificar URL raíz, fichas, sitemap, og:url e imágenes. Revisar `www` y su redirección a apex.
+7. Tras cert HTTPS correcto en GitHub, Cloudflare DNS: conmutar A `@` y CNAME `www` a **Proxied** (naranja); SSL/TLS → **Full (strict)**, Always Use HTTPS; activar DDoS/WAF normal. Evitar reglas Challenge en páginas estáticas o verificación DCV de cert.
+8. Verificar respuesta HTTPS vía Cloudflare, redirect www, canonical, assets, enlaces de las 13 pinturas y tarjetas CA660; luego planear 301 de vieja ruta en el sistema dueño de `tooltician.com` sin tocar otros servicios de Tooltician. Evitar QR antes del corte.
+9. No almacenar credenciales, tokens DNS, secretos, correo privado de la artista ni datos de Nameslink en el repositorio.
+
+La URL histórica `tooltician.com/nohemi-palencia/` no debe confundirse con el origen GH Pages ni modificarse sin verificar la ruta de redirección real. Para pruebas use `dig NS nohemipalencia.com`, `dig A nohemipalencia.com` (con proxy activo verá IPs Cloudflare), `curl -I https://nohemipalencia.com/`, `curl -I https://www.nohemipalencia.com/`, validar certificado y HTML de cada ficha.

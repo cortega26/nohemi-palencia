@@ -201,7 +201,7 @@ class PortfolioTests(unittest.TestCase):
             self.assertEqual(schema['size'],work['dimensiones'])
             self.assertEqual(schema['artMedium'],work['tecnica'])
             self.assertEqual(schema['creator']['name'],'Nohemi Palencia Cisneros')
-            self.assertEqual(schema['image'],'https://tooltician.com/nohemi-palencia/assets/obras/'+work['archivo'])
+            self.assertEqual(schema['image'],'https://nohemipalencia.com/assets/obras/'+work['archivo'])
             self.assertIn(f'href="../{slugs[(i-1)%len(slugs)]}/"',page)
             self.assertIn(f'href="../{slugs[(i+1)%len(slugs)]}/"',page)
             for relative in (f'../../assets/obras/{work["archivo"]}','../../assets/styles.css','../../assets/img/favicon.svg'):
@@ -262,11 +262,20 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('padding-inline:clamp(20px,3.4vw,48px)',css)
 
 
+    def test_final_domain_cname_and_canonical_agree(self):
+        site=json.loads((ROOT/'data/site.json').read_text('utf-8'))
+        self.assertEqual(site['final_domain'],'nohemipalencia.com')
+        self.assertEqual((ROOT/'CNAME').read_text('utf-8').strip(),site['final_domain'])
+        self.assertEqual(site['public_base_url'],'https://nohemipalencia.com/')
+        self.assertNotIn('tooltician.com/nohemi-palencia',self.html)
+        for page in [ROOT/'index.html',ROOT/'exposiciones/rostros-oniricos/index.html']:
+            self.assertIn('https://nohemipalencia.com/',page.read_text('utf-8'))
+
     def test_canonical_and_social_metadata_for_all_pages(self):
         from xml.etree import ElementTree
         site=json.loads((ROOT/'data/site.json').read_text('utf-8'))
         base=site['public_base_url']
-        self.assertEqual(base,'https://tooltician.com/nohemi-palencia/')
+        self.assertEqual(base,'https://nohemipalencia.com/')
         works=self.data
         pages=[('', ROOT/'index.html'), ('exposiciones/rostros-oniricos/', ROOT/'exposiciones/rostros-oniricos/index.html')]
         pages += [(f"obras/{w['slug']}/", ROOT/'obras'/w['slug']/'index.html') for w in works]
