@@ -64,7 +64,7 @@ def process(slug):
                median.astype(np.float32)*strength[...,None])
     # Low-amplitude localized neutral veil correction; limit to brighter surfaces.
     soft=(local*broad*np.clip((y-105)/140,0,1)*255).astype(np.float32)
-    corrected=np.clip(corrected-soft[:,:,None],0,255).astype(np.uint8)
+    corrected=np.clip(np.maximum(corrected-soft[:,:,None],pix.astype(np.float32)-105),0,255).astype(np.uint8)
     d=np.abs(corrected.astype(np.int16)-pix.astype(np.int16))
     active=local>.08
     altered=(d.max(axis=2)>8)
