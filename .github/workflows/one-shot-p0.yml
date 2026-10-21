@@ -2,7 +2,7 @@ name: One-shot P0 photo and catalog integration
 on:
   push:
     branches: [fix/p0-photography-canelo-glare-20261021]
-    paths: [.github/workflows/one-shot-p0.yml]
+    paths: [.github/workflows/one-shot-p0.yml, scripts/migrate_p0_20261021.py]
 permissions:
   contents: write
 jobs:
