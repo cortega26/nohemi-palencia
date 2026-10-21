@@ -6,8 +6,8 @@ Sitio estático en español de la artista **Nohemi Palencia Cisneros**, basado e
 
 - **Versión publicada:** https://tooltician.com/nohemi-palencia/ (sitio público verificado el 20-10-2026). El mecanismo de sincronización de ese sitio externo con GitHub no está documentado aquí; un merge en `main` no demuestra por sí solo que el dominio público se haya actualizado.
 - **11 obras** con título, técnica, medidas y año; todas las fichas se basan en el PDF facilitado por la artista (páginas 3–13).
-- **Fotografías provisionales** extraídas del mismo PDF; reemplazables por las fotografías originales en alta resolución que proporcionará la artista. Son vistas previas, **no recursos finales**.
-- Biografía, declaración artística y trayectoria documentadas por el PDF (páginas 2 y 14). La participación de noviembre de 2026 en CA660 (Las Condes) tiene sede y calendario comunicados por la artista; el título definitivo de la edición y las obras participantes siguen pendientes.
+- **Fotografías:** 12 reproducciones originales autorizadas y una reproducción provisional de El aroma a canelo, pendiente de fotografía HD confirmada.
+- Biografía y trayectoria documentadas; CA660 noviembre 2026 incluye cuatro obras identificadas y enlazadas desde el catálogo.
 - Instagram oficial indicado en el PDF: **[@nohe.palencia](https://www.instagram.com/nohe.palencia/)**. La disponibilidad del perfil no se ha verificado directamente.
 
 ## Uso
@@ -38,7 +38,7 @@ assets/styles.css            Diseño editorial, responsive
 assets/main.js               Visor accesible de obras; enlaces funcionan sin JS
 assets/obras/*-preview.*      Fotografías TEMPORALES del PDF
 assets/img/*                 Fotografía de la artista y favicon
-data/obras.json             Inventario canónico de once obras
+data/obras.json             Inventario canónico vigente de trece obras
  templates/index.html        Plantilla del sitio
  scripts/build.py            Generador estático con Python estándar
  tests/test_site.py          Pruebas de integridad y enlaces
@@ -61,7 +61,7 @@ La versión visible actualmente está en **https://tooltician.com/nohemi-palenci
 
 Elegir dominio antes de imprimir un QR permanente. Si se necesita imprimir antes, usar primero una URL estable propia o un redireccionador administrado por el responsable del sitio para evitar QR obsoletos.
 
-Pendientes antes del lanzamiento definitivo con dominio de la artista: URL canónica, meta `og:image` absoluta, imagen social final, verificación de contacto, fotos de alta resolución, título definitivo de la edición de Las Condes y obras participantes.
+Pendientes antes del lanzamiento definitivo: adquirir dominio, configurar URL canónica y HTTPS, validar contacto, fotografía HD final de El aroma a canelo y metadatos técnicos todavía contradictorios.
 
 ### Refinamiento editorial — primera iteración (20-10-2026)
 
@@ -195,13 +195,13 @@ Se detectó en producción que el archivo `assets/styles.css` sin parámetros po
 
 | Título | Año | Técnica | Medidas | Fotografía original |
 |---|---|---|---|---|
-| Aura cósmica I | 2026 (confirmación del usuario a partir de Nohemi) | Mixta sobre MDF | 81,5 × 64 cm | `17634.jpg` |
+| Aura cósmica II | 2026 (confirmación del usuario a partir de Nohemi) | Mixta sobre MDF | 81,5 × 64 cm | `17634.jpg` |
 | Huelliches II | 2026 (confirmación del usuario a partir de Nohemi) | Mixta sobre MDF vitrificado | 81,5 × 64 cm | `17661.jpg` |
 | Plumaje azul | 2026 (rectificación editorial posterior; correo original indicaba 2017) | Mixta sobre MDF vitrificado | 81,5 × 64 cm | `17651.jpg` |
 
 Las fotos originales tienen 4000 × 3000 px en el archivo JPEG y orientación EXIF vertical (3000 × 4000 px). Se generaron fielmente versiones WebP de 1800 × 2400 px, sin reconstrucción por IA ni recorte de obras; estas viven en `assets/obras/*-original-web.webp`. El original íntegro permanece en los correos de Nohemi, en vez de duplicar archivos de cámara pesados en el sitio estático.
 
-La nota editorial «Las fotografías originales se incorporarán posteriormente» se **retiró de la portada** por obsoleta. Las once obras que ya estaban publicadas **mantienen por ahora sus imágenes provisionales**, a la espera de incorporar las nueve reproducciones originales recibidas para otras obras. De ellas, **Aura cósmica II** y **El aroma a canelo** siguen sin un archivo HD recibido en los correos revisados. La correspondencia entre obra de catálogo y participación en la exposición de Valdivia **no se infiere** de este inventario.
+La portada ya no muestra una advertencia global sobre fotografías provisionales. Las 12 obras con originales recibidos presentan su reproducción optimizada; queda pendiente la imagen HD de **El aroma a canelo**. La correspondencia con la exposición histórica de Valdivia sigue sin inferirse.
 
 El generador, enlaces de navegación circular, numeración, sitemap, metadatos Open Graph y pruebas de integridad se actualizaron para catorce obras y dieciséis rutas públicas.
 
@@ -209,7 +209,7 @@ El generador, enlaces de navegación circular, numeración, sitemap, metadatos O
 
 - Las fotografías de cámara facilitadas por Nohemi se identifican por los archivos 17677, 17679, 17678, 17673, 17663, 17662, 17659, 17653 y 17652 (JPEG).
 - `scripts/import_nine_artist_originals.py` valida SHA-256, corrige EXIF, recorta únicamente el entorno fotografiado de cada pintura (pared, marco y paspartú) y genera WebP con un máximo de 2400 px en el lado mayor. No hay generación ni reconstitución de detalles.
-- Las nueve entradas originales mantienen título, año y técnica del registro canónico; las discrepancias documentales se revisan separadamente. Aura cósmica II y El aroma a canelo quedan fuera de esta importación por identidad no confirmada.
+- Las reproducciones se registran con procedencia; Aura cósmica II fue consolidada posteriormente con su imagen HD confirmada y El aroma a canelo conserva provisionalmente una imagen de catálogo.
 - `data/obras.json` conserva la procedencia de cada fotografía y el generador propaga la URL de cada imagen a las páginas y metadatos.
 - La galería y las fichas reducen márgenes, fondos y sombras artificiales para dar prioridad a la pintura.
 
@@ -217,16 +217,16 @@ El generador, enlaces de navegación circular, numeración, sitemap, metadatos O
 
 - `scripts/generate_gallery_variants.py` genera, desde las **12 fotografías originales ya autorizadas**, WebP de **480 y 960 píxeles de ancho**, conservando las proporciones, sin IA generativa, reencuadres nuevos ni cambios de color.
 - En la portada, cada tarjeta original utiliza `srcset` y `sizes` para adaptar la transferencia al dispositivo. El enlace accesible de la tarjeta, el visor ampliado, las fichas de obra, Schema.org y Open Graph mantienen las reproducciones en alta resolución existentes.
-- Las dos imágenes todavía provisionales (**Aura cósmica II** y **El aroma a canelo**) no reciben un tratamiento que aparente ser un nuevo original; sus archivos de catálogo siguen intactos.
+- La única imagen provisional pendiente es **El aroma a canelo**. Aura cósmica II utiliza la fotografía original HD confirmada.
 - GitHub Actions verifica que las 24 miniaturas comprometidas coincidan byte por byte con el generador determinista (`Pillow==12.3.0`), además de las pruebas y la sincronización del HTML.
 - Regeneración reproducible: `python3 scripts/generate_gallery_variants.py && python3 scripts/build.py`; comprobación: `python3 scripts/generate_gallery_variants.py --check && python3 scripts/build.py --check && python3 -m unittest discover -s tests -v`.
 
-### Reencuadre pictórico de obras 12–14 — 20-10-2026
+### Reencuadre pictórico de tres pinturas — 20-10-2026
 
-- Solicitud editorial: Aura cósmica I, Huelliches II y Plumaje azul deben mostrar **solo la pintura** como protagonista, sin pared, marco de madera ni paspartú negro.
-- Nuevas reproducciones: `assets/obras/*-reframed-original-web.webp`; los tres `*-original-web.webp` originales previos quedan **intactos** como registro fotográfico.
+- Solicitud editorial: Aura cósmica II, Huelliches II y Plumaje azul deben mostrar **solo la pintura** como protagonista, sin pared, marco de madera ni paspartú negro.
+- Nuevas reproducciones en `assets/obras/`, sin marcos ni paspartús; los antiguos archivos erróneamente nombrados fueron retirados.
 - Archivos fuente autorizados: `17634.jpg`, `17661.jpg`, `17651.jpg`; originales JPEG 4000×3000 píxeles con orientación EXIF=6, verificados por SHA-256 dentro de `scripts/reframe_three_artist_originals.py`.
-- Rectángulos de superficie pintada, inspeccionados en fotografía original orientada (left, top, right, bottom; tamaño base 3000×4000): Aura I (637,1060,2386,3532), Huelliches II (709,711,2411,3265), Plumaje azul (553,749,2350,3040). Incluyen margen de seguridad para evitar cortar firmas o pinceladas de borde. Sin reconstrucción, relleno generativo, corrección engañosa de color ni transformación de perspectiva.
+- Rectángulos de superficie pintada, inspeccionados en fotografía original orientada (left, top, right, bottom; tamaño base 3000×4000): Aura cósmica II (637,1060,2386,3532), Huelliches II (709,711,2411,3265), Plumaje azul (553,749,2350,3040). Incluyen margen de seguridad para evitar cortar firmas o pinceladas de borde. Sin reconstrucción, relleno generativo, corrección engañosa de color ni transformación de perspectiva.
 - Las miniaturas responsivas 480/960 se regeneran desde las nuevas reproducciones; fichas, visor, `og:image` y Schema.org apuntan a la versión fiel reencuadrada. La información técnica no se modifica.
 - **Operación reproducible:** `python3 scripts/reframe_three_artist_originals.py --source-dir /ruta/a/jpg-originales && python3 scripts/generate_gallery_variants.py && python3 scripts/build.py`; validación usual del CI en GitHub.
 
@@ -237,7 +237,7 @@ Fuente: `Presentación Portafolio Creativo Moderno Corporativo Gris y Crema (1).
 
 Aporta participaciones históricas menos representadas: segunda Muestra de Artes en homenaje al profesor Luis Díaz (2001, Universidad de Carabobo), Muestra de Artes Visuales del Estado Carabobo (2002, Museo de la Cultura de Valencia), Gran Salón de Pintura por aniversario de la Cámara de Comercio (2004, Estado Carabobo). La portada integra una selección breve sin reproducir todo el currículo.
 
-**Discrepancias reservadas:** (1) la nueva página 11 indica 2026 para **Plumaje azul** y el correo individual de Nohemi del 20-10-2026 indicaba 2017; el responsable del sitio rectificó posteriormente el año a **2026**. Se conserva la discrepancia histórica, pero el catálogo vigente refleja 2026; (2) el currículum de la nueva página 3 denomina «exposición individual» a una presentación de 2026 en Galería Urbana, mientras la fuente institucional se refiere a «Rostros Oníricos»: no modificar modalidad hasta verificación; (3) la nueva presentación no documenta la identidad fotográfica de Aura cósmica II; su vista previa sigue mostrando la misma pintura que la reproducida como Aura cósmica I y no debe pasarse por una reproducción original independiente; (4) el PDF presenta «Huelliche II», mientras el registro y correo anterior usan «Huelliches II»: conservar forma previamente verificada hasta aclaración.
+**Discrepancias reservadas:** (1) la nueva página 11 indica 2026 para **Plumaje azul** y el correo individual de Nohemi del 20-10-2026 indicaba 2017; el responsable del sitio rectificó posteriormente el año a **2026**. Se conserva la discrepancia histórica, pero el catálogo vigente refleja 2026; (2) el currículum de la nueva página 3 denomina «exposición individual» a una presentación de 2026 en Galería Urbana, mientras la fuente institucional se refiere a «Rostros Oníricos»: no modificar modalidad hasta verificación; (3) la duplicación fue aclarada por Nohemi: hay una única obra catalogada como Aura cósmica II; (4) el PDF presenta «Huelliche II», mientras el registro y correo anterior usan «Huelliches II»: conservar forma previamente verificada hasta aclaración.
 
 No publicar el teléfono personal repetido en el diseño de Canva sin necesidad editorial y aprobación explícita. No usar como URL literal el texto `www.Nohemi Palencia Cisneros. cl`: no es un dominio válido. El PDF incluye además diapositivas en blanco y una ficha de obra titulada «Fotografía de producto», que no se interpretará como título artístico oficial.
 
@@ -251,7 +251,7 @@ El responsable del sitio confirmó expresamente que **las 14 obras representadas
 
 - Obras 1/14 **Guardiana** y 3/14 **Visión frontal / Sueño con el Iznik**: corrección moderada de reflejos del barniz mediante máscaras elípticas de atenuación local. No hay retoques generativos, inpainting, ni generación de pinceladas o texturas.
 - El script reproducible `scripts/retouch_artworks.py` conserva intactas las imágenes `*-original-web.webp` y genera nuevas versiones `*-retouched-original-web.webp`. En ellas se aplica únicamente una reducción moderada del velo neutro de luz; validación de magnitud por píxel en el propio script.
-- Las miniaturas 480px/960px se regeneran desde las nuevas versiones para portada; el visor, páginas individuales y metadatos apuntan a ellas. Los otros 12 cuadros, incluidas las 2 reproducciones provisionales no verificadas, siguen intactos.
+- Las miniaturas 480/960 se regeneraron a partir de las dos correcciones fotográficas; los otros cuadros permanecen sin retoques de reflejos.
 - CI: `python3 scripts/retouch_artworks.py --check` (reproducibilidad exacta) + `python3 scripts/generate_gallery_variants.py --check` + `python3 scripts/build.py --check` + tests. Dependencias fijadas Pillow 12.3.0 y NumPy 2.2.6.
 - Limitación documental: la luz especular intensa puede ocultar textura original que **no puede recuperarse de la fotografía**. Para una reproducción museográfica se recomienda volver a fotografiar con iluminación difusa/polarización; el retoque no sustituye nuevas tomas.
 
@@ -259,8 +259,8 @@ El responsable del sitio confirmó expresamente que **las 14 obras representadas
 
 **Fuente editorial primaria:** información del responsable del sitio tras consultar a Nohemi y captura de cuatro pinturas para CA660 (2×2). Se identificaron contra originales ya publicados, no por reconocimiento automático.
 
-- La antigua obra **6/14 «Aura cósmica II»** era un preview de la **misma pintura** que la antigua **12/14, erróneamente rotulada «Aura cósmica I»**. Nohemi confirmó que el título real es **«Aura cósmica II»**. Se eliminó la entrada duplicada #6, se conservó la fotografía HD/reencuadrada de #12 como único registro **Aura cósmica II**, y se reenumeró todo el catálogo a **13 obras**. No se crea una ficha de Aura cósmica I sin fotografía ni autorización.
-- Se conserva la URL canónica anterior de II, `/obras/aura-cosmica-ii/`, con la imagen correcta, además de una página de **redirección no indexable** desde la antigua `/obras/aura-cosmica-i/`, retirada del sitemap. Los archivos nombrados antiguamente con -i se conservan **solo como registro histórico del error de atribución**, no como una segunda pintura.
+- Las dos fichas antiguas representaban la misma pintura. La autora confirmó el título **«Aura cósmica II»**; se consolidó un registro HD y el catálogo quedó con **13 obras**.
+- La única URL de la obra es `/obras/aura-cosmica-ii/`; se retiraron los archivos, rutas y código de compatibilidad de la identificación descartada.
 - Se rectifica también `scripts/reframe_three_artist_originals.py` para que al reproducir el import desde la fotografía auténtica `17634.jpg` genere directamente el nombre correcto `aura-cosmica-ii-reframed-original-web.webp`.
 - La autora confirmó el título exacto de la obra 11 original: **«El aroma a canelo»**. El soporte (MDF o lienzo barnizado) no fue aclarado; **no** se inventa una rectificación del soporte ni una nueva fotografía.
 - **CA660 «La Escena del Arte», noviembre 2026:** cuatro obras mostradas en la cuadrícula aportada por el responsable del sitio: arriba izquierda **Princesa onírica**, arriba derecha **Shitikari**, abajo izquierda **Hindú celular**, abajo derecha **Visión frontal / Sueño con el Iznik**. Quedan registradas en `data/confirmaciones-artista.json` y enlazadas a sus cuatro fichas desde el módulo de CA660. No confundirlas con el inventario (aún no especificado) de la exposición histórica de Rostros Oníricos en Valdivia.

@@ -71,9 +71,13 @@ class PortfolioTests(unittest.TestCase):
             self.assertEqual(work['titulo'],title)
             self.assertEqual(work['anio'],year)
             self.assertEqual(work['archivo'],image)
-            self.assertEqual(work['archivo_original_sin_recorte'],('aura-cosmica-i' if slug=='aura-cosmica-ii' else slug)+'-original-web.webp')
+            if slug=='aura-cosmica-ii':
+                self.assertNotIn('archivo_original_sin_recorte',work)
+                self.assertIn('17634.jpg',work['nota_recorte'])
+            else:
+                self.assertEqual(work['archivo_original_sin_recorte'],slug+'-original-web.webp')
+                self.assertTrue((ROOT/'assets/obras'/work['archivo_original_sin_recorte']).is_file())
             self.assertIn('superficie pictórica',work['nota_recorte'])
-            self.assertTrue((ROOT/'assets/obras'/work['archivo_original_sin_recorte']).is_file())
             self.assertNotIn('pagina_pdf',work)
             self.assertIn('Correo de Nohemi',work['fuente_fotografia'])
             path=ROOT/'assets/obras'/image
@@ -420,24 +424,18 @@ class PortfolioTests(unittest.TestCase):
             self.assertIn('../../assets/obras/'+work['archivo'],page)
         self.assertEqual(self.html.count('-retouched-original-web.webp'),2)
 
-    def test_aura_deduplication_and_authorized_canelo_title(self):
+    def test_only_authorized_artwork_routes_exist(self):
         slugs=[w['slug'] for w in self.data]
-        self.assertNotIn('aura-cosmica-i',slugs)
+        self.assertEqual(len(slugs),13)
         self.assertEqual(slugs.count('aura-cosmica-ii'),1)
         self.assertEqual(slugs.index('aura-cosmica-ii'),10)
-        self.assertNotIn('data-title="Aura cósmica I"',self.html)
-        self.assertNotIn('assets/obras/aura-cosmica-ii-preview.webp',self.html)
+        routes={p.name for p in (ROOT/'obras').iterdir() if p.is_dir()}
+        self.assertEqual(routes,set(slugs))
         self.assertIn('aura-cosmica-ii-reframed-original-web.webp',self.html)
-        alias=(ROOT/'obras/aura-cosmica-i/index.html').read_text('utf-8')
-        self.assertIn('noindex,follow',alias)
-        self.assertIn('http-equiv="refresh"',alias)
-        self.assertIn('/obras/aura-cosmica-ii/',alias)
-        self.assertNotIn('/obras/aura-cosmica-i/</loc>',(ROOT/'sitemap.xml').read_text('utf-8'))
+        self.assertNotIn('http-equiv="refresh"',self.html)
         canelo=next(w for w in self.data if w['slug']=='el-aroma-a-canelo')
         self.assertEqual(canelo['titulo'],'El aroma a canelo')
         self.assertIn('confirmado por Nohemi',canelo['fuente_titulo'])
-        self.assertIn('Sin nueva confirmación',json.dumps(json.loads(
-            (ROOT/'data/confirmaciones-artista.json').read_text('utf-8')),ensure_ascii=False))
 
     def test_ca660_has_exactly_four_distinct_linked_artworks(self):
         confirmed=json.loads((ROOT/'data/confirmaciones-artista.json').read_text('utf-8'))
