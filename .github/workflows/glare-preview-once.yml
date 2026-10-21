@@ -2,7 +2,7 @@ name: Experimental four-painting glare preview
 on:
   push:
     branches: [experiment/specular-glare-audit-four-works]
-    paths: [.github/workflows/glare-preview-once.yml]
+    paths: [.github/workflows/glare-preview-once.yml, scripts/review_glare_v2.py]
 permissions:
   contents: write
 jobs:
