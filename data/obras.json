@@ -114,8 +114,10 @@
     "tecnica": "Técnica mixta sobre MDF",
     "dimensiones": "81,5 × 64 cm",
     "anio": 2026,
-    "archivo": "aura-cosmica-i-original-web.webp",
-    "fuente_fotografia": "Correo de Nohemi del 20-10-2026 · 17634.jpg"
+    "archivo": "aura-cosmica-i-reframed-original-web.webp",
+    "fuente_fotografia": "Correo de Nohemi del 20-10-2026 · 17634.jpg",
+    "archivo_original_sin_recorte": "aura-cosmica-i-original-web.webp",
+    "nota_recorte": "Reproducción de la superficie pictórica; elimina pared, marco y paspartú de la fotografía, conserva composición y firma. Original fotográfico preservado."
   },
   {
     "slug": "huelliches-ii",
@@ -123,8 +125,10 @@
     "tecnica": "Técnica mixta sobre MDF vitrificado",
     "dimensiones": "81,5 × 64 cm",
     "anio": 2026,
-    "archivo": "huelliches-ii-original-web.webp",
-    "fuente_fotografia": "Correo de Nohemi del 20-10-2026 · 17661.jpg; año confirmado por Carlos"
+    "archivo": "huelliches-ii-reframed-original-web.webp",
+    "fuente_fotografia": "Correo de Nohemi del 20-10-2026 · 17661.jpg; año confirmado por Carlos",
+    "archivo_original_sin_recorte": "huelliches-ii-original-web.webp",
+    "nota_recorte": "Reproducción de la superficie pictórica; elimina pared, marco y paspartú de la fotografía, conserva composición y firma. Original fotográfico preservado."
   },
   {
     "slug": "plumaje-azul",
@@ -132,7 +136,9 @@
     "tecnica": "Técnica mixta sobre MDF vitrificado",
     "dimensiones": "81,5 × 64 cm",
     "anio": 2017,
-    "archivo": "plumaje-azul-original-web.webp",
-    "fuente_fotografia": "Correo de Nohemi del 20-10-2026 · 17651.jpg"
+    "archivo": "plumaje-azul-reframed-original-web.webp",
+    "fuente_fotografia": "Correo de Nohemi del 20-10-2026 · 17651.jpg",
+    "archivo_original_sin_recorte": "plumaje-azul-original-web.webp",
+    "nota_recorte": "Reproducción de la superficie pictórica; elimina pared, marco y paspartú de la fotografía, conserva composición y firma. Original fotográfico preservado."
   }
 ]

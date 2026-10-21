@@ -28,11 +28,24 @@ class PortfolioTests(unittest.TestCase):
             for f in ('slug','titulo','anio','tecnica','dimensiones','archivo'):self.assertTrue(work.get(f))
             self.assertIn(work['titulo'],self.html)
             self.assertTrue((ROOT/'assets/obras'/work['archivo']).stat().st_size>1000)
+    def test_three_reframed_paintings_are_responsive_and_keep_full_file(self):
+        for slug in ('aura-cosmica-i','huelliches-ii','plumaje-azul'):
+            work=next(w for w in self.data if w['slug']==slug)
+            full='assets/obras/'+work['archivo']
+            gallery='assets/obras/gallery/'+slug+'-480.webp'
+            retina='assets/obras/gallery/'+slug+'-960.webp'
+            self.assertIn(f'href="{full}" data-artwork',self.html)
+            self.assertIn(f'src="{gallery}"',self.html)
+            self.assertIn(f'{retina} 960w',self.html)
+            self.assertGreater((ROOT/full).stat().st_size,500_000)
+            self.assertLess((ROOT/gallery).stat().st_size,(ROOT/full).stat().st_size)
+            self.assertIn(f'../../{full}',(ROOT/'obras'/slug/'index.html').read_text('utf-8'))
+
     def test_three_new_artworks_are_artist_sourced(self):
         expected={
-            'aura-cosmica-i': ('Aura cósmica I',2026,'aura-cosmica-i-original-web.webp'),
-            'huelliches-ii': ('Huelliches II',2026,'huelliches-ii-original-web.webp'),
-            'plumaje-azul': ('Plumaje azul',2017,'plumaje-azul-original-web.webp'),
+            'aura-cosmica-i': ('Aura cósmica I',2026,'aura-cosmica-i-reframed-original-web.webp'),
+            'huelliches-ii': ('Huelliches II',2026,'huelliches-ii-reframed-original-web.webp'),
+            'plumaje-azul': ('Plumaje azul',2017,'plumaje-azul-reframed-original-web.webp'),
         }
         indexed={w['slug']:w for w in self.data}
         for slug,(title,year,image) in expected.items():
@@ -40,6 +53,9 @@ class PortfolioTests(unittest.TestCase):
             self.assertEqual(work['titulo'],title)
             self.assertEqual(work['anio'],year)
             self.assertEqual(work['archivo'],image)
+            self.assertEqual(work['archivo_original_sin_recorte'],slug+'-original-web.webp')
+            self.assertIn('superficie pictórica',work['nota_recorte'])
+            self.assertTrue((ROOT/'assets/obras'/work['archivo_original_sin_recorte']).is_file())
             self.assertNotIn('pagina_pdf',work)
             self.assertIn('Correo de Nohemi',work['fuente_fotografia'])
             path=ROOT/'assets/obras'/image
