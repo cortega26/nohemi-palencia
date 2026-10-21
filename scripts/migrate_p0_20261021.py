@@ -13,7 +13,7 @@ for w in works:
  if w['slug'] in slugs:
   w['archivo']=w['slug']+'-studio-original-web.webp'
   w['archivo_original_sin_retoque']=w['slug']+'-original-web.webp'
-  w['retoque_fotografico']='Corrección tonal localizada y no generativa de brillo fotográfico; fuente archivada intacta.'
+  w['retoque_fotografico']='Corrección tonal reversible, localizada y no generativa de brillo fotográfico; fuente archivada intacta.'
  if w['slug']=='el-aroma-a-canelo':
   assert w['tecnica']=='Técnica mixta sobre MDF'
   w['archivo']='el-aroma-a-canelo-reference-cropped.webp'
