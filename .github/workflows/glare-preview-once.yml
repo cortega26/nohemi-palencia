@@ -1,0 +1,29 @@
+name: Experimental four-painting glare preview
+on:
+  push:
+    branches: [experiment/specular-glare-audit-four-works]
+    paths: [.github/workflows/glare-preview-once.yml]
+permissions:
+  contents: write
+jobs:
+  generate_preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned photographic processing dependencies
+        run: python3 -m pip install 'Pillow==12.3.0' 'numpy==2.2.6' 'opencv-python-headless==4.12.0.88'
+      - name: Prepare isolated four-work editorial previews
+        run: python3 scripts/review_glare_v2.py
+      - name: Show measured differences (does not measure artistic fidelity)
+        run: cat assets/review/glare-v2-audit.json
+      - name: Save previews to experimental branch only
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/review
+          git commit -m "art-preview: four manually constrained specular corrections"
+          git push origin "HEAD:experiment/specular-glare-audit-four-works"
