@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Build verifiable, non-generative WebP thumbnails for the documented originals.
 
-Source-of-truth is data/obras.json. The two unverified catalog previews are
+Source-of-truth is data/obras.json. The one unverified catalog preview is
 intentionally left untouched. Gallery derivatives never replace full-size artwork
 images in metadata, detail pages or the zoom viewer.
 """
@@ -21,7 +21,7 @@ QUALITY = 82
 
 def generated_variants():
     works = json.loads((ROOT / 'data/obras.json').read_text('utf-8'))
-    assert len(works) == 14
+    assert len(works) == 13
     for work in works:
         if not work.get('fuente_fotografia'):
             continue

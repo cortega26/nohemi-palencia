@@ -16,7 +16,7 @@ from PIL import Image, ImageOps
 
 ROOT = Path(__file__).resolve().parents[1]
 ARTWORKS = {
-    'aura-cosmica-i': ('17634.jpg',
+    'aura-cosmica-ii': ('17634.jpg',
         'c455aa11fc363b0e10d4f0634c874efa7adf7f91ed51c942c52709dc38ff0da9', (637,1060,2386,3532)),
     'huelliches-ii': ('17661.jpg',
         '80f2a2aeb6d0ee35a2f9dcdd3686af9e22241fda7881d5590a390278502fc76f', (709,711,2411,3265)),
