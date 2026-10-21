@@ -266,7 +266,7 @@ def render_artwork_pages():
                  else 'Ficha técnica proporcionada por la artista. ')
                 + 'Fotografía original proporcionada por Nohemi Palencia.'
                 if work.get('fuente_fotografia')
-                else 'Ficha técnica del portafolio de la artista. Imagen provisional del catálogo; fotografía original pendiente.'
+                else 'Ficha técnica del portafolio de la artista. Imagen documental reencuadrada sin ampliación digital; fotografía original de cámara HD pendiente.'
             ),
             '{{MEDIUM}}': work['tecnica'],
             '{{DIMENSIONS}}': work['dimensiones'],

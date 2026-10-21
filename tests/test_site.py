@@ -398,7 +398,7 @@ class PortfolioTests(unittest.TestCase):
         for slug,source in expected.items():
             work=indexed[slug]
             self.assertEqual(work['archivo'],slug+(
-                '-retouched-original-web.webp' if slug in ('guardiana','vision-frontal-sueno-con-el-iznik')
+                '-studio-original-web.webp' if slug in ('guardiana','vision-frontal-sueno-con-el-iznik','hilos-del-subconciente','atomica-ii')
                 else '-original-web.webp'))
             self.assertIn(source,work['fuente_fotografia'])
             path=ROOT/'assets/obras'/work['archivo']
@@ -411,8 +411,8 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('.artwork-detail-view{padding:0;background:transparent}',styles)
 
 
-    def test_retouched_paintings_are_reversible_and_only_two(self):
-        treated=('guardiana','vision-frontal-sueno-con-el-iznik')
+    def test_four_reversible_photo_corrections(self):
+        treated=('guardiana','vision-frontal-sueno-con-el-iznik','hilos-del-subconciente','atomica-ii')
         self.assertEqual([w['slug'] for w in self.data if 'retoque_fotografico' in w],list(treated))
         for slug in treated:
             work=next(w for w in self.data if w['slug']==slug)
@@ -422,7 +422,7 @@ class PortfolioTests(unittest.TestCase):
             self.assertTrue((ROOT/'assets/obras'/work['archivo']).exists())
             page=(ROOT/'obras'/slug/'index.html').read_text('utf-8')
             self.assertIn('../../assets/obras/'+work['archivo'],page)
-        self.assertEqual(self.html.count('-retouched-original-web.webp'),2)
+        self.assertEqual(self.html.count('-studio-original-web.webp'),4)
 
     def test_only_authorized_artwork_routes_exist(self):
         slugs=[w['slug'] for w in self.data]
@@ -489,7 +489,7 @@ class PortfolioTests(unittest.TestCase):
                 self.assertIn('Fotografía original proporcionada por Nohemi Palencia.',page)
                 self.assertNotIn('Imagen provisional del catálogo',page)
             else:
-                self.assertIn('Imagen provisional del catálogo; fotografía original pendiente.',page)
+                self.assertIn('Imagen documental reencuadrada sin ampliación digital; fotografía original de cámara HD pendiente.',page)
                 self.assertNotIn('Fotografía original proporcionada por Nohemi Palencia.',page)
 
     def test_script_exists(self):

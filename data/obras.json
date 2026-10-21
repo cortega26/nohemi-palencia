@@ -6,11 +6,11 @@
     "dimensiones": "76 × 100 cm",
     "anio": 2026,
     "pagina_pdf": 3,
-    "archivo": "guardiana-retouched-original-web.webp",
+    "archivo": "guardiana-studio-original-web.webp",
     "destacada": true,
     "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17677.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura",
     "archivo_original_sin_retoque": "guardiana-original-web.webp",
-    "retoque_fotografico": "Atenuación fotográfica localizada y reversible del brillo especular; sin reconstrucción ni modificación de trazos. Se conserva la reproducción anterior."
+    "retoque_fotografico": "Corrección tonal reversible, localizada y no generativa de brillo fotográfico; fuente archivada intacta."
   },
   {
     "slug": "princesa-onirica",
@@ -29,10 +29,10 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 5,
-    "archivo": "vision-frontal-sueno-con-el-iznik-retouched-original-web.webp",
+    "archivo": "vision-frontal-sueno-con-el-iznik-studio-original-web.webp",
     "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17673.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura",
     "archivo_original_sin_retoque": "vision-frontal-sueno-con-el-iznik-original-web.webp",
-    "retoque_fotografico": "Atenuación fotográfica localizada y reversible del brillo especular; sin reconstrucción ni modificación de trazos. Se conserva la reproducción anterior."
+    "retoque_fotografico": "Corrección tonal reversible, localizada y no generativa de brillo fotográfico; fuente archivada intacta."
   },
   {
     "slug": "hilos-del-subconciente",
@@ -41,8 +41,10 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 6,
-    "archivo": "hilos-del-subconciente-original-web.webp",
-    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17679.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
+    "archivo": "hilos-del-subconciente-studio-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17679.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura",
+    "archivo_original_sin_retoque": "hilos-del-subconciente-original-web.webp",
+    "retoque_fotografico": "Corrección tonal reversible, localizada y no generativa de brillo fotográfico; fuente archivada intacta."
   },
   {
     "slug": "shitikari",
@@ -61,8 +63,10 @@
     "dimensiones": "81 × 64 cm",
     "anio": 2026,
     "pagina_pdf": 9,
-    "archivo": "atomica-ii-original-web.webp",
-    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17659.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
+    "archivo": "atomica-ii-studio-original-web.webp",
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17659.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura",
+    "archivo_original_sin_retoque": "atomica-ii-original-web.webp",
+    "retoque_fotografico": "Corrección tonal reversible, localizada y no generativa de brillo fotográfico; fuente archivada intacta."
   },
   {
     "slug": "sacerdotiza-solar",
@@ -102,8 +106,10 @@
     "dimensiones": "120 × 90 cm",
     "anio": 2026,
     "pagina_pdf": 13,
-    "archivo": "el-aroma-a-canelo-preview.jpg",
-    "fuente_titulo": "Título «El aroma a canelo» confirmado por Nohemi Palencia, según comunicación del responsable del sitio el 21-10-2026. Soporte aún no rectificado: el PDF del correo lo describe como lienzo barnizado y la ficha existente como MDF."
+    "archivo": "el-aroma-a-canelo-reference-cropped.webp",
+    "fuente_titulo": "Título «El aroma a canelo» confirmado por Nohemi Palencia, según comunicación del responsable del sitio el 21-10-2026. Soporte aún no rectificado: el PDF del correo lo describe como lienzo barnizado y la ficha existente como MDF.",
+    "fuente_soporte": "MDF confirmado por el responsable del sitio el 21-10-2026.",
+    "fuente_documental": "Fotografía de referencia del catálogo proporcionado por Nohemi, reencuadrada sin ampliar resolución. No es original de cámara HD."
   },
   {
     "slug": "aura-cosmica-ii",
