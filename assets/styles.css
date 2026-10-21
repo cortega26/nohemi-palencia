@@ -206,3 +206,6 @@
 .site-footer .footer-credit a{text-decoration:underline;text-decoration-color:#849889;text-underline-offset:3px;font-weight:600;color:inherit}
 .site-footer .footer-credit a:hover,.site-footer .footer-credit a:focus-visible{color:#fffdf8}
 @media(max-width:620px){.footer-inner{flex-wrap:wrap;gap:12px 18px}.footer-credit{order:3;flex-basis:100%;font-size:9px}}
+
+/* Final rendered-device audit 2026-10-21: minimum comfortable touch targets for editorial links. */
+.upcoming-intro a,.exhibition-links a,.site-footer a{display:inline-flex;align-items:center;min-height:28px}
