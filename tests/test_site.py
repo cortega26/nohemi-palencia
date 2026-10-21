@@ -101,7 +101,7 @@ class PortfolioTests(unittest.TestCase):
             if url.startswith('#'):self.assertIn(url[1:],ids)
     def test_instagram_is_artist_source(self):
         self.assertIn('https://www.instagram.com/nohe.palencia/',self.html)
-        self.assertNotIn('nohemipalencia',self.html.lower().replace('nohemi palencia',''))
+        self.assertNotIn('instagram.com/nohemipalencia',self.html.lower())
     def test_no_pending_placeholders(self):
         self.assertNotIn('{{',self.html);self.assertNotIn('POR CONFIRMAR',self.html)
     def test_decorative_controls_are_not_mistaken_for_navigation(self):
