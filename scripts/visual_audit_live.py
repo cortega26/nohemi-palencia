@@ -85,7 +85,8 @@ with sync_playwright() as play:
         data=scan(page);
         if preload_errors:
             data["preload_errors"]=preload_errors
-            bad_pages.append({"name":label,"error":"images failed to load during full sequential scroll","details":preload_errors})data["http_status"]=resp.status if resp else None
+            bad_pages.append({"name":label,"error":"images failed to load during full sequential scroll","details":preload_errors})
+        data["http_status"]=resp.status if resp else None
         data["js_errors"]=errors
         report["viewports"][label]=data
         shot(page,label+"_hero")
