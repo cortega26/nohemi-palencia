@@ -23,6 +23,11 @@ jobs:
           python3 -m playwright install --with-deps chromium
       - name: Audit live site and generate evidence
         run: python3 scripts/visual_audit_live.py
+      - name: Make desktop full-page overview viewable for human QA
+        if: always()
+        run: |
+          python3 -m pip install 'Pillow==12.3.0'
+          python3 -c "from PIL import Image; p='visual-audit/evidence-post/desktop_full.jpg'; im=Image.open(p); im.thumbnail((720,16000)); im.save('visual-audit/evidence-post/desktop_full_overview.jpg',quality=76); print(im.size)"
       - name: Commit temporary QA evidence to audit branch
         if: always()
         run: |
