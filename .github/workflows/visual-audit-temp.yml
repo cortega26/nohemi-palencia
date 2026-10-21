@@ -5,6 +5,7 @@ on:
       - audit/visual-final-20261021
     paths:
       - .github/workflows/visual-audit-temp.yml
+      - scripts/visual_audit_live.py
 permissions:
   contents: write
 jobs:
