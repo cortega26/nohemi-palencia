@@ -450,6 +450,15 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('Obras que participarán',upcoming)
         self.assertNotIn('obras participantes pendientes',upcoming)
 
+    def test_ca660_artwork_labels_centered_under_each_painting(self):
+        css=(ROOT/'assets/styles.css').read_text('utf-8')
+        self.assertIn('.upcoming-work{display:flex;flex-direction:column;align-items:center;text-align:center;',css)
+        self.assertIn('.upcoming-work span{display:block;max-width:min(100%,240px);',css)
+        self.assertIn('text-wrap:balance}',css)
+        self.assertIn('object-fit:contain;object-position:center;',css)
+        self.assertIn('.upcoming-artworks{grid-template-columns:repeat(2,minmax(0,1fr));',css)
+        self.assertEqual(self.html.count('class="upcoming-work"'),4)
+
     def test_responsive_gallery_only_for_confirmed_originals(self):
         expected_full = {w['slug']:w for w in self.data}
         self.assertEqual(len(self.parser.art),13)
