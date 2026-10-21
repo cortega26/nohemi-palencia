@@ -1,0 +1,42 @@
+name: One-shot P0 photo and catalog integration
+on:
+  push:
+    branches: [fix/p0-photography-canelo-glare-20261021]
+    paths: [.github/workflows/one-shot-p0.yml]
+permissions:
+  contents: write
+jobs:
+  integrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install pinned image libraries
+        run: python3 -m pip install 'Pillow==12.3.0' 'numpy==2.2.6'
+      - name: Reconcile artist source metadata and tests
+        run: python3 scripts/migrate_p0_20261021.py
+      - name: Render four source-preserving glare adjustments
+        run: python3 scripts/refine_glare_p0.py
+      - name: Reframe Canelo documentary reference without upscaling
+        run: python3 scripts/reframe_canelo_reference.py
+      - name: Regenerate responsive thumbnails and all pages
+        run: |
+          python3 scripts/generate_gallery_variants.py
+          python3 scripts/build.py
+      - name: Validate source images, generated output and regression tests
+        run: |
+          python3 scripts/refine_glare_p0.py --check
+          python3 scripts/reframe_canelo_reference.py --check
+          python3 scripts/generate_gallery_variants.py --check
+          python3 scripts/build.py --check
+          python3 -m unittest discover -s tests -v
+      - name: Commit verified artifacts to this feature branch
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/ README.md scripts/build.py tests/test_site.py assets/obras/ index.html obras/ sitemap.xml
+          git commit -m "assets: validate four corrected photographs and the MDF Canelo catalog reference"
+          git push origin "HEAD:fix/p0-photography-canelo-glare-20261021"
