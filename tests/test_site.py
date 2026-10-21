@@ -510,6 +510,28 @@ class PortfolioTests(unittest.TestCase):
                 self.assertIn('Imagen documental reencuadrada sin ampliación digital; fotografía original de cámara HD pendiente.',page)
                 self.assertNotIn('Fotografía original proporcionada por Nohemi Palencia.',page)
 
+    def test_tooltician_footer_credit_has_correct_utm_on_every_page(self):
+        from html import unescape
+        from urllib.parse import urlparse, parse_qs
+        pages=[ROOT/'index.html',ROOT/'exposiciones/rostros-oniricos/index.html']
+        pages.extend(ROOT/'obras'/w['slug']/'index.html' for w in self.data)
+        self.assertEqual(len(pages),15)
+        for page in pages:
+            html=page.read_text('utf-8')
+            footer=re.search(r'<footer class="site-footer">(.*?)</footer>',html,re.S)
+            self.assertIsNotNone(footer,str(page))
+            self.assertEqual(footer.group(1).count('Hecho por '),1,str(page))
+            match=re.search(r'<a href="([^"]+)" target="_blank" rel="noopener noreferrer">Tooltician</a>',footer.group(1))
+            self.assertIsNotNone(match,str(page))
+            url=urlparse(unescape(match.group(1)))
+            self.assertEqual((url.scheme,url.netloc,url.path),('https','tooltician.com','/'),str(page))
+            self.assertEqual(parse_qs(url.query),{
+                'utm_source':['nohemipalencia.com'],
+                'utm_medium':['referral'],
+                'utm_campaign':['portfolio_footer'],
+            },str(page))
+            self.assertIn('© 2026 Nohemi Palencia Cisneros',footer.group(1))
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
