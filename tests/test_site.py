@@ -19,6 +19,24 @@ class PortfolioTests(unittest.TestCase):
     def setUpClass(cls):
         cls.html=(ROOT/'index.html').read_text('utf-8'); cls.data=json.loads((ROOT/'data/obras.json').read_text('utf-8'))
         cls.parser=Collector();cls.parser.feed(cls.html)
+    def test_owner_corrected_all_fourteen_work_years_to_2026(self):
+        # Direct correction from website owner supersedes the 2017 catalog entries;
+        # documentation of the historical discrepancy must remain available.
+        self.assertEqual(len(self.data),14)
+        self.assertTrue(all(w['anio']==2026 for w in self.data))
+        for slug in ('hindu-celular','plumaje-azul'):
+            work=next(w for w in self.data if w['slug']==slug)
+            self.assertIn('responsable del sitio',work['fuente_anio'])
+            self.assertIn('2017',work['fuente_anio'])
+            page=(ROOT/'obras'/slug/'index.html').read_text('utf-8')
+            self.assertIn('dateCreated":"2026"',page)
+            self.assertIn('<time datetime="2026">2026</time>',page)
+            self.assertNotIn('(2017)',page)
+            self.assertNotIn('dateCreated":"2017"',page)
+            item=self.html.split('id="obra-'+slug+'"',1)[1].split('</article>',1)[0]
+            self.assertIn('class="artwork-year">2026',item)
+            self.assertNotIn('2017',item)
+
     def test_gallery_all_fourteen_unique(self):
         self.assertEqual(len(self.data),14)
         self.assertEqual(len(self.parser.art),14)
@@ -45,7 +63,7 @@ class PortfolioTests(unittest.TestCase):
         expected={
             'aura-cosmica-i': ('Aura cósmica I',2026,'aura-cosmica-i-reframed-original-web.webp'),
             'huelliches-ii': ('Huelliches II',2026,'huelliches-ii-reframed-original-web.webp'),
-            'plumaje-azul': ('Plumaje azul',2017,'plumaje-azul-reframed-original-web.webp'),
+            'plumaje-azul': ('Plumaje azul',2026,'plumaje-azul-reframed-original-web.webp'),
         }
         indexed={w['slug']:w for w in self.data}
         for slug,(title,year,image) in expected.items():
@@ -97,7 +115,7 @@ class PortfolioTests(unittest.TestCase):
             self.assertIn(title,self.html)
         # Contradictions must not be silently rewritten from a later catalog.
         records={w['slug']:w for w in self.data}
-        self.assertEqual(records['plumaje-azul']['anio'],2017)
+        self.assertEqual(records['plumaje-azul']['anio'],2026)
         self.assertEqual(records['aura-cosmica-ii']['archivo'],'aura-cosmica-ii-preview.webp')
         self.assertNotIn('Exposición individual «Galería Urbana»',self.html)
 

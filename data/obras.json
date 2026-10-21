@@ -84,10 +84,11 @@
     "titulo": "Hindú celular",
     "tecnica": "Técnica mixta sobre MDF",
     "dimensiones": "81 × 64 cm",
-    "anio": 2017,
+    "anio": 2026,
     "pagina_pdf": 11,
     "archivo": "hindu-celular-original-web.webp",
-    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17653.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura"
+    "fuente_fotografia": "Correo original de Nohemi Palencia, 20-10-2026 · 17653.jpg; recorte editorial del soporte y marco fotográfico, sin alterar pintura",
+    "fuente_anio": "Corrección editorial explícita del responsable del sitio, octubre de 2026: estas obras fueron realizadas en 2026. La documentación previa indicaba 2017; se conserva esa contradicción en README como antecedente documental, no como año vigente."
   },
   {
     "slug": "guardiana-del-umbral",
@@ -135,10 +136,11 @@
     "titulo": "Plumaje azul",
     "tecnica": "Técnica mixta sobre MDF vitrificado",
     "dimensiones": "81,5 × 64 cm",
-    "anio": 2017,
+    "anio": 2026,
     "archivo": "plumaje-azul-reframed-original-web.webp",
     "fuente_fotografia": "Correo de Nohemi del 20-10-2026 · 17651.jpg",
     "archivo_original_sin_recorte": "plumaje-azul-original-web.webp",
-    "nota_recorte": "Reproducción de la superficie pictórica; elimina pared, marco y paspartú de la fotografía, conserva composición y firma. Original fotográfico preservado."
+    "nota_recorte": "Reproducción de la superficie pictórica; elimina pared, marco y paspartú de la fotografía, conserva composición y firma. Original fotográfico preservado.",
+    "fuente_anio": "Corrección editorial explícita del responsable del sitio, octubre de 2026: estas obras fueron realizadas en 2026. La documentación previa indicaba 2017; se conserva esa contradicción en README como antecedente documental, no como año vigente."
   }
 ]
