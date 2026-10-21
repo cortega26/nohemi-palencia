@@ -33,3 +33,4 @@ jobs:
             git commit -m "audit: temporary Chromium evidence for human visual review"
             git push origin HEAD:audit/visual-final-20261021
           fi
+# Verify post-PR39 public deployment from main@04206859299deed9b85b586c490176b88eba26b8
