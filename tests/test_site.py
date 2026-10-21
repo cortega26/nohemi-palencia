@@ -348,6 +348,18 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('.artwork-image,.artwork-feature .artwork-image{padding:0;background:transparent}',styles)
         self.assertIn('.artwork-detail-view{padding:0;background:transparent}',styles)
 
+
+    def test_artwork_provenance_credit_matches_actual_image(self):
+        self.assertEqual(sum(bool(w.get('fuente_fotografia')) for w in self.data),12)
+        for work in self.data:
+            page=(ROOT/'obras'/work['slug']/'index.html').read_text('utf-8')
+            if work.get('fuente_fotografia'):
+                self.assertIn('Fotografía original proporcionada por Nohemi Palencia.',page)
+                self.assertNotIn('Imagen provisional del catálogo',page)
+            else:
+                self.assertIn('Imagen provisional del catálogo; fotografía original pendiente.',page)
+                self.assertNotIn('Fotografía original proporcionada por Nohemi Palencia.',page)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
