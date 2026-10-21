@@ -328,6 +328,26 @@ class PortfolioTests(unittest.TestCase):
         self.assertIn('src="assets/img/nohemi-galeria-neural-2x.webp"',self.html)
         self.assertIn('grid-template-columns:minmax(0,1.25fr) minmax(0,1fr)',css)
 
+
+    def test_nine_artist_originals_are_source_traced_without_faux_frames(self):
+        expected={'guardiana':'17677.jpg','hilos-del-subconciente':'17679.jpg',
+            'guardiana-del-umbral':'17678.jpg','vision-frontal-sueno-con-el-iznik':'17673.jpg',
+            'sacerdotiza-solar':'17663.jpg','princesa-onirica':'17662.jpg',
+            'atomica-ii':'17659.jpg','hindu-celular':'17653.jpg','shitikari':'17652.jpg'}
+        indexed={w['slug']:w for w in self.data}
+        for slug,source in expected.items():
+            work=indexed[slug]
+            self.assertEqual(work['archivo'],slug+'-original-web.webp')
+            self.assertIn(source,work['fuente_fotografia'])
+            path=ROOT/'assets/obras'/work['archivo']
+            self.assertGreater(path.stat().st_size,300_000,slug)
+            header=path.read_bytes()[:12]
+            self.assertEqual((header[:4],header[8:12]),(b'RIFF',b'WEBP'),slug)
+            self.assertIn('assets/obras/'+work['archivo'],self.html)
+        styles=(ROOT/'assets/styles.css').read_text('utf-8')
+        self.assertIn('.artwork-image,.artwork-feature .artwork-image{padding:0;background:transparent}',styles)
+        self.assertIn('.artwork-detail-view{padding:0;background:transparent}',styles)
+
     def test_script_exists(self):
         self.assertTrue((ROOT/'assets/main.js').exists())
     def test_structured_data(self):
