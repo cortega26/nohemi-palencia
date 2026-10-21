@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "guardiana",
+    "dimensions": [
+      2400,
+      1710
+    ],
+    "mean_abs_rgb_delta": 1.41,
+    "max_pixel_delta": 105,
+    "changed_over_8_pct": 2.66,
+    "specular_candidate_before": 87094,
+    "specular_candidate_after": 23984,
+    "outlier_reduction_pct": 72.5,
+    "outside_roi_mean_abs_delta": 0.22
+  },
+  {
+    "slug": "vision-frontal-sueno-con-el-iznik",
+    "dimensions": [
+      1643,
+      2400
+    ],
+    "mean_abs_rgb_delta": 1.86,
+    "max_pixel_delta": 105,
+    "changed_over_8_pct": 4.8,
+    "specular_candidate_before": 80141,
+    "specular_candidate_after": 7473,
+    "outlier_reduction_pct": 90.7,
+    "outside_roi_mean_abs_delta": 0.15
+  },
+  {
+    "slug": "hilos-del-subconciente",
+    "dimensions": [
+      1903,
+      2400
+    ],
+    "mean_abs_rgb_delta": 1.3,
+    "max_pixel_delta": 105,
+    "changed_over_8_pct": 1.89,
+    "specular_candidate_before": 65292,
+    "specular_candidate_after": 9991,
+    "outlier_reduction_pct": 84.7,
+    "outside_roi_mean_abs_delta": 0.36
+  },
+  {
+    "slug": "atomica-ii",
+    "dimensions": [
+      1746,
+      2400
+    ],
+    "mean_abs_rgb_delta": 0.6,
+    "max_pixel_delta": 105,
+    "changed_over_8_pct": 1.36,
+    "specular_candidate_before": 42802,
+    "specular_candidate_after": 23764,
+    "outlier_reduction_pct": 44.5,
+    "outside_roi_mean_abs_delta": 0.24
+  }
+]
