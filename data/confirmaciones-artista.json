@@ -77,21 +77,16 @@
     "fuente_obras": "Identificación visual de las cuatro fotografías facilitadas por el responsable del sitio el 21-10-2026, cotejadas individualmente con los originales existentes; orden de la cuadrícula: arriba izquierda, arriba derecha, abajo izquierda, abajo derecha."
   },
   "fotografias_alta_resolucion": "pendientes de envío por la artista",
-  "identificacion_auras": {
-    "fecha": "2026-10-21",
-    "fuente": "Respuesta de Nohemi vía WhatsApp, comunicada por el responsable del sitio",
-    "misma_pintura_en_fichas_anteriores": [
-      6,
-      12
-    ],
-    "titulo_confirmado": "Aura cósmica II",
-    "accion": "Quitar la ficha 6 duplicada y retitular la ficha 12 como II; no incluir la obra I en el catálogo.",
-    "aura_cosmica_i_en_catalogo": false
-  },
   "titulo_canelo": {
     "fecha": "2026-10-21",
     "titulo_confirmado": "El aroma a canelo",
     "fuente": "Confirmación de la autora comunicada por el responsable del sitio",
     "soporte_estado": "Sin nueva confirmación; divergencia documental entre MDF (catálogo) y lienzo barnizado (PDF de correo)"
+  },
+  "identificacion_aura_cosmica_ii": {
+    "fecha": "2026-10-21",
+    "fuente": "Respuesta de Nohemi vía WhatsApp, comunicada por el responsable del sitio",
+    "titulo_confirmado": "Aura cósmica II",
+    "nota": "La artista identificó la obra; el catálogo contiene un solo registro."
   }
 }

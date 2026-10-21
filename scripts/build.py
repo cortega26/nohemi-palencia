@@ -44,21 +44,6 @@ def inject_seo(document, page_path, image_path, image_alt):
     ]
     return version_stylesheet(document.replace('</head>', '\n'.join(lines)+'\n</head>', 1))
 
-def previous_aura_redirect():
-    """Preserve old artwork-I deep links without publishing an invented artwork."""
-    target=public_url('obras/aura-cosmica-ii/')
-    safe=html.escape(target,quote=True)
-    return ('''<!doctype html>
-<html lang="es"><head><meta charset="utf-8">
-<meta name="robots" content="noindex,follow">
-<meta http-equiv="refresh" content="0;url={0}">
-<link rel="canonical" href="{0}">
-<title>Ficha corregida · Nohemi Palencia</title>
-</head><body><main><p>La ficha de esta pintura fue corregida. Consulte
-<a href="{0}">Aura cósmica II</a>.</p></main></body></html>
-''').format(safe)
-
-
 def render_sitemap():
     works=json.loads((ROOT/'data/obras.json').read_text(encoding='utf-8'))
     pages=['', 'exposiciones/rostros-oniricos/'] + [f"obras/{work['slug']}/" for work in works]
@@ -307,7 +292,6 @@ if __name__=='__main__':
         ROOT/'index.html': render()+'\n',
         ROOT/'exposiciones/rostros-oniricos/index.html': render_exhibition()+'\n',
         ROOT/'sitemap.xml': render_sitemap(),
-        ROOT/'obras/aura-cosmica-i/index.html': previous_aura_redirect(),
     }
     expected_pages.update(render_artwork_pages())
     if args.check:
